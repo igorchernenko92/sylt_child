@@ -10,3 +10,60 @@ Updated: 2019-12-24 19:51:25
 
 */
 
+.ms-choice > span {
+    color: #000;
+}
+
+.ms-drop ul > li.multiple {
+    width: 100% !important;
+}
+
+.multiple.selected {
+    background-color: #f7f7f7;
+}
+
+.ms-drop input[type="radio"],
+.ms-drop input[type="checkbox"] {
+    margin-top: 8px;
+    -moz-appearance: checkbox;
+    -webkit-appearance: checkbox;
+    -ms-appearance: checkbox;
+    appearance: checkbox;
+    opacity: 1;
+    width: auto;
+    margin-right: 0;
+    float: none;
+    z-index: 1;
+}
+
+.ms-choice > span,
+.ms-choice > .placeholder{
+    top: 50%;
+    transform: translate(0, -50%);
+    color: #3c3b3b !important;
+    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65em;
+}
+
+.ms-choice {
+    border-color: rgba(0,0,0,.15);
+    border-radius: 0;
+    background-color: #f1f5f9;
+    height: 100%;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover, button:hover,
+.button:hover {
+    background-color: #f1f5f9;
+}
+
+.ms-parent {
+    height: 100%;
+}
+
+.listings-search-field {
+    height: 2.25em;
+}
