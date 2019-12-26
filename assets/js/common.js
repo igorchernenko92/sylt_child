@@ -40,7 +40,7 @@ jQuery(document).ready(function($) {
                 data: {
                     min: 50000,
                     max: 2000000,
-                    step: 50000
+                    step: 25000
                 }
             },
             {
@@ -62,15 +62,17 @@ jQuery(document).ready(function($) {
             to: selectOffer[1].data.max,
             step: selectOffer[1].data.step,
             prefix: "$",
-            onLoad: outputFirstValues,
+            onStart: outputFirstValues,
             onChange: outputValues,
             onFinish: outputValues
         };
 
 
         function outputFirstValues () {
-            // $rangeMin.attr("value", rangeValues.from);
-            // $rangeMax.attr("value", rangeValues.to);
+            outputValues({
+                from: selectOffer[1].data.min,
+                to: selectOffer[1].data.max
+            });
         }
 
         function outputValues (data) {
