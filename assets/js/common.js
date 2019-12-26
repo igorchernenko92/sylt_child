@@ -39,14 +39,16 @@ jQuery(document).ready(function($) {
                 name: 'sale',
                 data: {
                     min: 50000,
-                    max: 2000000
+                    max: 2000000,
+                    step: 50000
                 }
             },
             {
                 name: 'rent',
                 data: {
                     min: 300,
-                    max: 2000
+                    max: 2000,
+                    step: 50
                 }
             }
         ];
@@ -54,10 +56,11 @@ jQuery(document).ready(function($) {
         var options = {
             type: "double",
             skin: "round",
-            min: selectOffer[0].data.min,
-            max: selectOffer[0].data.max,
-            from: selectOffer[0].data.min,
-            to: selectOffer[0].data.max,
+            min: selectOffer[1].data.min,
+            max: selectOffer[1].data.max,
+            from: selectOffer[1].data.min,
+            to: selectOffer[1].data.max,
+            step: selectOffer[1].data.step,
             prefix: "$",
             onLoad: outputFirstValues,
             onChange: outputValues,
@@ -84,7 +87,7 @@ jQuery(document).ready(function($) {
             $selectOffer.on("change", function () {
                 curOffer = $(this).val();
 
-                var resultOfferKey = (curOffer === "") ? "sale" : curOffer;
+                var resultOfferKey = (curOffer === "") ? "rent" : curOffer;
 
                 var resultOffer = selectOffer.find(function (cur) {
                     return cur.name === resultOfferKey;
@@ -95,6 +98,7 @@ jQuery(document).ready(function($) {
                     max: resultOffer.data.max,
                     from: resultOffer.data.min,
                     to: resultOffer.data.max,
+                    step: resultOffer.data.step
                 });
 
                 outputValues({
