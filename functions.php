@@ -37,26 +37,70 @@ add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );
 
 // END ENQUEUE PARENT ACTION
 
-function edit_listing_request($query_args, $args) {
+function edit_listing_request($result, $query_args, $args) {
+    global $wpdb;
+//    $query_args['meta_query']['offer'] = array(
+//        'key'     => '_price_offer',
+//        'value'   =>  htmlspecialchars( $_GET['offer'] ),
+//        'compare' => 'IN'
+//    );
 
-    $query_args['meta_query']['offer'] = array(
-        'key'     => '_price_offer',
-        'value'   =>  htmlspecialchars( $_GET['offer'] ),
-        'compare' => 'IN'
-    );
+    if ( isset($_GET['keyword']) ) {
+//        $keywords = array_map( 'trim', explode( ',',  $_GET['keyword'] ) );
+//        $postmeta_keywords_sql = array();
+//
+//        foreach ( $keywords as $keyword ) {
+//            $postmeta_keywords_sql[] = " meta_value LIKE '%" . esc_sql( $keyword ) . "%' ";
+//        }
+//
+//        $post_ids = $wpdb->get_col( "
+//            SELECT DISTINCT post_id FROM {$wpdb->postmeta}
+//            WHERE " . implode( ' OR ', $postmeta_keywords_sql ) . "
+//            AND meta_key = '_listing_id'
+//        " );
+
+
+
+        $id_args = array(
+            'post_type'  => wpsight_post_type(),
+            'meta_query' => array(
+                'relation' => 'OR',
+                array(
+                    'key'    => '_listing_id',
+                    'value'   => esc_sql( $_GET['keyword'] ),
+                    'compare' => 'LIKE'
+                ),
+            )
+        );
+
+        // Execute ID search query
+        $id_query = new WP_Query( $id_args );
+
+//        if ( ! empty( $id_query->posts ) )
+            var_dump(  wp_list_pluck( $id_query->posts, 'ID' ));
+
+//        if ( ! empty( $post_ids ) )
+            $query_args['post__in'] = wp_list_pluck( $id_query->posts, 'ID' );
+
+//        var_dump( $post_ids );
+//        var_dump( $query_args['post__in'] );
+    }
+
     $result = new WP_Query( $query_args );
 
-    return $query_args;
+//var_dump($query_args);
+    return $result;
 }
 
-//add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 3 );
+//add_filter( 'wpsight_get_listings', 'edit_listing_request', 10 , 3 );
 
 
 function edit_default_fields($fields_default) {
     $fields_default['location']['type'] = 'multiselect';
     $fields_default['listing-type']['type'] = 'multiselect';
     $fields_default['feature']['type'] = 'select2';
-//    $fields_default['min'] = array();
+    $fields_default['min']['type'] ='range';
+    $fields_default['max']['type'] ='';
 
     return wpsight_sort_array_by_priority( $fields_default );
 }
