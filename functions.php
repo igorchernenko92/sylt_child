@@ -37,29 +37,8 @@ add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );
 
 // END ENQUEUE PARENT ACTION
 
-function edit_listing_request($result, $query_args, $args) {
-    global $wpdb;
-//    $query_args['meta_query']['offer'] = array(
-//        'key'     => '_price_offer',
-//        'value'   =>  htmlspecialchars( $_GET['offer'] ),
-//        'compare' => 'IN'
-//    );
-
-    if ( isset($_GET['keyword']) ) {
-//        $keywords = array_map( 'trim', explode( ',',  $_GET['keyword'] ) );
-//        $postmeta_keywords_sql = array();
-//
-//        foreach ( $keywords as $keyword ) {
-//            $postmeta_keywords_sql[] = " meta_value LIKE '%" . esc_sql( $keyword ) . "%' ";
-//        }
-//
-//        $post_ids = $wpdb->get_col( "
-//            SELECT DISTINCT post_id FROM {$wpdb->postmeta}
-//            WHERE " . implode( ' OR ', $postmeta_keywords_sql ) . "
-//            AND meta_key = '_listing_id'
-//        " );
-
-
+function edit_listing_request($query_args, $args) {
+    if ( isset($_GET['post__in']) ) {
 
         $id_args = array(
             'post_type'  => wpsight_post_type(),
@@ -67,7 +46,7 @@ function edit_listing_request($result, $query_args, $args) {
                 'relation' => 'OR',
                 array(
                     'key'    => '_listing_id',
-                    'value'   => esc_sql( $_GET['keyword'] ),
+                    'value'   => esc_sql( $_GET['post__in'] ),
                     'compare' => 'LIKE'
                 ),
             )
@@ -76,42 +55,40 @@ function edit_listing_request($result, $query_args, $args) {
         // Execute ID search query
         $id_query = new WP_Query( $id_args );
 
-//        if ( ! empty( $id_query->posts ) )
-            var_dump(  wp_list_pluck( $id_query->posts, 'ID' ));
-
-//        if ( ! empty( $post_ids ) )
-            $query_args['post__in'] = wp_list_pluck( $id_query->posts, 'ID' );
-
-//        var_dump( $post_ids );
-//        var_dump( $query_args['post__in'] );
+        $post_ids = wp_list_pluck( $id_query->posts, 'ID' );
+        if ( empty( $post_ids ) ) {
+            $query_args['post__in'] = ['issue'];
+        } else {
+            $query_args['post__in'] = $post_ids;
+        }
     }
 
-    $result = new WP_Query( $query_args );
-
-//var_dump($query_args);
-    return $result;
+    return $query_args;
 }
 
-//add_filter( 'wpsight_get_listings', 'edit_listing_request', 10 , 3 );
+add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 2 );
 
 
 function edit_default_fields($fields_default) {
     $fields_default['range'] = [
+        'label' 		=> __( 'Range', 'wpcasa' ),
+        'key'			=> '_price_range',
+        'type' 			=> 'range',
+        'priority'		=> 30
+    ];
 
-            'label' 		=> __( 'Range', 'wpcasa' ),
-            'key'			=> '_price_range',
-//            'data' 			=> '',
-            'type' 			=> 'range',
-//            'data_compare' 	=> '=',
-//            'class'			=> 'width-1-5',
-            'priority'		=> 30
-
+    $fields_default['post__in'] = [
+        'label' 		=> __( 'Listing ID', 'wpcasa' ) . '&hellip;',
+        'type' 			=> 'text',
+        'class'			=> 'width-3-4',
+        'priority'		=> 10
     ];
 
 
     $fields_default['location']['type'] = 'multiselect';
     $fields_default['listing-type']['type'] = 'multiselect';
     $fields_default['feature']['type'] = 'select2';
+    unset($fields_default['keyword']);
 //    $fields_default['min']['type'] ='range';
 //    $fields_default['max']['type'] ='';
 
@@ -126,7 +103,7 @@ add_filter( 'wpsight_get_search_fields', 'edit_default_fields');
 
 
 function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0) {
-$outputTemplate = '<option class="%CLASS%" value="%SLUG%">%NAME%</option>';
+    $outputTemplate = '<option class="%CLASS%" value="%SLUG%">%NAME%</option>';
 
     foreach ($terms as $term) {
         if ($parent_id == $term->parent) {
