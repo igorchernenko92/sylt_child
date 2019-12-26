@@ -96,11 +96,28 @@ function edit_listing_request($result, $query_args, $args) {
 
 
 function edit_default_fields($fields_default) {
+    $fields_default['range'] = [
+
+            'label' 		=> __( 'Range', 'wpcasa' ),
+            'key'			=> '_price_range',
+//            'data' 			=> '',
+            'type' 			=> 'range',
+//            'data_compare' 	=> '=',
+//            'class'			=> 'width-1-5',
+            'priority'		=> 30
+
+    ];
+
+
     $fields_default['location']['type'] = 'multiselect';
     $fields_default['listing-type']['type'] = 'multiselect';
     $fields_default['feature']['type'] = 'select2';
-    $fields_default['min']['type'] ='range';
-    $fields_default['max']['type'] ='';
+//    $fields_default['min']['type'] ='range';
+//    $fields_default['max']['type'] ='';
+
+//var_dump($fields_default['range']);
+
+
 
     return wpsight_sort_array_by_priority( $fields_default );
 }
