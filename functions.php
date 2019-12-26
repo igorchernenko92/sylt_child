@@ -60,12 +60,21 @@ function edit_default_fields($fields_default) {
 
 add_filter( 'wpsight_get_search_fields', 'edit_default_fields');
 
-//function edit_advanced_fields($fields_default) {
-//    $fields_default['location']['type'] = 'multiselect';
-//    $fields_default['listing-type']['type'] = 'multiselect';
-//    $fields_default['feature']['type'] = 'select2';
-//
-//    return wpsight_sort_array_by_priority( $fields_default );
-//}
-//
-//add_filter( 'wpsight_get_search_fields', 'edit_default_fields');
+
+function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0) {
+$outputTemplate = '<option class="%CLASS%" value="%SLUG%">%NAME%</option>';
+
+    foreach ($terms as $term) {
+        if ($parent_id == $term->parent) {
+            //Replacing the template variables
+            $itemOutput = str_replace('%SLUG%', $term->slug, $outputTemplate);
+            $itemOutput = str_replace('%CLASS%', 'listing-search-padding-' . $level, $itemOutput);
+            $itemOutput = str_replace('%NAME%', $term->name, $itemOutput);
+
+            $output .= $itemOutput;
+            $output = get_terms_hierarchical($terms, $output, $term->term_id, $level + 1);
+        }
+    }
+    return $output;
+}
+

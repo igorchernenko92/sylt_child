@@ -67,3 +67,19 @@ input[type="button"]:hover, button:hover,
 .listings-search-field {
     height: 2.25em;
 }
+
+.listing-search-padding-1 {
+    padding-left: 25px !important;
+}
+
+.listing-search-padding-2 {
+    padding-left: 40px !important;
+}
+
+.listing-search-padding-3 {
+    padding-left: 55px !important;
+}
+
+.listing-search-padding-4 {
+    padding-left: 70px !important;
+}
