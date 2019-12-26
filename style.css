@@ -150,6 +150,25 @@ Updated: 2019-12-24 19:51:25
     max-width: 50%;
 }
 
+.irs-handle {
+    cursor: grab;
+}
+
+.irs--round .irs-handle {
+    border-color: #a4ce59;
+}
+
+.irs--round .irs-from:before, .irs--round .irs-to:before, .irs--round .irs-single:before {
+    border-top-color: #a4ce59;
+}
+
+.irs--round .irs-bar,
+.irs--round .irs-from,
+.irs--round .irs-to,
+.irs--round .irs-single {
+    background-color: #a4ce59;
+}
+
 @media (max-width: 600px) {
     .select2.select2-container {
         width: 100% !important;

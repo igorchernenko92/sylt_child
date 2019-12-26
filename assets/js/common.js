@@ -29,8 +29,8 @@ jQuery(document).ready(function($) {
 
     var initIonRange = function () {
         var $range = $(".ion-range-slider");
-        var $rangeMin = $(".range-min");
-        var $rangeMax = $(".range-max");
+        var $rangeMin = $(".listing-search-min");
+        var $rangeMax = $(".listing-search-max");
 
         var options = {
             type: "double",
@@ -41,7 +41,8 @@ jQuery(document).ready(function($) {
             to: 800,
             prefix: "$",
             onChange: function (data) {
-                console.log(data);
+                $rangeMin.attr("value", data.from);
+                $rangeMax.attr("value", data.to);
             }
         };
 
