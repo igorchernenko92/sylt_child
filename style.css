@@ -54,10 +54,10 @@ Updated: 2019-12-24 19:51:25
     height: 100%;
 }
 
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover, button:hover,
-.button:hover {
+.listings-search-field-multiselect  input[type="submit"]:hover,
+.listings-search-field-multiselect  input[type="reset"]:hover,
+.listings-search-field-multiselect  input[type="button"]:hover, button:hover,
+.listings-search-field-multiselect .button:hover {
     background-color: #f1f5f9;
 }
 
