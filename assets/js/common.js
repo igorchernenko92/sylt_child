@@ -29,30 +29,45 @@ jQuery(document).ready(function($) {
 
     var initIonRange = function () {
         var $range = $(".ion-range-slider");
+        var $rangeData = null;
         var $rangeMin = $(".listing-search-min");
         var $rangeMax = $(".listing-search-max");
+        var $selectOffer = $(".listing-search-offer");
 
-        var rangeValues = {
-            from: 200,
-            to: 800
-        }
+        var selectOffer = [
+            {
+                name: 'sale',
+                data: {
+                    min: 50000,
+                    max: 2000000
+                }
+            },
+            {
+                name: 'rent',
+                data: {
+                    min: 300,
+                    max: 2000
+                }
+            }
+        ];
 
         var options = {
             type: "double",
             skin: "round",
-            min: 0,
-            max: 1000,
-            from: rangeValues.from,
-            to: rangeValues.to,
+            min: selectOffer[0].data.min,
+            max: selectOffer[0].data.max,
+            from: selectOffer[0].data.min,
+            to: selectOffer[0].data.max,
             prefix: "$",
             onLoad: outputFirstValues,
             onChange: outputValues,
             onFinish: outputValues
         };
 
+
         function outputFirstValues () {
-            $rangeMin.attr("value", rangeValues.from);
-            $rangeMax.attr("value", rangeValues.to);
+            // $rangeMin.attr("value", rangeValues.from);
+            // $rangeMax.attr("value", rangeValues.to);
         }
 
         function outputValues (data) {
@@ -60,11 +75,37 @@ jQuery(document).ready(function($) {
             $rangeMax.attr("value", data.to);
         }
 
-        function init () {
+        function initRange () {
             $range.ionRangeSlider(options);
+            $rangeData = $range.data("ionRangeSlider");
         }
 
-        if ($range.length) init();
+        function setEventSelectOffer () {
+            $selectOffer.on("change", function () {
+                curOffer = $(this).val();
+
+                var resultOfferKey = (curOffer === "") ? "sale" : curOffer;
+
+                var resultOffer = selectOffer.find(function (cur) {
+                    return cur.name === resultOfferKey;
+                });
+
+                $rangeData.update({
+                    min: resultOffer.data.min,
+                    max: resultOffer.data.max,
+                    from: resultOffer.data.min,
+                    to: resultOffer.data.max,
+                });
+
+                outputValues({
+                    from: resultOffer.data.min,
+                    to: resultOffer.data.max
+                });
+            });
+        }
+
+        if ($range.length) initRange();
+        if ($selectOffer.length) setEventSelectOffer();
     };
     initIonRange();
 
