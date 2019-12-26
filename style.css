@@ -145,6 +145,11 @@ Updated: 2019-12-24 19:51:25
     min-width: 300px;
 }
 
+.listings-search-field-range {
+    width: 100%;
+    max-width: 50%;
+}
+
 @media (max-width: 600px) {
     .select2.select2-container {
         width: 100% !important;

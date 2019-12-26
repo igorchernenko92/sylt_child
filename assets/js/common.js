@@ -27,4 +27,30 @@ jQuery(document).ready(function($) {
     };
     initSelect2();
 
+    var initIonRange = function () {
+        var $range = $(".ion-range-slider");
+        var $rangeMin = $(".range-min");
+        var $rangeMax = $(".range-max");
+
+        var options = {
+            type: "double",
+            skin: "round",
+            min: 0,
+            max: 1000,
+            from: 200,
+            to: 800,
+            prefix: "$",
+            onChange: function (data) {
+                console.log(data);
+            }
+        };
+
+        function init () {
+            $range.ionRangeSlider(options);
+        }
+
+        if ($range.length) init();
+    };
+    initIonRange();
+
 });
