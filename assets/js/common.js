@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
 
+    $("form.wpsight-listings-search").attr("autocomplete", "off");
+
     var initMultiselect = function () {
         var $selectItems = $(".listings-search-field .multiselect");
         var options = {};
