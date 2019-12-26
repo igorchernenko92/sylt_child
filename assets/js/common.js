@@ -1,15 +1,27 @@
 jQuery(document).ready(function($) {
 
-    var customSelect = function () {
+    var initMultiselect = function () {
         var $selectItems = $(".listings-search-field .multiselect");
+        var options = {};
 
-        function initMultiselect () {
-            $selectItems.multipleSelect();
+        function init () {
+            $selectItems.multipleSelect(options);
         }
 
-        if ($selectItems.length) initMultiselect();
-
+        if ($selectItems.length) init();
     };
-    customSelect();
+    initMultiselect();
+
+    var initSelect2 = function () {
+        var $selectItems = $(".listings-search-field-select2 select");
+        var options = {};
+
+        function init () {
+            $selectItems.select2(options);
+        }
+
+        if ($selectItems.length) init();
+    };
+    initSelect2();
 
 });

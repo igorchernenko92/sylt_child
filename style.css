@@ -37,7 +37,7 @@ Updated: 2019-12-24 19:51:25
 }
 
 .ms-choice > span,
-.ms-choice > .placeholder{
+.ms-choice > .placeholder {
     top: 50%;
     transform: translate(0, -50%);
     color: #3c3b3b !important;
@@ -46,7 +46,8 @@ Updated: 2019-12-24 19:51:25
     line-height: 1.65em;
 }
 
-.ms-choice {
+.ms-choice,
+.select2-container--default .select2-selection--single {
     border-color: rgba(0,0,0,.15);
     border-radius: 0;
     background-color: #f1f5f9;
@@ -64,8 +65,18 @@ input[type="button"]:hover, button:hover,
     height: 100%;
 }
 
-.listings-search-field {
+.listings-search-field,
+.select2-container--default .select2-selection--single {
     height: 2.25em;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 2.25em;
 }
 
 .listing-search-padding-1 {
