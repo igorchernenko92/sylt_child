@@ -14,7 +14,10 @@ jQuery(document).ready(function($) {
 
     var initSelect2 = function () {
         var $selectItems = $(".listings-search-field-select2 select");
-        var options = {};
+        var options = {
+            multiple: true,
+            closeOnSelect: false
+        };
 
         function init () {
             $selectItems.select2(options);

@@ -102,3 +102,36 @@ Updated: 2019-12-24 19:51:25
 .listing-search-padding-6 {
     padding-left: 100px !important;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: transparent;
+    border: none;
+    line-height: 2.25em;
+    margin: 0;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    color: #fff !important;
+    background-color: #91bd42 !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: #a4ce59 !important;
+    color: #fff !important;
+}
+
+.select2-container .select2-search--inline .select2-search__field {
+    margin-top: 0;
+}
+
+.select2-search.select2-search--inline {
+    height: 36px;
+}
+
+.select2-selection__rendered {
+    height: 38px !important;
+    display: flex !important;
+    align-items: center;
+}
+
+
