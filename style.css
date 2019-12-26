@@ -47,7 +47,8 @@ Updated: 2019-12-24 19:51:25
 }
 
 .ms-choice,
-.select2-container--default .select2-selection--single {
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
     border-color: rgba(0,0,0,.15);
     border-radius: 0;
     background-color: #f1f5f9;
