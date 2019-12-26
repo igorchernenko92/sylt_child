@@ -32,19 +32,33 @@ jQuery(document).ready(function($) {
         var $rangeMin = $(".listing-search-min");
         var $rangeMax = $(".listing-search-max");
 
+        var rangeValues = {
+            from: 200,
+            to: 800
+        }
+
         var options = {
             type: "double",
             skin: "round",
             min: 0,
             max: 1000,
-            from: 200,
-            to: 800,
+            from: rangeValues.from,
+            to: rangeValues.to,
             prefix: "$",
-            onChange: function (data) {
-                $rangeMin.attr("value", data.from);
-                $rangeMax.attr("value", data.to);
-            }
+            onLoad: outputFirstValues,
+            onChange: outputValues,
+            onFinish: outputValues
         };
+
+        function outputFirstValues () {
+            $rangeMin.attr("value", rangeValues.from);
+            $rangeMax.attr("value", rangeValues.to);
+        }
+
+        function outputValues (data) {
+            $rangeMin.attr("value", data.from);
+            $rangeMax.attr("value", data.to);
+        }
 
         function init () {
             $range.ionRangeSlider(options);
