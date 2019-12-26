@@ -83,3 +83,11 @@ input[type="button"]:hover, button:hover,
 .listing-search-padding-4 {
     padding-left: 70px !important;
 }
+
+.listing-search-padding-5 {
+    padding-left: 85px !important;
+}
+
+.listing-search-padding-6 {
+    padding-left: 100px !important;
+}

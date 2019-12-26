@@ -1,33 +1,12 @@
 <?php if( isset( $fields[$field]['data'] ) && is_array( $fields[$field]['data'] ) ) : ?>
-
     <div data-select-all="true" class="listings-search-field listings-search-field-<?php echo esc_attr( $fields[$field]['type'] ); ?> listings-search-field-<?php echo esc_attr( $field ); ?> <?php echo esc_attr( $class ); ?>">
-
-<?php
-$terms    = get_terms(
-    array(
-        'taxonomy'               => $field,
-        'get'                    => 'all',
-        'orderby'                => 'id',
-        'fields'                 => 'all',
-        'update_term_meta_cache' => false,
-        'hide_empty' => false
-    )
-);
-
-$output = get_terms_hierarchical($terms);
-
-?>
-
-
-<select class="multiselect" name="<?php echo $field ?>" placeholder="<?php echo $field ?>" multiple="multiple">
-<?php
-    echo  $output ;
-?>
-
-</select>
-
-
+        <?php
+            $terms = get_terms( ['hide_empty' => false ] );
+            $output = get_terms_hierarchical($terms);
+        ?>
+        <select class="multiselect" name="<?php echo $field ?>" placeholder="<?php echo $field ?>" multiple="multiple">
+            <?php echo $output; ?>
+        </select>
     </div><!-- .listings-search-field-<?php echo esc_attr( $field ); ?> -->
-
 <?php endif; ?>
 
