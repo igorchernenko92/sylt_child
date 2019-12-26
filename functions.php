@@ -33,12 +33,11 @@ add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );
 
 // END ENQUEUE PARENT ACTION
 
-
 function edit_listing_request($query_args, $args) {
 
     $query_args['meta_query']['offer'] = array(
         'key'     => '_price_offer',
-        'value'   =>  htmlspecialchars( $_GET['offer' ] ),
+        'value'   =>  htmlspecialchars( $_GET['offer'] ),
         'compare' => 'IN'
     );
     $result = new WP_Query( $query_args );
@@ -46,13 +45,13 @@ function edit_listing_request($query_args, $args) {
     return $query_args;
 }
 
-add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 3 );
+//add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 3 );
 
 
 function edit_default_fields($fields_default) {
     $fields_default['location']['type'] = 'multiselect';
     $fields_default['listing-type']['type'] = 'multiselect';
-//    $fields_default['feature']['type'] = 'select2';
+    $fields_default['feature']['type'] = 'select2';
 //    $fields_default['min'] = array();
 
     return wpsight_sort_array_by_priority( $fields_default );
