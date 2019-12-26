@@ -67,3 +67,11 @@ input[type="button"]:hover, button:hover,
 .listings-search-field {
     height: 2.25em;
 }
+
+.ms-drop ul > li {
+    padding-left: 28px;
+}
+
+.ms-drop ul > li.group {
+    padding-left: 12px;
+}
