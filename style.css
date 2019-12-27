@@ -315,6 +315,7 @@ Updated: 2019-12-24 19:51:25
     min-width: calc(100% + 60px);
     overflow: hidden;
     margin-left: -30px;
+    margin-bottom: 10px;
 }
 
 .listing-wrap-custom .listing-img {
