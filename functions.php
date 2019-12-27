@@ -127,6 +127,45 @@ function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0
 }
 
 
+function wpsight_sylt_meta_boxes_home_nf() {
+    $fields = array(
+        'nf_title' => array(
+            'name'		=> __( 'Newsletter heading', 'wpcasa-sylt-child' ),
+            'id'		=> '_nf_title',
+            'type'		=> 'text',
+        ),
+        'nf_description'	=> array(
+            'name'      => __( 'Newsletter text', 'wpcasa-sylt-child' ),
+            'id'        => '_nf_description',
+            'type'      => 'textarea',
+        ),
+        'nf_image' => array(
+            'name'      => __( 'Newsletter Image', 'wpcasa-sylt-child' ),
+            'id'        => '_nf_image',
+            'type'      => 'file',
+            'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
+            'priority'  => 20
+        ),
+//        'nf_ml_code' => array(
+//            'name'		=> __( 'Mailchimp shortcode', 'wpcasa-sylt-child' ),
+//            'id'		=> 'nf_ml_code',
+//            'type'		=> 'text',
+//        ),
+    );
+
+    $meta_box = array(
+        'id'			=> 'home_nf',
+        'title'			=> __( 'Home Newsletter Form', 'wpcasa-sylt-child' ),
+        'object_types'	=> array( 'page' ),
+        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
+        'context'		=> 'normal',
+        'priority'		=> 'high',
+        'fields'		=> $fields
+    );
+
+    return apply_filters( 'wpsight_sylt_meta_boxes_home_nf', $meta_box );
+}
+
 
 /**
  *	wpsight_sylt-child_meta_boxes_home_services()
@@ -157,7 +196,6 @@ function wpsight_sylt_meta_boxes_home_services() {
             'name'      => __( 'Section text', 'wpcasa-sylt-child' ),
             'id'        => '_section_description',
             'type'      => 'textarea',
-
         ),
         'search_back_image' => array(
             'name'      => __( 'Search background imag', 'wpcasa-sylt-child' ),
@@ -289,6 +327,10 @@ function wpsight_sylt_meta_boxes_home_services() {
         ),
         );
 
+
+
+
+
     // Apply filter and order fields by priority
     $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_services_fields', $fields ) );
 
@@ -313,6 +355,7 @@ add_filter( 'wpsight_meta_boxes', 'wpsight_sylt_meta_boxes' );
 
 function wpsight_sylt_meta_boxes( $meta_boxes ) {
     $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_services();
+    $meta_boxes['home_nf']	= wpsight_sylt_meta_boxes_home_nf();
 
     return $meta_boxes;
 }
