@@ -70,37 +70,49 @@ add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 2 );
 
 
 function edit_default_fields($fields_default) {
+    $details = wpsight_details();
+
     $fields_default['range'] = [
         'label' 		=> __( 'Range', 'wpcasa' ),
         'key'			=> '_price_range',
         'type' 			=> 'range',
-        'class'			=> 'width-3-4',
+        'class'			=> '6u 12u$(medium)',
         'priority'		=> 10
     ];
 
     $fields_default['post__in'] = [
         'label' 		=> __( 'Listing ID', 'wpcasa' ) . '&hellip;',
         'type' 			=> 'text',
-        'class'			=> 'width-4-4',
-        'priority'		=> 10
+        'class'			=> '3u 12u$(medium)',
+        'priority'		=> 1
     ];
 
+//  width
+    $fields_default['offer']['class'] = '3u 12u$(medium)';
+    $fields_default['feature']['class'] = '9u 12u$(medium)';
+    $fields_default[$details['details_1']['id']]['class'] = '3u 12u$(medium)';
+    $fields_default[$details['details_2']['id']]['class'] = '3u 12u$(medium)';
 
+//  priorities
+    $fields_default['submit']['priority'] = 400;
+    $fields_default['offer']['priority'] = 2;
+
+//  type
     $fields_default['location']['type'] = 'multiselect';
     $fields_default['listing-type']['type'] = 'multiselect';
     $fields_default['feature']['type'] = 'select2';
+//    $fields_default['min']['type'] ='hidden';
+//    $fields_default['max']['type'] ='hidden';
+
+//  unset
     unset($fields_default['keyword']);
-//    $fields_default['min']['type'] ='range';
-//    $fields_default['max']['type'] ='';
-
-//var_dump($fields_default['range']);
-
-
+    unset($fields_default['orderby']);
+    unset($fields_default['order']);
 
     return wpsight_sort_array_by_priority( $fields_default );
 }
 
-add_filter( 'wpsight_get_search_fields', 'edit_default_fields');
+add_filter( 'wpsight_get_search_fields', 'edit_default_fields', 20);
 
 
 function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0) {
