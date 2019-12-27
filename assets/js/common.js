@@ -18,7 +18,8 @@ jQuery(document).ready(function($) {
         var $selectItems = $(".listings-search-field-select2 select");
         var options = {
             multiple: true,
-            closeOnSelect: false
+            closeOnSelect: false,
+            placeholder: "Select type",
         };
 
         function init () {
@@ -34,7 +35,9 @@ jQuery(document).ready(function($) {
         var $rangeData = null;
         var $rangeMin = $(".listing-search-min");
         var $rangeMax = $(".listing-search-max");
+        var $listingResetBtn = $(".listings-search-reset");
         var $selectOffer = $(".listing-search-offer");
+        var $selectOfferStartValue = $selectOffer.val();
 
         var selectOffer = [
             {
@@ -87,33 +90,46 @@ jQuery(document).ready(function($) {
             $rangeData = $range.data("ionRangeSlider");
         }
 
+        function changeRange(type) {
+            var resultOffer = selectOffer.find(function (cur) {
+                return cur.name === type;
+            });
+
+            $rangeData.update({
+                min: resultOffer.data.min,
+                max: resultOffer.data.max,
+                from: resultOffer.data.min,
+                to: resultOffer.data.max,
+                step: resultOffer.data.step
+            });
+
+            outputValues({
+                from: resultOffer.data.min,
+                to: resultOffer.data.max
+            });
+        }
+
         function setEventSelectOffer () {
+            changeRange($selectOfferStartValue);
+
             $selectOffer.on("change", function () {
                 curOffer = $(this).val();
 
                 var resultOfferKey = (curOffer === "") ? "rent" : curOffer;
 
-                var resultOffer = selectOffer.find(function (cur) {
-                    return cur.name === resultOfferKey;
-                });
+                changeRange(resultOfferKey);
+            });
+        }
 
-                $rangeData.update({
-                    min: resultOffer.data.min,
-                    max: resultOffer.data.max,
-                    from: resultOffer.data.min,
-                    to: resultOffer.data.max,
-                    step: resultOffer.data.step
-                });
-
-                outputValues({
-                    from: resultOffer.data.min,
-                    to: resultOffer.data.max
-                });
+        function setEventListingResetBtn () {
+            $listingResetBtn.on("click", function () {
+                changeRange($selectOffer.val());
             });
         }
 
         if ($range.length) initRange();
         if ($selectOffer.length) setEventSelectOffer();
+        if ($listingResetBtn.length) setEventListingResetBtn();
     };
     initIonRange();
 

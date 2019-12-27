@@ -139,23 +139,28 @@ Updated: 2019-12-24 19:51:25
     max-width: 100%;
 }
 
-/*.select2.select2-container {*/
-/*    width: auto !important;*/
-/*    max-width: 100%;*/
-/*    min-width: 300px;*/
-/*}*/
+.select2.select2-container {
+    width: 100% !important;
+}
 
-/*.listings-search-field-range {*/
-/*    width: 100%;*/
-/*    max-width: 50%;*/
-/*}*/
+.listings-search-default > .row {
+    display: flex;
+    flex-wrap: wrap;
+}
 
-/*@media (max-width: 980px) {*/
-/*    .listings-search-field-range {*/
-/*        max-width: 100%;*/
-/*    }*/
-/*}*/
+.listings-search-default button,
+.listings-search-default input {
+    outline: none;
+}
 
+.listings-search-field-submit {
+    order: 100;
+}
+
+.listings-search-field-submit input {
+    line-height: 2.25em;
+    height: 2.25em;
+}
 
 .listings-search-field-min {
     display: none;
@@ -183,11 +188,3 @@ Updated: 2019-12-24 19:51:25
 .irs--round .irs-single {
     background-color: #a4ce59;
 }
-
-/*@media (max-width: 600px) {*/
-/*    .select2.select2-container {*/
-/*        width: 100% !important;*/
-/*        max-width: 100%;*/
-/*        min-width: auto;*/
-/*    }*/
-/*}*/
