@@ -201,15 +201,20 @@ function wpsight_sylt_meta_boxes_home_services() {
             'group_fields'	=> array(
                 'label' => array(
                     'name'		=> __( 'Label', 'wpcasa-sylt-child' ),
-                    'id'		=> '_service_label',
+                    'id'		=> '_title',
                     'type'		=> 'text',
                 ),
                 'image' => array(
                     'name'      => __( 'Image', 'wpcasa-sylt-child' ),
-                    'id'        => '_services_image',
+                    'id'        => '_image',
                     'type'      => 'file',
                     'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
-                    'priority'  => 40
+                    'priority'  => 20
+                ),
+                'url' => array(
+                    'name'      => __( 'URL', 'wpcasa-sylt-child' ),
+                    'id'        => '_url',
+                    'type'      => 'text_url',
                 ),
             ),
             'description' 	=> __( 'Display different services you offer', 'wpcasa-sylt-child' ),
@@ -231,17 +236,23 @@ function wpsight_sylt_meta_boxes_home_services() {
             'group_fields'	=> array(
                 'label' => array(
                     'name'		=> __( 'Heading', 'wpcasa-sylt-child' ),
-                    'id'		=> '_service_label',
+                    'id'		=> '_title',
                     'type'		=> 'text',
                 ),
                 'url' => array(
                     'name'      => __( 'URL', 'wpcasa-sylt-child' ),
-                    'id'        => '_service_url',
+                    'id'        => '_url',
                     'type'      => 'text_url',
+                ),
+                'description'	=> array(
+                    'name'      => __( 'Text', 'wpcasa-sylt-child' ),
+                    'id'        => '_description',
+                    'type'      => 'textarea_small',
+                    'priority'  => 30
                 ),
                 'image' => array(
                     'name'      => __( 'Image', 'wpcasa-sylt-child' ),
-                    'id'        => '_services_image',
+                    'id'        => '_image',
                     'type'      => 'file',
                     'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
                     'priority'  => 40

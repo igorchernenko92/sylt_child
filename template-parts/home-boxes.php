@@ -1,6 +1,6 @@
 <?php
 /**
- * Home services template
+ * Home boxes template
  *
  * @package WPCasa Sylt Child
  */
