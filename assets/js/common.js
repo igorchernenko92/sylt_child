@@ -63,11 +63,11 @@ jQuery(document).ready(function($) {
         var options = {
             type: "double",
             skin: "round",
-            min: selectOffer[1].data.min,
-            max: selectOffer[1].data.max,
-            from: selectOffer[1].data.min,
-            to: selectOffer[1].data.max,
-            step: selectOffer[1].data.step,
+            min: selectOffer[0].data.min,
+            max: selectOffer[0].data.max,
+            from: selectOffer[0].data.min,
+            to: selectOffer[0].data.max,
+            step: selectOffer[0].data.step,
             prefix: "$",
             onStart: outputFirstValues,
             onChange: outputValues,
@@ -77,8 +77,8 @@ jQuery(document).ready(function($) {
 
         function outputFirstValues () {
             outputValues({
-                from: selectOffer[1].data.min,
-                to: selectOffer[1].data.max
+                from: selectOffer[0].data.min,
+                to: selectOffer[0].data.max
             });
         }
 
