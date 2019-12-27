@@ -7,6 +7,10 @@
 
 //if( $display ) : ?>
 
+
+<?php $title = get_post_meta( get_the_id(), '_section_title', true ); ?>
+<?php $description = get_post_meta( get_the_id(), '_section_description', true ); ?>
+
 <section class="listings-section site-section">
   <div class="container">
 

@@ -148,6 +148,17 @@ function wpsight_sylt_meta_boxes_home_services() {
 //            'desc'      => __( 'Display services on the front page', 'wpcasa-sylt-child' ),
 //            'priority'  => 50
 //        ),
+        'title' => array(
+            'name'		=> __( 'Section heading', 'wpcasa-sylt-child' ),
+            'id'		=> '_section_title',
+            'type'		=> 'text',
+        ),
+        'description'	=> array(
+            'name'      => __( 'Section text', 'wpcasa-sylt-child' ),
+            'id'        => '_section_description',
+            'type'      => 'textarea',
+
+        ),
         'boxes' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes',
