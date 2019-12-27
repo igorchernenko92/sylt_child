@@ -18,7 +18,7 @@
 		</div><!-- .listings-search-advanced -->
 			
 		<?php // Display advanced search toggle button ?>
-		<?php echo wp_kses_post( $args['advanced'] ); ?>
+<!--		--><?php //echo wp_kses_post( $args['advanced'] ); ?>
 	
 	<?php if( $args['reset'] !== false ) : ?>	
 		<?php // Display reset search button ?>
