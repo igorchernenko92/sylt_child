@@ -199,9 +199,22 @@ Updated: 2019-12-24 19:51:25
     padding-bottom: 0;
 }
 
+.listing-wrap-custom .listing{
+    display: block;
+    text-decoration: none;
+}
+
 .listing-wrap-custom .listing-top {
     font-weight: bold;
     margin-bottom: 0;
+}
+
+.listing-wrap-custom-medium .listing {
+    padding-bottom: 20px !important;
+}
+
+.listing-wrap-custom .listing-button {
+    background-color: #C00000;
 }
 
 .listing-wrap-custom {
@@ -250,6 +263,15 @@ Updated: 2019-12-24 19:51:25
     width: 100%;
     min-width: calc(100% + 60px);
     margin: 20px 0 0 -30px;
+}
+
+.listing-wrap-custom .listing {
+    transition: .4s all ease;
+}
+
+.listing-wrap-custom .listing:hover {
+    transform: translate(0, -5px);
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, .07);
 }
 
 .listing-wrap-custom-medium .listing-top {
