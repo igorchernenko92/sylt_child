@@ -24,7 +24,7 @@ get_header(); ?>
 
 	<?php get_template_part( 'template-parts/home', 'boxes2' ); ?>
 
-	<?php 	get_template_part( 'template-parts/home', 'cta-1' ); ?>
+	<?php 	get_template_part( 'template-parts/home', 'nf' ); ?>
 
 	<?php get_template_part( 'template-parts/home', 'boxes3' ); ?>
 
