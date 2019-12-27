@@ -237,7 +237,7 @@ function wpsight_sylt_meta_boxes_home_services() {
                     'type'      => 'text',
                 ),
             ),
-            'description' 	=> __( 'Display different services you offer', 'wpcasa-sylt-child' ),
+            'description' 	=> __( '', 'wpcasa-sylt-child' ),
             'repeatable'  	=> true,
             'options'     	=> array(
                 'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
@@ -272,7 +272,7 @@ function wpsight_sylt_meta_boxes_home_services() {
                     'type'      => 'text_url',
                 ),
             ),
-            'description' 	=> __( 'Display different services you offer', 'wpcasa-sylt-child' ),
+            'description' 	=> __( '', 'wpcasa-sylt-child' ),
             'repeatable'  	=> true,
             'options'     	=> array(
                 'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
@@ -314,7 +314,7 @@ function wpsight_sylt_meta_boxes_home_services() {
                 ),
 
             ),
-            'description' 	=> __( 'Display different services you offer', 'wpcasa-sylt-child' ),
+            'description' 	=> __( '', 'wpcasa-sylt-child' ),
             'repeatable'  	=> true,
             'options'     	=> array(
                 'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
