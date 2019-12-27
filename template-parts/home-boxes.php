@@ -14,6 +14,14 @@
 <section class="listings-section site-section">
   <div class="container">
 
+    <div class="listings-section-desc">
+        <div class="listings-section-wrap-title">
+            <h2 class="listings-section-title"><?php echo $title; ?></h2>
+        </div>
+
+        <p class="listings-section-subtext"><?php echo $description; ?></p>
+    </div>
+
     <div class="wpsight-listings wpsight-listings-custom">
       <div class="row row-flex">
         <?php $boxes = get_post_meta( get_the_id(), '_boxes', true ); ?>

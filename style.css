@@ -199,9 +199,34 @@ Updated: 2019-12-24 19:51:25
     padding-bottom: 0;
 }
 
-.listing-wrap-custom .listing{
+.listing-wrap-custom .listing {
     display: block;
     text-decoration: none;
+}
+
+.listings-section-desc {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.listings-section-wrap-title {
+    font-size: 1.5em;
+}
+
+@media screen and (max-width: 980px) {
+    .listings-section-wrap-title {
+        font-size: 1.25em;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .listings-section-wrap-title {
+        font-size: 1em;
+    }
+}
+
+.listings-section-title {
+    display: block;
 }
 
 .listing-wrap-custom .listing-top {
