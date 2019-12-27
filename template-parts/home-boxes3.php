@@ -21,6 +21,7 @@
               $title	= isset( $box['_title'] )  ? $box['_title'] : false;
               $url	= isset( $box['_url'] )  ? $box['_url'] : false;
               $img	= isset( $box['_image'] )  ? $box['_image'] : false;
+              $description	= isset( $box['_description'] )  ? $box['_description'] : false;
             ?>
 
             <div class="listing-wrap listing-wrap-custom listing-wrap-custom-medium 4u 6u$(medium) 12u$(small)">
@@ -33,7 +34,7 @@
                 <img src="<?php echo $img; ?>" alt="" class="listing-img">
 
                 <div class="wpsight-listing-description">
-                  <p><?php echo $title; ?></p>
+                  <p><?php echo $description; ?></p>
                 </div>
 
               </a>

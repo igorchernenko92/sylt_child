@@ -18,9 +18,9 @@
           <?php foreach( $boxes as $key => $box ) : ?>
 
             <?php
-            $title = isset( $box['_title'] )  ? $box['_title'] : false;
-            $img	= isset( $box['_image'] )  ? $box['_image'] : false;
-            $url	= isset( $box['_url'] )  ? $box['_url'] : false;
+              $title = isset( $box['_title'] )  ? $box['_title'] : false;
+              $img	= isset( $box['_image'] )  ? $box['_image'] : false;
+              $url	= isset( $box['_url'] )  ? $box['_url'] : false;
             ?>
 
             <div class="listing-wrap listing-wrap-custom listing-wrap-custom-large 4u 6u$(medium) 12u$(small)">

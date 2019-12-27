@@ -310,8 +310,28 @@ Updated: 2019-12-24 19:51:25
     margin: 20px 0 0 -30px;
 }
 
+.listing-wrap-custom .listing-img {
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .listing-wrap-custom .wpsight-listing-description {
     flex: 1 1 auto;
+}
+
+.listing-wrap-custom .wpsight-listing-archive {
+    margin-bottom: 0;
+}
+
+.listing-wrap-custom {
+    margin-bottom: 60px;
+}
+
+@media (max-width: 736px) {
+    .listing-wrap-custom {
+        margin-bottom: 30px;
+    }
 }
 
 .listing-wrap-custom .listing {
