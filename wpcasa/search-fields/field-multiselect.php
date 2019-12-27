@@ -4,7 +4,7 @@
             $terms = get_terms( ['taxonomy' => $field, 'hide_empty' => false ] );
             $output = get_terms_hierarchical($terms);
         ?>
-        <select class="multiselect" name="<?php echo $field ?>[]" placeholder="<?php echo $field ?>" multiple="multiple">
+        <select class="multiselect" name="<?php echo $field ?>[]" placeholder="<?php echo $fields[$field]['data']['show_option_none'] ?>" multiple="multiple">
             <?php echo $output; ?>
         </select>
     </div><!-- .listings-search-field-<?php echo esc_attr( $field ); ?> -->
