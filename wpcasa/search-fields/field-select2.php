@@ -6,12 +6,14 @@
         <?php
         $dropdown_defaults = array(
             'echo'				=> 1,
+//            'show_option_all'    => __( 'Select features', 'wpcasa' ),
+            'show_option_none'    => __( 'Select features', 'wpcasa' ),
             'name'				=> $field,
             'class'           	=> 'listing-search-' . $field . ' select',
-            'selected'			=> $field_value,
+            'selected'			=> 0,
             'value_field'       => 'slug',
             'hide_if_empty'   	=> false,
-            'cache'				=> true
+//            'cache'				=> true
         );
 
         // Merge with form field $fields[$field]['data']

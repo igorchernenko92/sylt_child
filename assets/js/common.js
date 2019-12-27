@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    // $("form.wpsight-listings-search").attr("autocomplete", "off");
+    $("form.wpsight-listings-search").attr("autocomplete", "off");
 
     var initMultiselect = function () {
         var $selectItems = $(".listings-search-field .multiselect");
@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
         var options = {
             multiple: true,
             closeOnSelect: false,
-            placeholder: "Select type",
+            // placeholder: "Select type",
         };
 
         function init () {
