@@ -140,14 +140,14 @@ function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0
  */
 function wpsight_sylt_meta_boxes_home_services() {
     $fields = array(
-        'display' => array(
-            'name'      => '',
-            'id'        => '_services_display',
-            'type'      => 'checkbox',
-            'label_cb'  => __( 'Display', 'wpcasa-sylt-child' ),
-            'desc'      => __( 'Display services on the front page', 'wpcasa-sylt-child' ),
-            'priority'  => 50
-        ),
+//        'display' => array(
+//            'name'      => '',
+//            'id'        => '_services_display',
+//            'type'      => 'checkbox',
+//            'label_cb'  => __( 'Display', 'wpcasa-sylt-child' ),
+//            'desc'      => __( 'Display services on the front page', 'wpcasa-sylt-child' ),
+//            'priority'  => 50
+//        ),
         'boxes' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes',
@@ -155,25 +155,30 @@ function wpsight_sylt_meta_boxes_home_services() {
             'group_fields'	=> array(
                 'label' => array(
                     'name'		=> __( 'Heading', 'wpcasa-sylt-child' ),
-                    'id'		=> '_service_label',
+                    'id'		=> '_title',
                     'type'		=> 'text',
                 ),
                 'description'	=> array(
                     'name'      => __( 'Text', 'wpcasa-sylt-child' ),
-                    'id'        => '_services_description',
+                    'id'        => '_description',
                     'type'      => 'textarea_small',
                     'priority'  => 30
                 ),
                 'image' => array(
                     'name'      => __( 'Image', 'wpcasa-sylt-child' ),
-                    'id'        => '_services_image',
+                    'id'        => '_image',
                     'type'      => 'file',
                     'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
                     'priority'  => 20
                 ),
+                'url' => array(
+                    'name'      => __( 'URL', 'wpcasa-sylt-child' ),
+                    'id'        => '_url',
+                    'type'      => 'text_url',
+                ),
                 'button' => array(
                     'name'      => __( 'Button', 'wpcasa-sylt-child' ),
-                    'id'        => '_service_button',
+                    'id'        => '_button',
                     'type'      => 'text',
                 ),
             ),
