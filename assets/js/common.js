@@ -15,18 +15,20 @@ jQuery(document).ready(function($) {
     initMultiselect();
 
     var initSelect2 = function () {
-        var $selectItems = $(".listings-search-field-select2 select");
+        var $selectItem = $(".listings-search-field-select2 select");
+
         var options = {
             multiple: true,
             closeOnSelect: false,
-            // placeholder: "Select type",
+            placeholder: "Select features"
         };
 
         function init () {
-            $selectItems.select2(options);
+            $selectItem.select2(options);
+            $selectItem.val(null).trigger("change");
         }
 
-        if ($selectItems.length) init();
+        if ($selectItem.length) init();
     };
     initSelect2();
 
