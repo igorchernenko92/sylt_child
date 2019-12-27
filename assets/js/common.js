@@ -93,7 +93,7 @@ jQuery(document).ready(function($) {
         }
 
         function changeRange(type) {
-            type = (type === "") ? "rent" : type;
+            type = (type === "") ? "sale" : type;
 
             var resultOffer = selectOffer.find(function (cur) {
                 return cur.name === type;
