@@ -43,6 +43,14 @@ jQuery(document).ready(function($) {
 
         var selectOffer = [
             {
+                name: 'default',
+                data: {
+                    min: 200,
+                    max: 10000000,
+                    step: 100000
+                }
+            },
+            {
                 name: 'sale',
                 data: {
                     min: 50000,
@@ -93,7 +101,7 @@ jQuery(document).ready(function($) {
         }
 
         function changeRange(type) {
-            type = (type === "") ? "sale" : type;
+            type = (type === "") ? "default" : type;
 
             var resultOffer = selectOffer.find(function (cur) {
                 return cur.name === type;
