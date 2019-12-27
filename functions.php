@@ -159,6 +159,12 @@ function wpsight_sylt_meta_boxes_home_services() {
             'type'      => 'textarea',
 
         ),
+        'search_back_image' => array(
+            'name'      => __( 'Search background imag', 'wpcasa-sylt-child' ),
+            'id'        => '_search_back_image',
+            'type'      => 'file',
+            'desc'      => __( 'Add search background image', 'wpcasa-sylt-child' ),
+        ),
         'boxes' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes',
