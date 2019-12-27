@@ -91,6 +91,8 @@ jQuery(document).ready(function($) {
         }
 
         function changeRange(type) {
+            type = (type === "") ? "rent" : type;
+
             var resultOffer = selectOffer.find(function (cur) {
                 return cur.name === type;
             });
@@ -115,9 +117,7 @@ jQuery(document).ready(function($) {
             $selectOffer.on("change", function () {
                 curOffer = $(this).val();
 
-                var resultOfferKey = (curOffer === "") ? "rent" : curOffer;
-
-                changeRange(resultOfferKey);
+                changeRange(curOffer);
             });
         }
 
