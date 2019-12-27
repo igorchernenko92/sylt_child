@@ -246,6 +246,26 @@ Updated: 2019-12-24 19:51:25
     text-align: center;
 }
 
+.section-search-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.wpsight-listings-search {
+    z-index: 1;
+}
+
+.home-section {
+    position: relative;
+}
+
 .listing-wrap-custom-large .listing {
     position: relative;
     background-position: center;
