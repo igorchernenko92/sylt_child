@@ -74,13 +74,14 @@ function edit_default_fields($fields_default) {
         'label' 		=> __( 'Range', 'wpcasa' ),
         'key'			=> '_price_range',
         'type' 			=> 'range',
-        'priority'		=> 30
+        'class'			=> 'width-3-4',
+        'priority'		=> 10
     ];
 
     $fields_default['post__in'] = [
         'label' 		=> __( 'Listing ID', 'wpcasa' ) . '&hellip;',
         'type' 			=> 'text',
-        'class'			=> 'width-3-4',
+        'class'			=> 'width-4-4',
         'priority'		=> 10
     ];
 
