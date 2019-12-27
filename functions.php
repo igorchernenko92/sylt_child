@@ -2,9 +2,6 @@
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
-// BEGIN ENQUEUE PARENT ACTION
-// AUTO GENERATED - Do not modify or remove comment markers above or below:
-
 if ( !function_exists( 'chld_thm_cfg_locale_css' ) ):
     function chld_thm_cfg_locale_css( $uri ){
         if ( empty( $uri ) && is_rtl() && file_exists( get_template_directory() . '/rtl.css' ) )
@@ -33,9 +30,6 @@ if ( !function_exists( 'chld_thm_cfg_parent_js' ) ):
     }
 endif;
 add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );
-
-
-// END ENQUEUE PARENT ACTION
 
 function edit_listing_request($query_args, $args) {
     if ( isset($_GET['post_in']) ) {
@@ -132,3 +126,160 @@ function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0
     return $output;
 }
 
+
+
+/**
+ *	wpsight_sylt-child_meta_boxes_home_services()
+ *
+ *	Set up home services meta box.
+ *
+ *	@uses	wpsight_sort_array_by_priority()
+ *	@return	array	$meta_box	Array of meta box
+ *
+ *	@since 1.0.0
+ */
+function wpsight_sylt_meta_boxes_home_services() {
+    $fields = array(
+        'display' => array(
+            'name'      => '',
+            'id'        => '_services_display',
+            'type'      => 'checkbox',
+            'label_cb'  => __( 'Display', 'wpcasa-sylt-child' ),
+            'desc'      => __( 'Display services on the front page', 'wpcasa-sylt-child' ),
+            'priority'  => 50
+        ),
+        'boxes' => array(
+            'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
+            'id'        	=> '_boxes',
+            'type'      	=> 'group',
+            'group_fields'	=> array(
+                'label' => array(
+                    'name'		=> __( 'Heading', 'wpcasa-sylt-child' ),
+                    'id'		=> '_service_label',
+                    'type'		=> 'text',
+                ),
+                'description'	=> array(
+                    'name'      => __( 'Text', 'wpcasa-sylt-child' ),
+                    'id'        => '_services_description',
+                    'type'      => 'textarea_small',
+                    'priority'  => 30
+                ),
+                'image' => array(
+                    'name'      => __( 'Image', 'wpcasa-sylt-child' ),
+                    'id'        => '_services_image',
+                    'type'      => 'file',
+                    'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
+                    'priority'  => 20
+                ),
+                'button' => array(
+                    'name'      => __( 'Button', 'wpcasa-sylt-child' ),
+                    'id'        => '_service_button',
+                    'type'      => 'text',
+                ),
+            ),
+            'description' 	=> __( 'Display different services you offer', 'wpcasa-sylt-child' ),
+            'repeatable'  	=> true,
+            'options'     	=> array(
+                'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
+                'add_button'    => __( 'Add Boxes', 'wpcasa-sylt-child' ),
+                'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
+                'sortable'      => true,
+                'closed'		=> true
+            ),
+            'priority'	=> 20
+        ),
+
+        'boxes2' => array(
+            'name'      	=> __( 'Boxes2', 'wpcasa-sylt-child' ),
+            'id'        	=> '_boxes2',
+            'type'      	=> 'group',
+            'group_fields'	=> array(
+                'label' => array(
+                    'name'		=> __( 'Label', 'wpcasa-sylt-child' ),
+                    'id'		=> '_service_label',
+                    'type'		=> 'text',
+                ),
+                'image' => array(
+                    'name'      => __( 'Image', 'wpcasa-sylt-child' ),
+                    'id'        => '_services_image',
+                    'type'      => 'file',
+                    'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
+                    'priority'  => 40
+                ),
+            ),
+            'description' 	=> __( 'Display different services you offer', 'wpcasa-sylt-child' ),
+            'repeatable'  	=> true,
+            'options'     	=> array(
+                'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
+                'add_button'    => __( 'Add Boxes', 'wpcasa-sylt-child' ),
+                'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
+                'sortable'      => true,
+                'closed'		=> true
+            ),
+            'priority'	=> 30
+        ),
+
+        'boxes3' => array(
+            'name'      	=> __( 'Boxes3', 'wpcasa-sylt-child' ),
+            'id'        	=> '_boxes3',
+            'type'      	=> 'group',
+            'group_fields'	=> array(
+                'label' => array(
+                    'name'		=> __( 'Heading', 'wpcasa-sylt-child' ),
+                    'id'		=> '_service_label',
+                    'type'		=> 'text',
+                ),
+                'url' => array(
+                    'name'      => __( 'URL', 'wpcasa-sylt-child' ),
+                    'id'        => '_service_url',
+                    'type'      => 'text_url',
+                ),
+                'image' => array(
+                    'name'      => __( 'Image', 'wpcasa-sylt-child' ),
+                    'id'        => '_services_image',
+                    'type'      => 'file',
+                    'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
+                    'priority'  => 40
+                ),
+
+            ),
+            'description' 	=> __( 'Display different services you offer', 'wpcasa-sylt-child' ),
+            'repeatable'  	=> true,
+            'options'     	=> array(
+                'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
+                'add_button'    => __( 'Add Boxes', 'wpcasa-sylt-child' ),
+                'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
+                'sortable'      => true,
+                'closed'		=> true
+            ),
+            'priority'	=> 40
+        ),
+        );
+
+    // Apply filter and order fields by priority
+    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_services_fields', $fields ) );
+
+    // Set meta box
+
+    $meta_box = array(
+        'id'			=> 'home_services',
+        'title'			=> __( 'Home Services', 'wpcasa-sylt-child' ),
+        'object_types'	=> array( 'page' ),
+        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
+        'context'		=> 'normal',
+        'priority'		=> 'high',
+        'fields'		=> $fields
+    );
+
+    return apply_filters( 'wpsight_sylt_meta_boxes_home_services', $meta_box );
+
+}
+
+
+add_filter( 'wpsight_meta_boxes', 'wpsight_sylt_meta_boxes' );
+
+function wpsight_sylt_meta_boxes( $meta_boxes ) {
+    $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_services();
+
+    return $meta_boxes;
+}
