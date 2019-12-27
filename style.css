@@ -299,9 +299,9 @@ Updated: 2019-12-24 19:51:25
     width: 100%;
 }
 
-.listing-wrap-custom-medium .listing-img {
-    min-width: calc(100% + 60px);
-    margin: 0 0 10px -30px;
+.listing-wrap-custom-large .listing-img,
+.listing-wrap-custom-medium  .listing-img {
+    transform: scale(1.08);
 }
 
 .listing-button {
@@ -310,14 +310,40 @@ Updated: 2019-12-24 19:51:25
     margin: 20px 0 0 -30px;
 }
 
-.listing-wrap-custom .listing-img {
+.listing-wrap-custom .listing-wrap-img {
     height: 220px;
+    min-width: calc(100% + 60px);
+    overflow: hidden;
+    margin-left: -30px;
+}
+
+.listing-wrap-custom .listing-img {
     object-fit: cover;
     object-position: center;
+    transition: .3s all ease;
+    height: 100%;
+    width: 100%;
+}
+
+.listing-wrap-custom-large .listing {
+    position: relative;
+    overflow: hidden;
+}
+
+.listing-wrap-custom-medium:hover .listing-img {
+    transform: scale(1.12);
 }
 
 .listing-wrap-custom .wpsight-listing-description {
     flex: 1 1 auto;
+}
+
+.site-header-title:only-child {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none;
+    text-align: center;
 }
 
 .listing-wrap-custom .wpsight-listing-archive {

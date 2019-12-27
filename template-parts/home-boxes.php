@@ -44,7 +44,9 @@
                   <span class="listing-top-title"><?php echo $title; ?></span>
                 </div>
 
-                <img src="<?php echo $img; ?>" alt="" class="listing-img">
+                <div class="listing-wrap-img">
+                    <img src="<?php echo $img; ?>" alt="" class="listing-img">
+                </div>
 
                 <div class="wpsight-listing-description">
                   <p><?php echo $description; ?></p>
