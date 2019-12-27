@@ -139,23 +139,31 @@ Updated: 2019-12-24 19:51:25
     max-width: 100%;
 }
 
-.select2.select2-container {
-    width: auto !important;
-    max-width: 100%;
-    min-width: 300px;
+/*.select2.select2-container {*/
+/*    width: auto !important;*/
+/*    max-width: 100%;*/
+/*    min-width: 300px;*/
+/*}*/
+
+/*.listings-search-field-range {*/
+/*    width: 100%;*/
+/*    max-width: 50%;*/
+/*}*/
+
+/*@media (max-width: 980px) {*/
+/*    .listings-search-field-range {*/
+/*        max-width: 100%;*/
+/*    }*/
+/*}*/
+
+
+.listings-search-field-min {
+    display: none;
 }
 
-.listings-search-field-range {
-    width: 100%;
-    max-width: 50%;
+.listings-search-field-max {
+    display: none;
 }
-
-@media (max-width: 980px) {
-    .listings-search-field-range {
-        max-width: 100%;
-    }
-}
-
 
 .irs-handle {
     cursor: grab;
@@ -176,10 +184,10 @@ Updated: 2019-12-24 19:51:25
     background-color: #a4ce59;
 }
 
-@media (max-width: 600px) {
-    .select2.select2-container {
-        width: 100% !important;
-        max-width: 100%;
-        min-width: auto;
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .select2.select2-container {*/
+/*        width: 100% !important;*/
+/*        max-width: 100%;*/
+/*        min-width: auto;*/
+/*    }*/
+/*}*/
