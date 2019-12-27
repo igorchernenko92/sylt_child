@@ -38,7 +38,7 @@ add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );
 // END ENQUEUE PARENT ACTION
 
 function edit_listing_request($query_args, $args) {
-    if ( isset($_GET['post__in']) ) {
+    if ( isset($_GET['post_in']) ) {
 
         $id_args = array(
             'post_type'  => wpsight_post_type(),
@@ -46,7 +46,7 @@ function edit_listing_request($query_args, $args) {
                 'relation' => 'OR',
                 array(
                     'key'    => '_listing_id',
-                    'value'   => esc_sql( $_GET['post__in'] ),
+                    'value'   => esc_sql( $_GET['post_in'] ),
                     'compare' => 'LIKE'
                 ),
             )
@@ -80,7 +80,7 @@ function edit_default_fields($fields_default) {
         'priority'		=> 10
     ];
 
-    $fields_default['post__in'] = [
+    $fields_default['post_in'] = [
         'label' 		=> __( 'Listing ID', 'wpcasa' ) . '&hellip;',
         'type' 			=> 'text',
         'class'			=> '3u 12u$(medium)',

@@ -7,7 +7,7 @@
         $dropdown_defaults = array(
             'echo'				=> 1,
 //            'show_option_all'    => __( 'Select features', 'wpcasa' ),
-            'show_option_none'    => __( 'Select features', 'wpcasa' ),
+//            'show_option_none'    => __( 'Select features', 'wpcasa' ),
             'name'				=> $field,
             'class'           	=> 'listing-search-' . $field . ' select',
             'selected'			=> 0,
