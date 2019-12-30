@@ -39,13 +39,17 @@ jQuery(document).ready(function($) {
                 data: [
                     {
                         min: "200",
-                        max: "10000000"
+                        max: "10.000.000"
                     }
                 ]
             },
             {
                 offer: 'sale',
                 data: [
+                    {
+                        min: "200",
+                        max: "1200"
+                    },
                     {
                         min: "200",
                         max: "600"
@@ -65,6 +69,10 @@ jQuery(document).ready(function($) {
                 data: [
                     {
                         min: "80.000",
+                        max: "200.000"
+                    },
+                    {
+                        min: "80.000",
                         max: "150.000"
                     },
                     {
@@ -81,8 +89,11 @@ jQuery(document).ready(function($) {
                 return cur.offer === curOffer;
             });
 
-            $priceMin.attr("value", curPricesData.data[index].min);
-            $priceMax.attr("value", curPricesData.data[index].max);
+            var minPrice = curPricesData.data[index].min.replace(/\./g, "");
+            var maxPrice = curPricesData.data[index].max.replace(/\./g, "");
+
+            $priceMin.attr("value", minPrice);
+            $priceMax.attr("value", maxPrice);
         }
 
         function setPricesOptions () {
