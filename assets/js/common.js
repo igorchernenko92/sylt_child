@@ -9,6 +9,7 @@ jQuery(document).ready(function($) {
 
         function init () {
             $selectItems.multipleSelect(options);
+            $(".ms-select-all").find("span").text("Select / Unselect all");
         }
 
         function setEventListingResetBtn () {
