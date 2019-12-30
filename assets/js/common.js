@@ -41,115 +41,110 @@ jQuery(document).ready(function($) {
     };
     initSelect2();
 
-    var initIonRange = function () {
-        var $range = $(".ion-range-slider");
-        var $rangeData = null;
-        var $rangeMin = $(".listing-search-min");
-        var $rangeMax = $(".listing-search-max");
+    var initChangePricesLogic = function () {
+        var $offerSelect = $(".listing-search-offer");
+        var $pricesSelect = $(".listing-search-prices");
         var $listingResetBtn = $(".listings-search-reset");
-        var $selectOffer = $(".listing-search-offer");
-        var $selectOfferStartValue = $selectOffer.val();
+        var $priceMin = $(".listing-search-min");
+        var $priceMax = $(".listing-search-max");
 
-        var selectOffer = [
+        var curOffer = $offerSelect.val() ? $offerSelect.val() : "default";
+        var curIndex;
+
+        var pricesData = [
             {
-                name: 'default',
-                data: {
-                    min: 200,
-                    max: 10000000,
-                    step: 100000
-                }
+                offer: 'default',
+                data: [
+                    {
+                        min: "200",
+                        max: "10000000"
+                    }
+                ]
             },
             {
-                name: 'sale',
-                data: {
-                    min: 50000,
-                    max: 2000000,
-                    step: 25000
-                }
+                offer: 'sale',
+                data: [
+                    {
+                        min: "200",
+                        max: "600"
+                    },
+                    {
+                        min: "601",
+                        max: "900"
+                    },
+                    {
+                        min: "901",
+                        max: "1200"
+                    }
+                ]
             },
             {
-                name: 'rent',
-                data: {
-                    min: 300,
-                    max: 2000,
-                    step: 50
-                }
+                offer: 'rent',
+                data: [
+                    {
+                        min: "80.000",
+                        max: "150.000"
+                    },
+                    {
+                        min: "150.001",
+                        max: "200.000"
+                    }
+                ]
             }
         ];
 
-        var options = {
-            type: "double",
-            skin: "round",
-            min: selectOffer[0].data.min,
-            max: selectOffer[0].data.max,
-            from: selectOffer[0].data.min,
-            to: selectOffer[0].data.max,
-            step: selectOffer[0].data.step,
-            prefix: "$",
-            onStart: outputFirstValues,
-            onChange: outputValues,
-            onFinish: outputValues
-        };
 
-
-        function outputFirstValues () {
-            outputValues({
-                from: selectOffer[0].data.min,
-                to: selectOffer[0].data.max
-            });
-        }
-
-        function outputValues (data) {
-            $rangeMin.attr("value", data.from);
-            $rangeMax.attr("value", data.to);
-        }
-
-        function initRange () {
-            $range.ionRangeSlider(options);
-            $rangeData = $range.data("ionRangeSlider");
-        }
-
-        function changeRange(type) {
-            type = (type === "") ? "default" : type;
-
-            var resultOffer = selectOffer.find(function (cur) {
-                return cur.name === type;
+        function setMinMaxPrices (index) {
+            var curPricesData = pricesData.find(function (cur) {
+                return cur.offer === curOffer;
             });
 
-            $rangeData.update({
-                min: resultOffer.data.min,
-                max: resultOffer.data.max,
-                from: resultOffer.data.min,
-                to: resultOffer.data.max,
-                step: resultOffer.data.step
-            });
-
-            outputValues({
-                from: resultOffer.data.min,
-                to: resultOffer.data.max
-            });
+            $priceMin.attr("value", curPricesData.data[index].min);
+            $priceMax.attr("value", curPricesData.data[index].max);
         }
 
-        function setEventSelectOffer () {
-            changeRange($selectOfferStartValue);
+        function setPricesOptions () {
+            $pricesSelect.find("option").remove();
 
-            $selectOffer.on("change", function () {
-                curOffer = $(this).val();
+            var curPricesData = pricesData.find(function (cur) {
+               return cur.offer === curOffer;
+            });
 
-                changeRange(curOffer);
+            curPricesData.data.forEach(function (cur, index) {
+                var text = cur.min + " - " + cur.max;
+                var tag = "<option value='" + index + "'>" + text + "</option>";
+                $pricesSelect.append(tag)
+            });
+
+            setMinMaxPrices(0);
+
+        }
+
+        function initSelectPrice () {
+            setPricesOptions();
+
+            $offerSelect.on("change", function () {
+               curOffer = $(this).val() ? $(this).val() : "default";
+               setPricesOptions();
+            });
+
+            $pricesSelect.on("change", function () {
+                curIndex = $(this).val();
+                setMinMaxPrices(curIndex);
             });
         }
 
         function setEventListingResetBtn () {
             $listingResetBtn.on("click", function () {
-                changeRange($selectOffer.val());
+                curOffer = "default";
+                setPricesOptions();
             });
         }
 
-        if ($range.length) initRange();
-        if ($selectOffer.length) setEventSelectOffer();
+
+        if ($offerSelect.length && $pricesSelect.length) initSelectPrice();
         if ($listingResetBtn.length) setEventListingResetBtn();
     };
-    initIonRange();
+    initChangePricesLogic();
 
 });
