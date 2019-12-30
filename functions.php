@@ -139,13 +139,13 @@ function wpsight_sylt_meta_boxes_home_nf() {
             'id'        => '_nf_description',
             'type'      => 'textarea',
         ),
-        'nf_image' => array(
-            'name'      => __( 'Newsletter Image', 'wpcasa-sylt-child' ),
-            'id'        => '_nf_image',
-            'type'      => 'file',
-            'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
-            'priority'  => 20
-        ),
+//        'nf_image' => array(
+//            'name'      => __( 'Newsletter Image', 'wpcasa-sylt-child' ),
+//            'id'        => '_nf_image',
+//            'type'      => 'file',
+//            'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
+//            'priority'  => 20
+//        ),
 //        'nf_ml_code' => array(
 //            'name'		=> __( 'Mailchimp shortcode', 'wpcasa-sylt-child' ),
 //            'id'		=> 'nf_ml_code',

@@ -331,27 +331,8 @@ Updated: 2019-12-24 19:51:25
     overflow: hidden;
 }
 
-.section-overlay * {
-    color: inherit;
-}
-
-.section-overlay > * {
-    position: relative;
-}
-
 .section-overlay {
-    position: relative;
-    color: #fff;
-}
-
-.section-overlay:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .6);
+    background-color: #EDEDED;
 }
 
 .listing-wrap-custom-medium:hover .listing-img {

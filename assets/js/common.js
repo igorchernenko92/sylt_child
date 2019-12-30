@@ -23,24 +23,6 @@ jQuery(document).ready(function($) {
     };
     initMultiselect();
 
-    var initSelect2 = function () {
-        var $selectItem = $(".listings-search-field-select2 select");
-
-        var options = {
-            multiple: true,
-            closeOnSelect: false,
-            placeholder: "Select features"
-        };
-
-        function init () {
-            $selectItem.select2(options);
-            $selectItem.val(null).trigger("change");
-        }
-
-        if ($selectItem.length) init();
-    };
-    initSelect2();
-
     var initChangePricesLogic = function () {
         var $offerSelect = $(".listing-search-offer");
         var $pricesSelect = $(".listing-search-prices");
