@@ -4,13 +4,21 @@ jQuery(document).ready(function($) {
 
     var initMultiselect = function () {
         var $selectItems = $(".listings-search-field .multiselect");
+        var $listingResetBtn = $(".listings-search-reset");
         var options = {};
 
         function init () {
             $selectItems.multipleSelect(options);
         }
 
+        function setEventListingResetBtn () {
+            $listingResetBtn.on("click", function () {
+                $selectItems.multipleSelect('uncheckAll');
+            });
+        }
+
         if ($selectItems.length) init();
+        if ($listingResetBtn.length) setEventListingResetBtn();
     };
     initMultiselect();
 
