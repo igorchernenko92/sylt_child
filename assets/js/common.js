@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
                 data: [
                     {
                         min: "200",
-                        max: "10.000.000"
+                        max: "20.000.000"
                     }
                 ]
             },
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
                 data: [
                     {
                         min: "80.000",
-                        max: "200.000"
+                        max: "20.000.000"
                     },
                     {
                         min: "80.000",
@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
                     },
                     {
                         min: "150.001",
-                        max: "200.000"
+                        max: "20.000.000"
                     }
                 ]
             }
