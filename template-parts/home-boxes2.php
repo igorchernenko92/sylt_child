@@ -23,7 +23,7 @@
               $url	= isset( $box['_url'] )  ? $box['_url'] : false;
             ?>
 
-            <div class="listing-wrap listing-wrap-custom listing-wrap-custom-large 4u 6u$(medium) 12u$(small)">
+            <div class="listing-wrap listing-wrap-custom listing-wrap-custom-large 6u 6u$(medium) 12u$(small)">
               <a href="<?php echo $url; ?>" class="listing wpsight-listing-archive" style="background-image: url('<?php echo $img; ?>')">
 
                 <div class="listing-top">
