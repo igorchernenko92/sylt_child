@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
                 ]
             },
             {
-                offer: 'sale',
+                offer: 'rent',
                 data: [
                     {
                         min: "200",
@@ -65,7 +65,7 @@ jQuery(document).ready(function($) {
                 ]
             },
             {
-                offer: 'rent',
+                offer: 'sale',
                 data: [
                     {
                         min: "80.000",
