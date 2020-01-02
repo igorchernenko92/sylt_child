@@ -94,3 +94,5 @@
 	</header>
 	
 	<?php wpsight_sylt_menu( 'secondary', array( 'container' => 'div', 'container_class' => 'container' ) ); ?>
+
+    <?php get_search_form(); ?>
