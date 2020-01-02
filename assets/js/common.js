@@ -38,8 +38,9 @@ jQuery(document).ready(function($) {
                 offer: 'default',
                 data: [
                     {
-                        min: "200",
-                        max: "20.000.000"
+                        min: "0",
+                        del: " - ",
+                        max: "1.600.000"
                     }
                 ]
             },
@@ -47,20 +48,29 @@ jQuery(document).ready(function($) {
                 offer: 'rent',
                 data: [
                     {
-                        min: "200",
-                        max: "1200"
+                        min: "0",
+                        del: " - ",
+                        max: "500"
                     },
                     {
-                        min: "200",
-                        max: "600"
+                        min: "500",
+                        del: " - ",
+                        max: "1.000"
                     },
                     {
-                        min: "601",
-                        max: "900"
+                        min: "1.000",
+                        del: " - ",
+                        max: "2.500"
                     },
                     {
-                        min: "901",
-                        max: "1200"
+                        min: "2.500",
+                        del: " - ",
+                        max: "4.000"
+                    },
+                    {
+                        min: "4.000",
+                        del: " + ",
+                        max: ""
                     }
                 ]
             },
@@ -68,16 +78,34 @@ jQuery(document).ready(function($) {
                 offer: 'sale',
                 data: [
                     {
-                        min: "80.000",
-                        max: "20.000.000"
+                        min: "0",
+                        del: " - ",
+                        max: "250.000"
                     },
                     {
-                        min: "80.000",
-                        max: "150.000"
+                        min: "250.000",
+                        del: " - ",
+                        max: "500.000"
                     },
                     {
-                        min: "150.001",
-                        max: "20.000.000"
+                        min: "500.000",
+                        del: " - ",
+                        max: "800.000"
+                    },
+                    {
+                        min: "800.000",
+                        del: " - ",
+                        max: "1.200.000"
+                    },
+                    {
+                        min: "1.200.000",
+                        del: " - ",
+                        max: "1.600.000"
+                    },
+                    {
+                        min: "1.600.000",
+                        del: " + ",
+                        max: ""
                     }
                 ]
             }
@@ -93,7 +121,8 @@ jQuery(document).ready(function($) {
             var maxPrice = curPricesData.data[index].max.replace(/\./g, "");
 
             $priceMin.attr("value", minPrice);
-            $priceMax.attr("value", maxPrice);
+            if (maxPrice.length) $priceMax.attr("value", maxPrice);
+            else $priceMax.attr("value", minPrice);
         }
 
         function setPricesOptions () {
@@ -104,7 +133,7 @@ jQuery(document).ready(function($) {
             });
 
             curPricesData.data.forEach(function (cur, index) {
-                var text = cur.min + " - " + cur.max;
+                var text = cur.min + cur.del + cur.max;
                 var tag = "<option value='" + index + "'>" + text + "</option>";
                 $pricesSelect.append(tag)
             });

@@ -463,7 +463,9 @@ body {
     .header-search-btn {
         position: absolute;
         top: 11px;
-        right: 18px;
+        left: 18px;
+        right: auto;
+        margin: 0;
     }
 
     .header-bottom:after {
