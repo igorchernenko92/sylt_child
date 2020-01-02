@@ -441,6 +441,10 @@ header .container {
     float: none;
 }
 
+header {
+    overflow-x: hidden;
+}
+
 .wrap-header-search {
     background-color: #fff;
     padding: 8px;
