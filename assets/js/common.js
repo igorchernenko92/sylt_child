@@ -38,9 +38,9 @@ jQuery(document).ready(function($) {
                 offer: 'default',
                 data: [
                     {
-                        min: "0",
-                        del: " - ",
-                        max: "1.600.000"
+                        min: "1.600.000",
+                        del: " + ",
+                        max: ""
                     }
                 ]
             },
@@ -131,6 +131,12 @@ jQuery(document).ready(function($) {
             var curPricesData = pricesData.find(function (cur) {
                return cur.offer === curOffer;
             });
+
+            if (curPricesData.offer === "default") {
+                $pricesSelect.attr("disabled", "disabled");
+            } else {
+                $pricesSelect.removeAttr("disabled");
+            }
 
             curPricesData.data.forEach(function (cur, index) {
                 var text = cur.min + cur.del + cur.max;
