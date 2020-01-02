@@ -38,9 +38,9 @@ jQuery(document).ready(function($) {
                 offer: 'default',
                 data: [
                     {
-                        min: "1.600.000",
-                        del: " + ",
-                        max: ""
+                        min: "0",
+                        del: " - ",
+                        max: "1.600.000"
                     }
                 ]
             },
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
                     },
                     {
                         min: "4.000",
-                        del: " + ",
+                        del: "+ ",
                         max: ""
                     }
                 ]
@@ -104,7 +104,7 @@ jQuery(document).ready(function($) {
                     },
                     {
                         min: "1.600.000",
-                        del: " + ",
+                        del: "+ ",
                         max: ""
                     }
                 ]
