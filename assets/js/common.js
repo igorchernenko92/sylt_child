@@ -40,7 +40,7 @@ jQuery(document).ready(function($) {
                     {
                         min: "0",
                         del: " - ",
-                        max: "1.600.000"
+                        max: "1.600.000+"
                     }
                 ]
             },
