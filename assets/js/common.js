@@ -140,4 +140,18 @@ jQuery(document).ready(function($) {
     };
     initChangePricesLogic();
 
+    var headerSearch = function () {
+        var $btn = $(".header-search-btn");
+        var $search = $(".wrap-header-search");
+
+        function init() {
+            $btn.on("click", function () {
+                $search.toggleClass("active");
+            });
+        }
+
+        if ($btn.length && $search.length) init();
+    }
+    headerSearch();
+
 });
