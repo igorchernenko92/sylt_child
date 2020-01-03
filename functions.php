@@ -28,7 +28,7 @@ if ( !function_exists( 'chld_thm_cfg_parent_js' ) ):
         wp_enqueue_script( 'chld_thm_select2_js', trailingslashit( get_stylesheet_directory_uri() ) . '/vendor/select2/select2.min.js' );
         wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_stylesheet_directory_uri() ) . '/assets/js/common.js');
         wp_localize_script( 'chld_thm_common_script', 'child_string', array(
-            'select_all' => __( 'Select / Unselect all' )
+            'select_all' => __( 'Select / Unselect all', 'wpcasa-sylt-child' )
         ) );
     }
 endif;
@@ -98,8 +98,6 @@ function edit_default_fields($fields_default) {
     $fields_default['location']['type'] = 'multiselect';
     $fields_default['listing-type']['type'] = 'multiselect';
     $fields_default['feature']['type'] = 'select2';
-//    $fields_default['min']['type'] ='hidden';
-//    $fields_default['max']['type'] ='hidden';
 
 //  unset
     unset($fields_default['keyword']);
@@ -133,32 +131,20 @@ function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0
 function wpsight_sylt_meta_boxes_home_nf() {
     $fields = array(
         'nf_title' => array(
-            'name'		=> __( 'Newsletter heading', 'wpcasa-sylt-child' ),
+            'name'		=> __( 'Custom Content Heading', 'wpcasa-sylt-child' ),
             'id'		=> '_nf_title',
             'type'		=> 'text',
         ),
         'nf_description'	=> array(
-            'name'      => __( 'Newsletter text', 'wpcasa-sylt-child' ),
+            'name'      => __( 'Custom Content text', 'wpcasa-sylt-child' ),
             'id'        => '_nf_description',
             'type'      => 'textarea',
         ),
-//        'nf_image' => array(
-//            'name'      => __( 'Newsletter Image', 'wpcasa-sylt-child' ),
-//            'id'        => '_nf_image',
-//            'type'      => 'file',
-//            'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
-//            'priority'  => 20
-//        ),
-//        'nf_ml_code' => array(
-//            'name'		=> __( 'Mailchimp shortcode', 'wpcasa-sylt-child' ),
-//            'id'		=> 'nf_ml_code',
-//            'type'		=> 'text',
-//        ),
     );
 
     $meta_box = array(
         'id'			=> 'home_nf',
-        'title'			=> __( 'Home Newsletter Form', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt::Custom content', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -182,26 +168,18 @@ function wpsight_sylt_meta_boxes_home_nf() {
  */
 function wpsight_sylt_meta_boxes_home_services() {
     $fields = array(
-//        'display' => array(
-//            'name'      => '',
-//            'id'        => '_services_display',
-//            'type'      => 'checkbox',
-//            'label_cb'  => __( 'Display', 'wpcasa-sylt-child' ),
-//            'desc'      => __( 'Display services on the front page', 'wpcasa-sylt-child' ),
-//            'priority'  => 50
-//        ),
         'title' => array(
-            'name'		=> __( 'Section heading', 'wpcasa-sylt-child' ),
+            'name'		=> __( 'Intro heading', 'wpcasa-sylt-child' ),
             'id'		=> '_section_title',
             'type'		=> 'text',
         ),
         'description'	=> array(
-            'name'      => __( 'Section text', 'wpcasa-sylt-child' ),
+            'name'      => __( 'Intro text', 'wpcasa-sylt-child' ),
             'id'        => '_section_description',
             'type'      => 'textarea',
         ),
         'search_back_image' => array(
-            'name'      => __( 'Search background imag', 'wpcasa-sylt-child' ),
+            'name'      => __( 'Background image', 'wpcasa-sylt-child' ),
             'id'        => '_search_back_image',
             'type'      => 'file',
             'desc'      => __( 'Add search background image', 'wpcasa-sylt-child' ),
@@ -341,7 +319,7 @@ function wpsight_sylt_meta_boxes_home_services() {
 
     $meta_box = array(
         'id'			=> 'home_services',
-        'title'			=> __( 'Home Services', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'Home intro', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -354,11 +332,12 @@ function wpsight_sylt_meta_boxes_home_services() {
 }
 
 
-add_filter( 'wpsight_meta_boxes', 'wpsight_sylt_meta_boxes' );
+add_filter( 'wpsight_meta_boxes', 'wpsight_sylt_meta_boxes', 20 );
 
 function wpsight_sylt_meta_boxes( $meta_boxes ) {
     $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_services();
     $meta_boxes['home_nf']	= wpsight_sylt_meta_boxes_home_nf();
+    unset($meta_boxes['home_icon_links']);
 
     return $meta_boxes;
 }
