@@ -27,6 +27,9 @@ if ( !function_exists( 'chld_thm_cfg_parent_js' ) ):
         wp_enqueue_script( 'chld_thm_multiselect_js', trailingslashit( get_stylesheet_directory_uri() ) . '/vendor/multiple-select/multiple-select.min.js' );
         wp_enqueue_script( 'chld_thm_select2_js', trailingslashit( get_stylesheet_directory_uri() ) . '/vendor/select2/select2.min.js' );
         wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_stylesheet_directory_uri() ) . '/assets/js/common.js');
+        wp_localize_script( 'chld_thm_common_script', 'child_string', array(
+            'select_all' => __( 'Select / Unselect all' )
+        ) );
     }
 endif;
 add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );

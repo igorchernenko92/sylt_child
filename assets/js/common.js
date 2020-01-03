@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-
     $("form.wpsight-listings-search").attr("autocomplete", "off");
 
     var initMultiselect = function () {
@@ -9,7 +8,7 @@ jQuery(document).ready(function($) {
 
         function init () {
             $selectItems.multipleSelect(options);
-            $(".ms-select-all").find("span").text("Select / Unselect all");
+            $(".ms-select-all").find("span").text(child_string.select_all);
         }
 
         function setEventListingResetBtn () {
