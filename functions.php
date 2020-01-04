@@ -178,12 +178,6 @@ function wpsight_sylt_meta_boxes_home_services() {
             'id'        => '_section_description',
             'type'      => 'textarea',
         ),
-        'search_back_image' => array(
-            'name'      => __( 'Background image', 'wpcasa-sylt-child' ),
-            'id'        => '_search_back_image',
-            'type'      => 'file',
-            'desc'      => __( 'Add search background image', 'wpcasa-sylt-child' ),
-        ),
         'boxes' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes',
@@ -308,10 +302,6 @@ function wpsight_sylt_meta_boxes_home_services() {
         ),
         );
 
-
-
-
-
     // Apply filter and order fields by priority
     $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_services_fields', $fields ) );
 
@@ -319,7 +309,7 @@ function wpsight_sylt_meta_boxes_home_services() {
 
     $meta_box = array(
         'id'			=> 'home_services',
-        'title'			=> __( 'Home intro', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt::Home intro', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -332,10 +322,49 @@ function wpsight_sylt_meta_boxes_home_services() {
 }
 
 
+/**
+ *	wpsight_sylt-child_meta_boxes_home_services()
+ *
+ *	Set up home services meta box.
+ *
+ *	@uses	wpsight_sort_array_by_priority()
+ *	@return	array	$meta_box	Array of meta box
+ *
+ *	@since 1.0.0
+ */
+function wpsight_sylt_meta_boxes_home_search() {
+    $fields = array(
+        'search_back_image' => array(
+            'name'      => __( 'Background image', 'wpcasa-sylt-child' ),
+            'id'        => '_search_back_image',
+            'type'      => 'file',
+            'desc'      => __( 'Add search background image', 'wpcasa-sylt-child' ),
+        ),
+    );
+
+    // Apply filter and order fields by priority
+    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_services_fields', $fields ) );
+
+    // Set meta box
+
+    $meta_box = array(
+        'id'			=> 'home_search',
+        'title'			=> __( 'WPCasa Sylt::WPCasa Sylt::Home search', 'wpcasa-sylt-child' ),
+        'object_types'	=> array( 'page' ),
+        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
+        'context'		=> 'normal',
+        'priority'		=> 'high',
+        'fields'		=> $fields
+    );
+
+    return apply_filters( 'wpsight_sylt_meta_boxes_home_search', $meta_box );
+}
+
 add_filter( 'wpsight_meta_boxes', 'wpsight_sylt_meta_boxes', 20 );
 
 function wpsight_sylt_meta_boxes( $meta_boxes ) {
     $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_services();
+    $meta_boxes['home_search']	= wpsight_sylt_meta_boxes_home_search();
     $meta_boxes['home_nf']	= wpsight_sylt_meta_boxes_home_nf();
     unset($meta_boxes['home_icon_links']);
 
