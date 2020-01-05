@@ -130,6 +130,15 @@ function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0
 
 function wpsight_sylt_meta_boxes_home_nf() {
     $fields = array(
+        'display' => array(
+            'name'      => '',
+            'id'        => '_nf_display',
+            'type'      => 'checkbox',
+            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
+            'desc'      => __( 'Display custom content on the front page', 'wpcasa-sylt' ),
+            'default'	=> wpsight_sylt_child_checkbox_default( true ),
+            'priority'  => 10
+        ),
         'nf_title' => array(
             'name'		=> __( 'Custom Content Heading', 'wpcasa-sylt-child' ),
             'id'		=> '_nf_title',
@@ -166,27 +175,38 @@ function wpsight_sylt_meta_boxes_home_nf() {
  *
  *	@since 1.0.0
  */
-function wpsight_sylt_meta_boxes_home_services() {
+function wpsight_sylt_meta_boxes_home_intro() {
     $fields = array(
+        'display' => array(
+            'name'      => '',
+            'id'        => '_intro_display',
+            'type'      => 'checkbox',
+            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
+            'desc'      => __( 'Display intro on the front page', 'wpcasa-sylt' ),
+            'default'	=> wpsight_sylt_child_checkbox_default( true ),
+            'priority'  => 5
+        ),
         'title' => array(
             'name'		=> __( 'Intro heading', 'wpcasa-sylt-child' ),
-            'id'		=> '_section_title',
+            'id'		=> '_intro_title',
             'type'		=> 'text',
+            'priority'  => 10
         ),
         'description'	=> array(
             'name'      => __( 'Intro text', 'wpcasa-sylt-child' ),
-            'id'        => '_section_description',
+            'id'        => '_intro_description',
             'type'      => 'textarea',
+            'priority'  => 20
         ),
     );
 
     // Apply filter and order fields by priority
-    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_services_fields', $fields ) );
+    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_intro_fields', $fields ) );
 
     // Set meta box
 
     $meta_box = array(
-        'id'			=> 'home_services',
+        'id'			=> 'home_intro',
         'title'			=> __( 'WPCasa Sylt::Home intro', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
@@ -212,11 +232,21 @@ function wpsight_sylt_meta_boxes_home_services() {
  */
 function wpsight_sylt_meta_boxes_home_search() {
     $fields = array(
+        'display' => array(
+            'name'      => '',
+            'id'        => '_search_display',
+            'type'      => 'checkbox',
+            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
+            'desc'      => __( 'Display search on the front page', 'wpcasa-sylt' ),
+            'default'	=> wpsight_sylt_child_checkbox_default( true ),
+            'priority'  => 10
+        ),
         'search_back_image' => array(
             'name'      => __( 'Background image', 'wpcasa-sylt-child' ),
             'id'        => '_search_back_image',
             'type'      => 'file',
             'desc'      => __( 'Add search background image', 'wpcasa-sylt-child' ),
+            'priority'  => 20
         ),
     );
 
@@ -251,6 +281,15 @@ function wpsight_sylt_meta_boxes_home_search() {
  */
 function wpsight_sylt_meta_boxes_home_boxes() {
     $fields = array(
+        'display' => array(
+            'name'      => '',
+            'id'        => '_boxes_display',
+            'type'      => 'checkbox',
+            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
+            'desc'      => __( 'Display boxes on the front page', 'wpcasa-sylt' ),
+            'default'	=> wpsight_sylt_child_checkbox_default( true ),
+            'priority'  => 10
+        ),
         'boxes' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes',
@@ -328,6 +367,15 @@ function wpsight_sylt_meta_boxes_home_boxes() {
  */
 function wpsight_sylt_meta_boxes_home_boxes2() {
     $fields = array(
+        'display' => array(
+            'name'      => '',
+            'id'        => '_boxes2_display',
+            'type'      => 'checkbox',
+            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
+            'desc'      => __( 'Display boxes2 on the front page', 'wpcasa-sylt' ),
+            'default'	=> wpsight_sylt_child_checkbox_default( true ),
+            'priority'  => 10
+        ),
         'boxes2' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes2',
@@ -406,6 +454,15 @@ function wpsight_sylt_meta_boxes_home_boxes2() {
  */
 function wpsight_sylt_meta_boxes_home_boxes3() {
     $fields = array(
+        'display' => array(
+            'name'      => '',
+            'id'        => '_boxes3_display',
+            'type'      => 'checkbox',
+            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
+            'desc'      => __( 'Display boxes3 on the front page', 'wpcasa-sylt' ),
+            'default'	=> wpsight_sylt_child_checkbox_default( true ),
+            'priority'  => 10
+        ),
         'boxes3' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes3',
@@ -470,14 +527,28 @@ function wpsight_sylt_meta_boxes_home_boxes3() {
 
 
 function wpsight_sylt_meta_boxes( $meta_boxes ) {
-    $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_services();
+    $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_intro();
     $meta_boxes['home_search']	= wpsight_sylt_meta_boxes_home_search();
     $meta_boxes['home_nf']	= wpsight_sylt_meta_boxes_home_nf();
     $meta_boxes['home_boxes']	= wpsight_sylt_meta_boxes_home_boxes();
     $meta_boxes['home_boxes2']	= wpsight_sylt_meta_boxes_home_boxes2();
     $meta_boxes['home_boxes3']	= wpsight_sylt_meta_boxes_home_boxes3();
-    unset($meta_boxes['home_icon_links']);
+//    unset($meta_boxes['home_icon_links']);
 
     return $meta_boxes;
 }
 add_filter( 'wpsight_meta_boxes', 'wpsight_sylt_meta_boxes', 20 );
+
+/**
+ *	wpsight_sylt_checkbox_default()
+ *
+ *	Helper function to set check box defaults.
+ *	Only return default value if we don't
+ *	have a post ID (in the 'post' query variable).
+ *
+ *	@param	bool	$default On/Off (true/false)
+ *	@return	mixed	Returns true or '', the blank default
+ */
+function wpsight_sylt_child_checkbox_default( $default ) {
+    return isset( $_GET['post'] ) ? '' : ( $default ? (string) $default : '' );
+}

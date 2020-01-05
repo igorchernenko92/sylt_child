@@ -14,11 +14,13 @@ get_header(); ?>
 
 	<?php get_template_part( 'template-parts/header', 'search' ); ?>
 
-<!--	--><?php //get_template_part( 'template-parts/home', 'listings' ); ?>
-<!---->
-<!--	--><?php //get_template_part( 'template-parts/home', 'carousel' ); ?>
-<!---->
-<!--	--><?php //get_template_part( 'template-parts/home', 'cta-2' ); ?>
+	<?php get_template_part( 'template-parts/home', 'listings' ); ?>
+
+	<?php get_template_part( 'template-parts/home', 'carousel' ); ?>
+
+	<?php get_template_part( 'template-parts/home', 'cta-2' ); ?>
+
+	<?php get_template_part( 'template-parts/home', 'intro' ); ?>
 
 	<?php get_template_part( 'template-parts/home', 'boxes' ); ?>
 
@@ -27,7 +29,5 @@ get_header(); ?>
 	<?php 	get_template_part( 'template-parts/home', 'nf' ); ?>
 
 	<?php get_template_part( 'template-parts/home', 'boxes3' ); ?>
-
-
 
 <?php get_footer(); ?>

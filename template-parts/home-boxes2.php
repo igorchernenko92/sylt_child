@@ -5,7 +5,8 @@
  * @package WPCasa Sylt Child
  */
 
-//if( $display ) : ?>
+$display = get_post_meta( get_the_id(), '_boxes2_display', true );
+if( $display ) : ?>
 
 <section class="listings-section listings-section-2 site-section">
   <div class="container">
@@ -43,4 +44,4 @@
   </div>
 </section>
 
-<?php //endif; ?>
+<?php endif; ?>
