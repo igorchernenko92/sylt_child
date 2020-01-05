@@ -10,9 +10,11 @@ get_header(); ?>
 
 	<?php get_template_part( 'template-parts/home', 'slider' ); ?>
 
-	<?php get_template_part( 'template-parts/home', 'icon-links' ); ?>
-
 	<?php get_template_part( 'template-parts/header', 'search' ); ?>
+
+    <?php get_template_part( 'template-parts/home', 'icon-links' ); ?>
+
+    <?php get_template_part( 'template-parts/home', 'cta-1' ); ?>
 
 	<?php get_template_part( 'template-parts/home', 'listings' ); ?>
 
