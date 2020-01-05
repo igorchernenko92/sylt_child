@@ -7,6 +7,7 @@
 
 $title = get_post_meta(get_the_id(), '_nf_title', true);
 $desc = get_post_meta(get_the_id(), '_nf_description', true);
+$form_field = get_post_meta(get_the_id(), '_nf_form_field', true);
 $display = get_post_meta( get_the_id(), '_nf_display', true );
 
 if( $display ) : ?>
@@ -26,6 +27,10 @@ if( $display ) : ?>
           <div class="cta-description">
             <p><?php echo $desc; ?></p>
           </div>
+
+        <div class="cta-description">
+            <p><?php echo $form_field; ?></p>
+        </div>
 
         </div>
 

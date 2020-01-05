@@ -144,6 +144,11 @@ function wpsight_sylt_meta_boxes_home_nf() {
             'id'		=> '_nf_title',
             'type'		=> 'text',
         ),
+        'nf_form_field' => array(
+            'name'		=> __( 'Custom Content form shortcode field', 'wpcasa-sylt-child' ),
+            'id'		=> '_nf_form_field',
+            'type'		=> 'textarea',
+        ),
         'nf_description'	=> array(
             'name'      => __( 'Custom Content text', 'wpcasa-sylt-child' ),
             'id'        => '_nf_description',
