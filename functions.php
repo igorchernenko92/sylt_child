@@ -330,7 +330,7 @@ function wpsight_sylt_meta_boxes_home_boxes2() {
     $fields = array(
         'boxes2' => array(
             'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
-            'id'        	=> '_boxes',
+            'id'        	=> '_boxes2',
             'type'      	=> 'group',
             'group_fields'	=> array(
                 'label' => array(
