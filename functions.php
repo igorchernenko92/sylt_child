@@ -212,7 +212,7 @@ function wpsight_sylt_meta_boxes_home_intro() {
 
     $meta_box = array(
         'id'			=> 'home_intro',
-        'title'			=> __( 'WPCasa Sylt :: Home intro', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home Intro', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -262,7 +262,7 @@ function wpsight_sylt_meta_boxes_home_search() {
 
     $meta_box = array(
         'id'			=> 'home_search',
-        'title'			=> __( 'WPCasa Sylt :: Home search', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home Search', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
