@@ -34,6 +34,17 @@ if ( !function_exists( 'chld_thm_cfg_parent_js' ) ):
 endif;
 add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );
 
+
+
+
+/**
+ *	edit request for proper searching
+ *
+ *	@uses	wp_list_pluck()
+ *	@return	array of terms
+ *
+ *	@since 1.0.0
+ */
 function edit_listing_request($query_args, $args) {
     if ( isset($_GET['post_in']) ) {
 
@@ -63,9 +74,17 @@ function edit_listing_request($query_args, $args) {
     return $query_args;
 }
 
+
+/**
+ *	edit fields for search
+ *
+ *	@uses	wpsight_sort_array_by_priority()
+ *	@return	array of terms
+ *
+ *	@since 1.0.0
+ */
+
 add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 2 );
-
-
 function edit_default_fields($fields_default) {
     $details = wpsight_details();
 
@@ -110,6 +129,14 @@ function edit_default_fields($fields_default) {
 add_filter( 'wpsight_get_search_fields', 'edit_default_fields', 20);
 
 
+/**
+ *	get terms for multiselect
+ *
+ *	@uses	get_terms_hierarchical()
+ *	@return	array of terms
+ *
+ *	@since 1.0.0
+ */
 function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0) {
     $outputTemplate = '<option class="%CLASS%" value="%SLUG%">%NAME%</option>';
 
@@ -127,7 +154,14 @@ function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0
     return $output;
 }
 
-
+/**
+ *	wpsight_sylt_meta_boxes_home_nf()
+ *
+ *	@uses	wpsight_sylt_child_checkbox_default()
+ *	@return	array	$meta_box	Array of meta box
+ *
+ *	@since 1.0.0
+ */
 function wpsight_sylt_meta_boxes_home_nf() {
     $fields = array(
         'display' => array(
@@ -171,9 +205,9 @@ function wpsight_sylt_meta_boxes_home_nf() {
 
 
 /**
- *	wpsight_sylt-child_meta_boxes_home_services()
+ *	wpsight_sylt_meta_boxes_home_intro()
  *
- *	Set up home services meta box.
+ *	Set up home intro meta box.
  *
  *	@uses	wpsight_sort_array_by_priority()
  *	@return	array	$meta_box	Array of meta box
@@ -226,9 +260,9 @@ function wpsight_sylt_meta_boxes_home_intro() {
 
 
 /**
- *	wpsight_sylt-child_meta_boxes_home_services()
+ *	wpsight_sylt_meta_boxes_home_search()
  *
- *	Set up home services meta box.
+ *	Set up home search meta box.
  *
  *	@uses	wpsight_sort_array_by_priority()
  *	@return	array	$meta_box	Array of meta box
@@ -275,9 +309,9 @@ function wpsight_sylt_meta_boxes_home_search() {
 
 
 /**
- *	wpsight_sylt-child_meta_boxes_home_boxes()
+ *	wpsight_sylt_meta_boxes_home_boxes()
  *
- *	Set up home services meta box.
+ *	Set up home boxes meta box.
  *
  *	@uses	wpsight_sort_array_by_priority()
  *	@return	array	$meta_box	Array of meta box
@@ -361,9 +395,9 @@ function wpsight_sylt_meta_boxes_home_boxes() {
 }
 
 /**
- *	wpsight_sylt-child_meta_boxes_home_boxes2()
+ *	wpsight_sylt_meta_boxes_home_boxes2()
  *
- *	Set up home services meta box.
+ *	Set up home boxes meta box.
  *
  *	@uses	wpsight_sort_array_by_priority()
  *	@return	array	$meta_box	Array of meta box
@@ -448,9 +482,9 @@ function wpsight_sylt_meta_boxes_home_boxes2() {
 
 
 /**
- *	wpsight_sylt-child_meta_boxes_home_boxes3()
+ *	wpsight_sylt_meta_boxes_home_boxes3()
  *
- *	Set up home services meta box.
+ *	Set up home boxes3 meta box.
  *
  *	@uses	wpsight_sort_array_by_priority()
  *	@return	array	$meta_box	Array of meta box
@@ -529,7 +563,11 @@ function wpsight_sylt_meta_boxes_home_boxes3() {
     return apply_filters( 'wpsight_sylt_meta_boxes_home_boxes2', $meta_box );
 }
 
-
+/**
+ *	wpsight_sylt_meta_boxes()
+ *
+ * add metaboxes
+ */
 
 function wpsight_sylt_meta_boxes( $meta_boxes ) {
     $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_intro();
