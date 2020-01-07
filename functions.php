@@ -140,17 +140,17 @@ function wpsight_sylt_meta_boxes_home_nf() {
             'priority'  => 10
         ),
         'nf_title' => array(
-            'name'		=> __( 'Custom Content Heading', 'wpcasa-sylt-child' ),
+            'name'		=> __( 'Home custom Content Heading', 'wpcasa-sylt-child' ),
             'id'		=> '_nf_title',
             'type'		=> 'text',
         ),
         'nf_form_field' => array(
-            'name'		=> __( 'Custom Content form shortcode field', 'wpcasa-sylt-child' ),
+            'name'		=> __( 'Home custom Content form shortcode field', 'wpcasa-sylt-child' ),
             'id'		=> '_nf_form_field',
             'type'		=> 'textarea',
         ),
         'nf_description'	=> array(
-            'name'      => __( 'Custom Content text', 'wpcasa-sylt-child' ),
+            'name'      => __( 'Home custom Content text', 'wpcasa-sylt-child' ),
             'id'        => '_nf_description',
             'type'      => 'textarea',
         ),
@@ -158,7 +158,7 @@ function wpsight_sylt_meta_boxes_home_nf() {
 
     $meta_box = array(
         'id'			=> 'home_nf',
-        'title'			=> __( 'WPCasa Sylt::Custom content', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home Custom content', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -212,7 +212,7 @@ function wpsight_sylt_meta_boxes_home_intro() {
 
     $meta_box = array(
         'id'			=> 'home_intro',
-        'title'			=> __( 'WPCasa Sylt::Home intro', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home intro', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -262,7 +262,7 @@ function wpsight_sylt_meta_boxes_home_search() {
 
     $meta_box = array(
         'id'			=> 'home_search',
-        'title'			=> __( 'WPCasa Sylt::Home search', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home search', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -296,7 +296,7 @@ function wpsight_sylt_meta_boxes_home_boxes() {
             'priority'  => 10
         ),
         'boxes' => array(
-            'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
+            'name'      	=> __( 'Home Infoboxes #1', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes',
             'type'      	=> 'group',
             'group_fields'	=> array(
@@ -333,7 +333,7 @@ function wpsight_sylt_meta_boxes_home_boxes() {
             'repeatable'  	=> true,
             'options'     	=> array(
                 'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
-                'add_button'    => __( 'Add Boxes', 'wpcasa-sylt-child' ),
+                'add_button'    => __( 'Add Infoboxes #1', 'wpcasa-sylt-child' ),
                 'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
                 'sortable'      => true,
                 'closed'		=> true
@@ -349,7 +349,7 @@ function wpsight_sylt_meta_boxes_home_boxes() {
 
     $meta_box = array(
         'id'			=> 'home_boxes',
-        'title'			=> __( 'WPCasa Sylt::Home boxes', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home Infoboxes #1', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -382,7 +382,7 @@ function wpsight_sylt_meta_boxes_home_boxes2() {
             'priority'  => 10
         ),
         'boxes2' => array(
-            'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
+            'name'      	=> __( 'Home Infoboxes #2', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes2',
             'type'      	=> 'group',
             'group_fields'	=> array(
@@ -419,7 +419,7 @@ function wpsight_sylt_meta_boxes_home_boxes2() {
             'repeatable'  	=> true,
             'options'     	=> array(
                 'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
-                'add_button'    => __( 'Add Boxes', 'wpcasa-sylt-child' ),
+                'add_button'    => __( 'Add Infoboxes #2', 'wpcasa-sylt-child' ),
                 'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
                 'sortable'      => true,
                 'closed'		=> true
@@ -435,7 +435,7 @@ function wpsight_sylt_meta_boxes_home_boxes2() {
 
     $meta_box = array(
         'id'			=> 'home_boxes2',
-        'title'			=> __( 'WPCasa Sylt::Home boxes2', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home Infoboxes #2', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
@@ -469,7 +469,7 @@ function wpsight_sylt_meta_boxes_home_boxes3() {
             'priority'  => 10
         ),
         'boxes3' => array(
-            'name'      	=> __( 'Boxes', 'wpcasa-sylt-child' ),
+            'name'      	=> __( 'Home Infoboxes #3', 'wpcasa-sylt-child' ),
             'id'        	=> '_boxes3',
             'type'      	=> 'group',
             'group_fields'	=> array(
@@ -502,7 +502,7 @@ function wpsight_sylt_meta_boxes_home_boxes3() {
             'repeatable'  	=> true,
             'options'     	=> array(
                 'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
-                'add_button'    => __( 'Add Boxes', 'wpcasa-sylt-child' ),
+                'add_button'    => __( 'Add Infoboxes #3', 'wpcasa-sylt-child' ),
                 'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
                 'sortable'      => true,
                 'closed'		=> true
@@ -518,7 +518,7 @@ function wpsight_sylt_meta_boxes_home_boxes3() {
 
     $meta_box = array(
         'id'			=> 'home_boxes3',
-        'title'			=> __( 'WPCasa Sylt::Home boxes3', 'wpcasa-sylt-child' ),
+        'title'			=> __( 'WPCasa Sylt :: Home Infoboxes #3', 'wpcasa-sylt-child' ),
         'object_types'	=> array( 'page' ),
         'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
         'context'		=> 'normal',
