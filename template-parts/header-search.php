@@ -11,7 +11,7 @@ if ($display) :
 
 // Get search display option
     $search_display = get_option( 'wpsight_sylt_header_search_display', 'all' );
-
+    $search_bg = get_post_meta(get_the_id(), '_search_back_image', true);
     // Set when to display search
 
     $display = false;
@@ -31,7 +31,7 @@ if ($display) :
 
     <?php if( $display ) : ?>
 
-    <div id="home-search" class="site-section home-section<?php echo $animate; ?>">
+    <div id="home-search" class="site-section home-section<?php echo $animate; ?>"  style="background-image: url('<?php echo $search_bg; ?>');">
 
         <div class="container">
 

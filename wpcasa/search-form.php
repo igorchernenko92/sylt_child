@@ -31,11 +31,3 @@
 	<?php endif; ?>
 
 </form><!-- .<?php echo sanitize_html_class( $args['class'] ); ?> -->
-
-
-<?php $search_bg = get_post_meta( get_the_id(), '_search_back_image', true ); ?>
-
-<div
-    class="section-search-bg"
-    style="background-image: url('<?php echo $search_bg; ?>');">
-</div>
