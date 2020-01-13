@@ -368,11 +368,15 @@ Updated: 2019-12-24 19:51:25
     float: none;
 }
 
+.wrap-header-search .search-field {
+    background-color: #fff;
+}
+
 .header-search-btn {
     cursor: pointer;
     border-radius: 4px;
     border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: #EDEDED;
     width: 40px;
     height: 40px;
     display: flex;
@@ -446,7 +450,7 @@ body {
 }
 
 .wrap-header-search {
-    background-color: #fff;
+    background-color: #EDEDED;
     padding: 8px;
 }
 
