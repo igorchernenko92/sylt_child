@@ -455,6 +455,31 @@ body {
     margin-bottom: 0 !important;
 }
 
+.home-section {
+    background-size: cover;
+}
+
+.header-bottom {
+    position: relative;
+}
+
+.responsive-menu-icon::before {
+    background-color: #EDEDED;
+}
+
+.header-bottom:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    min-width: 105vw;
+    height: 100%;
+    background-color: #EDEDED;
+    pointer-events: none;
+    z-index: -1;
+}
+
 @media (max-width: 980px) {
     .wrap-header-search {
         padding: 0;
