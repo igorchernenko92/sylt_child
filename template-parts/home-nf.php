@@ -29,7 +29,7 @@ if( $display ) : ?>
           </div>
 
         <div class="cta-description">
-            <p><?php echo $form_field; ?></p>
+            <?php echo do_shortcode ( $form_field ); ?>
         </div>
 
         </div>

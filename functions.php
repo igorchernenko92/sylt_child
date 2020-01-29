@@ -1,597 +1,218 @@
 <?php
-// Exit if accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
+//
+// Recommended way to include parent theme styles.
+//  (Please see http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme)
+//
 
-if ( !function_exists( 'chld_thm_cfg_locale_css' ) ):
-    function chld_thm_cfg_locale_css( $uri ){
+define ( 'THEME_PATH', get_stylesheet_directory_uri() );
+
+if ( ! function_exists( 'chld_thm_cfg_locale_css' ) ):
+
+    function chld_thm_cfg_locale_css( $uri )
+    {
         if ( empty( $uri ) && is_rtl() && file_exists( get_template_directory() . '/rtl.css' ) )
             $uri = get_template_directory_uri() . '/rtl.css';
         return $uri;
     }
-endif;
-add_filter( 'locale_stylesheet_uri', 'chld_thm_cfg_locale_css' );
+    add_filter( 'locale_stylesheet_uri', 'chld_thm_cfg_locale_css' );
 
-if ( !function_exists( 'chld_thm_cfg_parent_css' ) ):
-    function chld_thm_cfg_parent_css() {
+endif;
+
+// Register Navigation Menus
+if ( ! function_exists( 'ccc_init' ) ) :
+
+	function ccc_init()
+    {
+		// add navigation menu
+		$locations = array(
+			'footer' => esc_html__( 'Footer Menu', 'ccc' ),
+		);
+		register_nav_menus( $locations );
+
+		// set default images sizes to 0 to prevent creation
+		add_image_size( 'medium', 0, 0, false );
+		add_image_size( 'medium_large', 0, 0, false );
+		add_image_size( 'large', 0, 0, false );
+	}
+	add_action( 'init', 'ccc_init' );
+
+endif;
+
+if ( ! function_exists('ccc_custom_menus') ):
+
+    function ccc_custom_menus( $menus )
+    {
+        $menus['footer'] = __( 'Footer Menu', 'ccc' );
+        return $menus;
+    }
+    add_filter('wpsight_sylt_menus', 'ccc_custom_menus');
+
+endif;
+
+if ( ! function_exists('ccc_theme_enqueue') ) :
+
+	function ccc_theme_enqueue()
+    {
+		wp_enqueue_style( 'parent-style', trailingslashit( get_stylesheet_directory_uri() ) . 'style.css' );
+		wp_enqueue_style( 'child-style',
+                          trailingslashit( get_stylesheet_directory_uri() ) . 'style.css',
+			array('parent-style')
+		);
+
+		// enqueue CSS for front page
         wp_enqueue_style( 'chld_thm_ion_range_slider_css', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/ion-range-slider/ion-range-slider.min.css');
         wp_enqueue_style( 'chld_thm_multiselect_css', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/multiple-select/multiple-select.min.css');
         wp_enqueue_style( 'chld_thm_select2_css', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/select2/select2.min.css');
         wp_enqueue_style( 'chld_thm_cfg_parent', trailingslashit( get_template_directory_uri() ) . 'style.css', array( 'skel-main','skel-grid' ) );
-    }
-endif;
-add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_css', 10 );
 
-if ( !function_exists( 'chld_thm_cfg_parent_js' ) ):
-    function chld_thm_cfg_parent_js() {
+        // enqueue JS for front page
         wp_enqueue_script( 'chld_thm_ion_range_slider_js', trailingslashit( get_stylesheet_directory_uri() ) . '/vendor/ion-range-slider/ion-range-slider.min.js' );
         wp_enqueue_script( 'chld_thm_multiselect_js', trailingslashit( get_stylesheet_directory_uri() ) . '/vendor/multiple-select/multiple-select.min.js' );
         wp_enqueue_script( 'chld_thm_select2_js', trailingslashit( get_stylesheet_directory_uri() ) . '/vendor/select2/select2.min.js' );
         wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_stylesheet_directory_uri() ) . '/assets/js/common.js');
         wp_localize_script( 'chld_thm_common_script', 'child_string', array(
-            'select_all' => __( 'Select / Unselect all', 'wpcasa-sylt-child' )
+            'select_all' => __( 'Select / Unselect all', 'ccc' )
         ) );
-    }
+	}
+	add_action('wp_enqueue_scripts', 'ccc_theme_enqueue');
+
 endif;
-add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_js', 10 );
 
+if ( ! function_exists('ccc_theme_setup') ) :
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	function ccc_theme_setup()
+    {
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on Twenty Nineteen, use a find and replace
+		 * to change 'twentynineteen' to the name of your theme in all the template files.
+		 */
+		load_child_theme_textdomain( 'ccc', get_stylesheet_directory() . '/languages' );
 
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
+	}
+	add_action('after_setup_theme', 'ccc_theme_setup');
+endif;
 
+if ( class_exists( 'WPSight_Advanced_Search') ):
 
-/**
- *	edit request for proper searching
- *
- *	@uses	wp_list_pluck()
- *	@return	array of terms
- *
- *	@since 1.0.0
- */
-function edit_listing_request($query_args, $args) {
-    if ( isset($_GET['post_in']) ) {
+	/**
+	 * Show advanced search fields by default and remove
+	 * unwanted orderby options
+	 *
+	 * Needs plugin WP Casa Advanced Search
+	 * https://wordpress.org/plugins/wpcasa-advanced-search/
+	 */
+	function custom_get_advanced_search_fields( $fields )
+    {
+		$fields['min']['advanced']		= false;
+		$fields['max']['advanced']		= false;
+		$fields['orderby']['advanced']	= false;
+		$fields['order']['advanced']	= false;
+		$fields['feature']['advanced']	= false;
 
-        $id_args = array(
-            'post_type'  => wpsight_post_type(),
-            'meta_query' => array(
-                'relation' => 'OR',
-                array(
-                    'key'    => '_listing_id',
-                    'value'   => esc_sql( $_GET['post_in'] ),
-                    'compare' => 'LIKE'
-                ),
-            )
+		unset ( $fields['orderby']['data']['title'] );
+		unset ( $fields['orderby']['data']['date'] );
+
+		// change label of search fields
+		$fields['orderby']['label']	= esc_html__( 'Sort by', 'ccc' );
+		$fields['order']['label']	= esc_html__( 'Order', 'ccc' );
+
+		return $fields;
+	}
+	add_filter( 'wpsight_get_advanced_search_fields', 'custom_get_advanced_search_fields', 11 );
+
+	function order_search_fields( $fields ) {
+
+		$fields['offer']['priority']		= 10;
+		$fields['location']['priority']		= 20;
+		$fields['listing-type']['priority']	= 30;
+		$fields['keyword']['priority']		= 130;
+		$fields['submit']['priority']		= 140;
+		$fields['feature']['priority']		= 150;
+		return $fields;
+
+	}
+	add_filter( 'wpsight_get_search_fields', 'order_search_fields' );
+
+	/**
+	 * Change default search labels
+	 *
+	 * @param	array	$fields	Default search fields
+	 * @uses	wpsight_details()
+	 * @return	array
+	 */
+	function search_fields_labels( $fields ) {
+
+		$fields['keyword']['label']	= esc_html__( 'Listing ID', 'ccc' ) . '&hellip;';
+
+		return $fields;
+	}
+	add_filter( 'wpsight_get_search_fields', 'search_fields_labels' );
+
+endif;
+
+if ( ! function_exists('ccc_archive_title') ) :
+
+    function ccc_archive_title( $title )
+    {
+        if (is_category()) {
+            $title = single_cat_title('', false);
+        } elseif (is_tag()) {
+            $title = single_tag_title('', false);
+        } elseif (is_author()) {
+            $title = '<span class="vcard">' . get_the_author() . '</span>';
+        }
+
+        return $title;
+    }
+    add_filter('get_the_archive_title', 'ccc_archive_title');
+
+endif;
+
+if ( ! function_exists('ccc_extend_sidebars') ):
+
+    function ccc_extend_sidebars ( $widget_areas )
+    {
+        $widget_areas['listing-bottom-cta'] = array(
+
+            'name' 			=> esc_html__( 'Listing Single Bottom Call To Action', 'ccc' ),
+            'description' 	=> esc_html__( 'Display full-width content below the bottom on single listing pages.', 'ccc' ),
+            'id' 			=> 'listing-cta',
+            'before_widget' => '<section id="section-%1$s" class="widget-section section-%2$s"><div id="%1$s" class="widget %2$s">',
+            'after_widget' 	=> '</div></section>',
+            'before_title' 	=> '<div class="cta-title"><h2>',
+            'after_title' 	=> '</h2></div>',
+            'priority'		=> 125
+
         );
 
-        // Execute ID search query
-        $id_query = new WP_Query( $id_args );
-
-        $post_ids = wp_list_pluck( $id_query->posts, 'ID' );
-        if ( empty( $post_ids ) ) {
-            $query_args['post__in'] = ['issue'];
-        } else {
-            $query_args['post__in'] = $post_ids;
-        }
+        return $widget_areas;
     }
+    add_filter('wpsight_sylt_widget_areas', 'ccc_extend_sidebars');
 
-    return $query_args;
-}
+endif;
 
+if ( ! function_exists('extend_slider_query_args') ):
 
-/**
- *	edit fields for search
- *
- *	@uses	wpsight_sort_array_by_priority()
- *	@return	array of terms
- *
- *	@since 1.0.0
- */
+    function extend_slider_query_args ( $listings_args ) {
 
-add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 2 );
-function edit_default_fields($fields_default) {
-    $details = wpsight_details();
+        $listings_args['orderby'] = 'post_date';
+        $listings_args['order'] = 'DESC';
 
-    $fields_default['range'] = [
-        'label' 		=> __( 'Range', 'wpcasa' ),
-        'key'			=> '_price_range',
-        'type' 			=> 'range',
-        'class'			=> '6u 12u$(medium)',
-        'priority'		=> 10
-    ];
-
-    $fields_default['post_in'] = [
-        'label' 		=> __( 'Listing ID', 'wpcasa' ) . '&hellip;',
-        'type' 			=> 'text',
-        'class'			=> '3u 12u$(medium)',
-        'priority'		=> 1
-    ];
-
-//  width
-    $fields_default['offer']['class'] = '3u 12u$(medium)';
-    $fields_default['feature']['class'] = '9u 12u$(medium)';
-    $fields_default[$details['details_1']['id']]['class'] = '3u 12u$(medium)';
-    $fields_default[$details['details_2']['id']]['class'] = '3u 12u$(medium)';
-
-//  priorities
-    $fields_default['submit']['priority'] = 400;
-    $fields_default['offer']['priority'] = 2;
-
-//  type
-    $fields_default['location']['type'] = 'multiselect';
-    $fields_default['listing-type']['type'] = 'multiselect';
-    $fields_default['feature']['type'] = 'select2';
-
-//  unset
-    unset($fields_default['keyword']);
-    unset($fields_default['orderby']);
-    unset($fields_default['order']);
-
-    return wpsight_sort_array_by_priority( $fields_default );
-}
-
-add_filter( 'wpsight_get_search_fields', 'edit_default_fields', 20);
-
-
-/**
- *	get terms for multiselect
- *
- *	@uses	get_terms_hierarchical()
- *	@return	array of terms
- *
- *	@since 1.0.0
- */
-function get_terms_hierarchical($terms, $output = '', $parent_id = 0, $level = 0) {
-    $outputTemplate = '<option class="%CLASS%" value="%SLUG%">%NAME%</option>';
-
-    foreach ($terms as $term) {
-        if ($parent_id == $term->parent) {
-            //Replacing the template variables
-            $itemOutput = str_replace('%SLUG%', $term->slug, $outputTemplate);
-            $itemOutput = str_replace('%CLASS%', 'listing-search-padding-' . $level, $itemOutput);
-            $itemOutput = str_replace('%NAME%', $term->name, $itemOutput);
-
-            $output .= $itemOutput;
-            $output = get_terms_hierarchical($terms, $output, $term->term_id, $level + 1);
-        }
+        return $listings_args;
     }
-    return $output;
-}
+    add_filter( 'wpsight_sylt_home_listings_slider_query_args', 'extend_slider_query_args' );
 
-/**
- *	wpsight_sylt_meta_boxes_home_nf()
- *
- *	@uses	wpsight_sylt_child_checkbox_default()
- *	@return	array	$meta_box	Array of meta box
- *
- *	@since 1.0.0
- */
-function wpsight_sylt_meta_boxes_home_nf() {
-    $fields = array(
-        'display' => array(
-            'name'      => '',
-            'id'        => '_nf_display',
-            'type'      => 'checkbox',
-            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
-            'desc'      => __( 'Display custom content on the front page', 'wpcasa-sylt' ),
-            'default'	=> wpsight_sylt_child_checkbox_default( true ),
-            'priority'  => 10
-        ),
-        'nf_title' => array(
-            'name'		=> __( 'Home custom Content Heading', 'wpcasa-sylt-child' ),
-            'id'		=> '_nf_title',
-            'type'		=> 'text',
-        ),
-        'nf_form_field' => array(
-            'name'		=> __( 'Home custom Content form shortcode field', 'wpcasa-sylt-child' ),
-            'id'		=> '_nf_form_field',
-            'type'		=> 'textarea',
-        ),
-        'nf_description'	=> array(
-            'name'      => __( 'Home custom Content text', 'wpcasa-sylt-child' ),
-            'id'        => '_nf_description',
-            'type'      => 'textarea',
-        ),
-    );
+endif;
 
-    $meta_box = array(
-        'id'			=> 'home_nf',
-        'title'			=> __( 'WPCasa Sylt :: Home Custom content', 'wpcasa-sylt-child' ),
-        'object_types'	=> array( 'page' ),
-        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
-        'context'		=> 'normal',
-        'priority'		=> 'high',
-        'fields'		=> $fields
-    );
-
-    return apply_filters( 'wpsight_sylt_meta_boxes_home_nf', $meta_box );
-}
-
-
-/**
- *	wpsight_sylt_meta_boxes_home_intro()
- *
- *	Set up home intro meta box.
- *
- *	@uses	wpsight_sort_array_by_priority()
- *	@return	array	$meta_box	Array of meta box
- *
- *	@since 1.0.0
- */
-function wpsight_sylt_meta_boxes_home_intro() {
-    $fields = array(
-        'display' => array(
-            'name'      => '',
-            'id'        => '_intro_display',
-            'type'      => 'checkbox',
-            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
-            'desc'      => __( 'Display intro on the front page', 'wpcasa-sylt' ),
-            'default'	=> wpsight_sylt_child_checkbox_default( true ),
-            'priority'  => 5
-        ),
-        'title' => array(
-            'name'		=> __( 'Intro heading', 'wpcasa-sylt-child' ),
-            'id'		=> '_intro_title',
-            'type'		=> 'text',
-            'priority'  => 10
-        ),
-        'description'	=> array(
-            'name'      => __( 'Intro text', 'wpcasa-sylt-child' ),
-            'id'        => '_intro_description',
-            'type'      => 'textarea',
-            'priority'  => 20
-        ),
-    );
-
-    // Apply filter and order fields by priority
-    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_intro_fields', $fields ) );
-
-    // Set meta box
-
-    $meta_box = array(
-        'id'			=> 'home_intro',
-        'title'			=> __( 'WPCasa Sylt :: Home Intro', 'wpcasa-sylt-child' ),
-        'object_types'	=> array( 'page' ),
-        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
-        'context'		=> 'normal',
-        'priority'		=> 'high',
-        'fields'		=> $fields
-    );
-
-    return apply_filters( 'wpsight_sylt_meta_boxes_home_services', $meta_box );
-
-}
-
-
-/**
- *	wpsight_sylt_meta_boxes_home_search()
- *
- *	Set up home search meta box.
- *
- *	@uses	wpsight_sort_array_by_priority()
- *	@return	array	$meta_box	Array of meta box
- *
- *	@since 1.0.0
- */
-function wpsight_sylt_meta_boxes_home_search() {
-    $fields = array(
-        'display' => array(
-            'name'      => '',
-            'id'        => '_search_display',
-            'type'      => 'checkbox',
-            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
-            'desc'      => __( 'Display search on the front page', 'wpcasa-sylt' ),
-            'default'	=> wpsight_sylt_child_checkbox_default( true ),
-            'priority'  => 10
-        ),
-        'search_back_image' => array(
-            'name'      => __( 'Background image', 'wpcasa-sylt-child' ),
-            'id'        => '_search_back_image',
-            'type'      => 'file',
-            'desc'      => __( 'Add search background image', 'wpcasa-sylt-child' ),
-            'priority'  => 20
-        ),
-    );
-
-    // Apply filter and order fields by priority
-    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_services_fields', $fields ) );
-
-    // Set meta box
-
-    $meta_box = array(
-        'id'			=> 'home_search',
-        'title'			=> __( 'WPCasa Sylt :: Home Search', 'wpcasa-sylt-child' ),
-        'object_types'	=> array( 'page' ),
-        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
-        'context'		=> 'normal',
-        'priority'		=> 'high',
-        'fields'		=> $fields
-    );
-
-    return apply_filters( 'wpsight_sylt_meta_boxes_home_search', $meta_box );
-}
-
-
-/**
- *	wpsight_sylt_meta_boxes_home_boxes()
- *
- *	Set up home boxes meta box.
- *
- *	@uses	wpsight_sort_array_by_priority()
- *	@return	array	$meta_box	Array of meta box
- *
- *	@since 1.0.0
- */
-function wpsight_sylt_meta_boxes_home_boxes() {
-    $fields = array(
-        'display' => array(
-            'name'      => '',
-            'id'        => '_boxes_display',
-            'type'      => 'checkbox',
-            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
-            'desc'      => __( 'Display boxes on the front page', 'wpcasa-sylt' ),
-            'default'	=> wpsight_sylt_child_checkbox_default( true ),
-            'priority'  => 10
-        ),
-        'boxes' => array(
-            'name'      	=> __( 'Home Infoboxes #1', 'wpcasa-sylt-child' ),
-            'id'        	=> '_boxes',
-            'type'      	=> 'group',
-            'group_fields'	=> array(
-                'label' => array(
-                    'name'		=> __( 'Heading', 'wpcasa-sylt-child' ),
-                    'id'		=> '_title',
-                    'type'		=> 'text',
-                ),
-                'description'	=> array(
-                    'name'      => __( 'Text', 'wpcasa-sylt-child' ),
-                    'id'        => '_description',
-                    'type'      => 'textarea_small',
-                    'priority'  => 30
-                ),
-                'image' => array(
-                    'name'      => __( 'Image', 'wpcasa-sylt-child' ),
-                    'id'        => '_image',
-                    'type'      => 'file',
-                    'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
-                    'priority'  => 20
-                ),
-                'url' => array(
-                    'name'      => __( 'URL', 'wpcasa-sylt-child' ),
-                    'id'        => '_url',
-                    'type'      => 'text_url',
-                ),
-                'button' => array(
-                    'name'      => __( 'Button', 'wpcasa-sylt-child' ),
-                    'id'        => '_button',
-                    'type'      => 'text',
-                ),
-            ),
-            'description' 	=> __( '', 'wpcasa-sylt-child' ),
-            'repeatable'  	=> true,
-            'options'     	=> array(
-                'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
-                'add_button'    => __( 'Add Infoboxes #1', 'wpcasa-sylt-child' ),
-                'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
-                'sortable'      => true,
-                'closed'		=> true
-            ),
-            'priority'	=> 20
-        ),
-    );
-
-    // Apply filter and order fields by priority
-    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_boxes_fields', $fields ) );
-
-    // Set meta box
-
-    $meta_box = array(
-        'id'			=> 'home_boxes',
-        'title'			=> __( 'WPCasa Sylt :: Home Infoboxes #1', 'wpcasa-sylt-child' ),
-        'object_types'	=> array( 'page' ),
-        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
-        'context'		=> 'normal',
-        'priority'		=> 'high',
-        'fields'		=> $fields
-    );
-
-    return apply_filters( 'wpsight_sylt_meta_boxes_home_boxes', $meta_box );
-}
-
-/**
- *	wpsight_sylt_meta_boxes_home_boxes2()
- *
- *	Set up home boxes meta box.
- *
- *	@uses	wpsight_sort_array_by_priority()
- *	@return	array	$meta_box	Array of meta box
- *
- *	@since 1.0.0
- */
-function wpsight_sylt_meta_boxes_home_boxes2() {
-    $fields = array(
-        'display' => array(
-            'name'      => '',
-            'id'        => '_boxes2_display',
-            'type'      => 'checkbox',
-            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
-            'desc'      => __( 'Display boxes2 on the front page', 'wpcasa-sylt' ),
-            'default'	=> wpsight_sylt_child_checkbox_default( true ),
-            'priority'  => 10
-        ),
-        'boxes2' => array(
-            'name'      	=> __( 'Home Infoboxes #2', 'wpcasa-sylt-child' ),
-            'id'        	=> '_boxes2',
-            'type'      	=> 'group',
-            'group_fields'	=> array(
-                'label' => array(
-                    'name'		=> __( 'Heading', 'wpcasa-sylt-child' ),
-                    'id'		=> '_title',
-                    'type'		=> 'text',
-                ),
-                'description'	=> array(
-                    'name'      => __( 'Text', 'wpcasa-sylt-child' ),
-                    'id'        => '_description',
-                    'type'      => 'textarea_small',
-                    'priority'  => 30
-                ),
-                'image' => array(
-                    'name'      => __( 'Image', 'wpcasa-sylt-child' ),
-                    'id'        => '_image',
-                    'type'      => 'file',
-                    'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
-                    'priority'  => 20
-                ),
-                'url' => array(
-                    'name'      => __( 'URL', 'wpcasa-sylt-child' ),
-                    'id'        => '_url',
-                    'type'      => 'text_url',
-                ),
-                'button' => array(
-                    'name'      => __( 'Button', 'wpcasa-sylt-child' ),
-                    'id'        => '_button',
-                    'type'      => 'text',
-                ),
-            ),
-            'description' 	=> __( '', 'wpcasa-sylt-child' ),
-            'repeatable'  	=> true,
-            'options'     	=> array(
-                'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
-                'add_button'    => __( 'Add Infoboxes #2', 'wpcasa-sylt-child' ),
-                'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
-                'sortable'      => true,
-                'closed'		=> true
-            ),
-            'priority'	=> 20
-        ),
-    );
-
-    // Apply filter and order fields by priority
-    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_boxes2_fields', $fields ) );
-
-    // Set meta box
-
-    $meta_box = array(
-        'id'			=> 'home_boxes2',
-        'title'			=> __( 'WPCasa Sylt :: Home Infoboxes #2', 'wpcasa-sylt-child' ),
-        'object_types'	=> array( 'page' ),
-        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
-        'context'		=> 'normal',
-        'priority'		=> 'high',
-        'fields'		=> $fields
-    );
-
-    return apply_filters( 'wpsight_sylt_meta_boxes_home_boxes2', $meta_box );
-}
-
-
-/**
- *	wpsight_sylt_meta_boxes_home_boxes3()
- *
- *	Set up home boxes3 meta box.
- *
- *	@uses	wpsight_sort_array_by_priority()
- *	@return	array	$meta_box	Array of meta box
- *
- *	@since 1.0.0
- */
-function wpsight_sylt_meta_boxes_home_boxes3() {
-    $fields = array(
-        'display' => array(
-            'name'      => '',
-            'id'        => '_boxes3_display',
-            'type'      => 'checkbox',
-            'label_cb'  => __( 'Display', 'wpcasa-sylt' ),
-            'desc'      => __( 'Display boxes3 on the front page', 'wpcasa-sylt' ),
-            'default'	=> wpsight_sylt_child_checkbox_default( true ),
-            'priority'  => 10
-        ),
-        'boxes3' => array(
-            'name'      	=> __( 'Home Infoboxes #3', 'wpcasa-sylt-child' ),
-            'id'        	=> '_boxes3',
-            'type'      	=> 'group',
-            'group_fields'	=> array(
-                'label' => array(
-                    'name'		=> __( 'Heading', 'wpcasa-sylt-child' ),
-                    'id'		=> '_title',
-                    'type'		=> 'text',
-                ),
-                'url' => array(
-                    'name'      => __( 'URL', 'wpcasa-sylt-child' ),
-                    'id'        => '_url',
-                    'type'      => 'text_url',
-                ),
-                'description'	=> array(
-                    'name'      => __( 'Text', 'wpcasa-sylt-child' ),
-                    'id'        => '_description',
-                    'type'      => 'textarea_small',
-                    'priority'  => 30
-                ),
-                'image' => array(
-                    'name'      => __( 'Image', 'wpcasa-sylt-child' ),
-                    'id'        => '_image',
-                    'type'      => 'file',
-                    'desc'      => __( 'Add an image', 'wpcasa-sylt-child' ),
-                    'priority'  => 40
-                ),
-
-            ),
-            'description' 	=> __( '', 'wpcasa-sylt-child' ),
-            'repeatable'  	=> true,
-            'options'     	=> array(
-                'group_title'   => __( 'Box {#}', 'wpcasa-sylt-child' ),
-                'add_button'    => __( 'Add Infoboxes #3', 'wpcasa-sylt-child' ),
-                'remove_button' => __( 'Remove', 'wpcasa-sylt-child' ),
-                'sortable'      => true,
-                'closed'		=> true
-            ),
-            'priority'	=> 40
-        ),
-    );
-
-    // Apply filter and order fields by priority
-    $fields = wpsight_sort_array_by_priority( apply_filters( 'wpsight_sylt_meta_boxes_home_boxes3_fields', $fields ) );
-
-    // Set meta box
-
-    $meta_box = array(
-        'id'			=> 'home_boxes3',
-        'title'			=> __( 'WPCasa Sylt :: Home Infoboxes #3', 'wpcasa-sylt-child' ),
-        'object_types'	=> array( 'page' ),
-        'show_on'		=> array( 'key' => 'page-template', 'value' => 'page-tpl-home.php' ),
-        'context'		=> 'normal',
-        'priority'		=> 'high',
-        'fields'		=> $fields
-    );
-
-    return apply_filters( 'wpsight_sylt_meta_boxes_home_boxes2', $meta_box );
-}
-
-/**
- *	wpsight_sylt_meta_boxes()
- *
- * add metaboxes
- */
-
-function wpsight_sylt_meta_boxes( $meta_boxes ) {
-    $meta_boxes['home_services']	= wpsight_sylt_meta_boxes_home_intro();
-    $meta_boxes['home_search']	= wpsight_sylt_meta_boxes_home_search();
-    $meta_boxes['home_nf']	= wpsight_sylt_meta_boxes_home_nf();
-    $meta_boxes['home_boxes']	= wpsight_sylt_meta_boxes_home_boxes();
-    $meta_boxes['home_boxes2']	= wpsight_sylt_meta_boxes_home_boxes2();
-    $meta_boxes['home_boxes3']	= wpsight_sylt_meta_boxes_home_boxes3();
-//    unset($meta_boxes['home_icon_links']);
-
-    return $meta_boxes;
-}
-add_filter( 'wpsight_meta_boxes', 'wpsight_sylt_meta_boxes', 20 );
-
-/**
- *	wpsight_sylt_checkbox_default()
- *
- *	Helper function to set check box defaults.
- *	Only return default value if we don't
- *	have a post ID (in the 'post' query variable).
- *
- *	@param	bool	$default On/Off (true/false)
- *	@return	mixed	Returns true or '', the blank default
- */
-function wpsight_sylt_child_checkbox_default( $default ) {
-    return isset( $_GET['post'] ) ? '' : ( $default ? (string) $default : '' );
-}
+include ('includes/function-search.php');
+include ('includes/function-meta-boxes-home.php');

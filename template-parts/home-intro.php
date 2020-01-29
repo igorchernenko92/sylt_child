@@ -16,7 +16,7 @@ if( $display ) : ?>
 
     <div class="listings-section-desc">
         <div class="listings-section-wrap-title">
-            <h2 class="listings-section-title"><?php echo $title; ?></h2>
+            <h1 class="listings-section-title"><?php echo $title; ?></h1>
         </div>
 
         <p class="listings-section-subtext"><?php echo $description; ?></p>

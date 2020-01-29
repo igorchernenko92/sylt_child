@@ -1,15 +1,213 @@
 /*
-Theme Name: CCC Real Estate
-Theme URI: https://wpcasa.com/downloads/wpcasa-sylt/
-Template: wpcasa-sylt
-Author: WPSight
-Author URI: http://wpsight.com
-Description: Custom Child Theme for WPCasa Sylt
-Version: 1.0.3
-Updated: 2019-12-24 19:51:25
-
+Theme Name:     CCC Real Estate
+Author:         Sandro Lucifora
+Author URI:     https://www.kybernetik-services.de
+Description:    WP Casa Sylt Child theme for CCC Real Estate, Mallorca
+Version:        1.0.0
+Template:       wpcasa-sylt
+Text Domain:    ccc
 */
 
+/* Site Header Top */
+.site-header-top {
+    border-bottom: 3px solid #e14243;
+}
+.site-header.site-section {
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+/* Home */
+div#home-text,
+div#home-text p {
+    margin-bottom: 1em;
+}
+
+/* Logo carousel */
+/*
+div.owl-nav {
+    float: left;
+    width: auto;
+}
+div.owl-nav .owl-prev {
+    margin-right: 10px;
+}
+div.owl-nav .owl-prev,
+div.owl-nav .owl-next {
+    background-color: #eaeaea !important;
+    cursor: pointer !important;;
+    display: inline-block !important;;
+    line-height: 40px !important;;
+    margin: 0 !important;;
+    margin-right: 0px !important;;
+    text-align: center !important;;
+    transition: background-color .1s ease-in-out, color .1s ease-in-out !important;;
+    width: 50px !important;;
+}
+div.owl-nav [class*="owl-"]:hover {
+    background-color: #eaeaea !important;;
+    text-decoration: none !important;;
+}
+*/
+/* Navigation */
+
+nav.nav-top .wpsight-menu > .last-menu-item > a {
+    padding-right: 20px;
+}
+nav.nav-top .wpsight-menu > .first-menu-item > a {
+    padding-left: 20px;
+}
+
+nav.nav-secondary {
+    background-color: #e14243;
+    border-color: #e14243;
+}
+nav.nav-secondary a,
+nav.nav-footer a {
+    color: white;
+}
+nav.nav-secondary a:hover,
+nav.nav-footer a:hover{
+    text-decoration: underline;
+    color: white;
+}
+
+nav.nav-secondary li.current_page_item a {
+    background-color: white;
+    color: #e14243;
+}
+nav.nav-secondary .wpsight-menu > .last-menu-item > a {
+    padding-right: 10px;
+}
+nav.nav-secondary .wpsight-menu > .first-menu-item > a {
+    padding-left: 10px;
+}
+
+@media screen and (max-width: 980px) {
+
+    .site-header-top {
+        border-color: white ;
+    }
+
+    .nav-top .wpsight-menu.responsive-menu li a {
+        color: #575756;
+    }
+    nav.nav-secondary {
+        background-color: white;
+        border-color: white;
+    }
+
+}
+
+/* Footer */
+div.site-footer-bg {
+    background-color: #ededed;
+    border-top: 2px solid #e14243;
+}
+.site-footer-bg p, .site-footer-bg h3, .site-footer-bg a {
+    color: #575756;
+}
+.site-footer-bg a:hover {
+    color: #e14243;
+}
+div.site-footer-bg hr {
+    border-color: #575756;
+    margin: 0;
+}
+footer.site-footer {
+    padding: 10px 0 20px;
+    background-color: #e14243
+}
+footer.site-footer p {
+    margin-top: 1em;
+}
+footer.site-footer p.copyright {
+    font-size: small;
+    margin: 0;
+}
+footer.site-footer p.copyright,
+footer.site-footer p.copyright a {
+    color: white;
+}
+footer.site-footer p.copyright a {
+    text-decoration: underline;
+}
+footer.site-footer p.copyright a:hover {
+    color: #ededed;
+    text-decoration: none;
+}
+
+div.footer-navigation ul {
+    list-style: none;
+    width: 100%;
+    display: table;
+    text-align: center;
+}
+div.footer-navigation ul li {
+    color: #575756;
+    display: inline-block;
+    float: none;
+}
+
+p.social-media {
+    margin-bottom: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+}
+
+/* General */
+
+/* Contact Form 7 */
+.cf7-smart-grid.has-grid .wpcf7-submit {
+    background-color: #e14243 !important;
+    border: none !important;
+}
+
+.cf7sg-container .cf7-smart-grid.has-grid .container {
+    margin-bottom: 1em !important;
+}
+
+/* Another Mailchimp Widget */
+.an_mailchimp_wrapper {
+    width: max-content;
+}
+.an_mailchimp_wrapper p {
+    float: left;
+    margin: 0 10px 0 0;
+}
+.an_mailchimp_wrapper label {
+    margin: 0;
+}
+.an_mailchimp_wrapper input[type="text"],
+.an_mailchimp_wrapper input[type="email"] {
+    background-color: #ffffff !important;
+}
+
+@media screen and (max-width: 1100px) {
+    .an_mailchimp_wrapper {
+        width: unset;
+    }
+    .an_mailchimp_wrapper p {
+        float: none;
+        margin: 0 0 10px 0;
+    }
+
+}
+
+/* Widget */
+.bg-white {
+    background-color: white !important;
+}
+
+.cat-post-widget ul {
+    padding-left: 0;
+}
+
+/* Front page */
 .ms-choice > span {
     color: #000;
 }
@@ -206,7 +404,10 @@ Updated: 2019-12-24 19:51:25
 
 .listings-section-desc {
     text-align: center;
-    margin-bottom: 50px;
+}
+
+.listings-section-desc > p:last-child {
+    margin-bottom: 0;
 }
 
 .listings-section-wrap-title {
@@ -239,7 +440,7 @@ Updated: 2019-12-24 19:51:25
 }
 
 .listing-wrap-custom .listing-button {
-    background-color: #C00000;
+    background-color: #e14243;
 }
 
 .listing-wrap-custom {
@@ -259,6 +460,7 @@ Updated: 2019-12-24 19:51:25
 }
 
 .wpsight-listings-search {
+    border: none;
     z-index: 1;
 }
 
@@ -290,7 +492,7 @@ Updated: 2019-12-24 19:51:25
 }
 
 .listing-wrap-custom-large .listing-top {
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(255, 255, 255, .8) !important;
     margin: 0;
     padding: 14px 20px;
     position: absolute;
@@ -300,7 +502,7 @@ Updated: 2019-12-24 19:51:25
 }
 
 .listing-wrap-custom-large .listing-img,
-.listing-wrap-custom-medium  .listing-img {
+.listing-wrap-custom-medium .listing-img {
     transform: scale(1.08);
 }
 
@@ -343,6 +545,10 @@ Updated: 2019-12-24 19:51:25
     flex: 1 1 auto;
 }
 
+.wpsight-listing-description > p:last-child {
+    margin-bottom: 0;
+}
+
 .site-header-title:only-child {
     margin-left: auto;
     margin-right: auto;
@@ -357,10 +563,10 @@ Updated: 2019-12-24 19:51:25
 
 .site-header.site-section {
     padding-top: 30px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
-.listing-wrap-custom {
+.listing-wrap-custom-large {
     margin-bottom: 60px;
 }
 
@@ -376,7 +582,7 @@ Updated: 2019-12-24 19:51:25
     cursor: pointer;
     border-radius: 4px;
     border: 1px solid #ccc;
-    background-color: #EDEDED;
+    background-color: #ededed;
     width: 40px;
     height: 40px;
     display: flex;
@@ -391,7 +597,7 @@ Updated: 2019-12-24 19:51:25
 }
 
 .header-search-btn .icon path {
-    fill: #a4ce59;
+    fill: #e14243;
 }
 
 header .container {
@@ -412,8 +618,56 @@ header .container {
     margin-bottom: 0;
 }
 
+.wrap-header-search form label,
+.wrap-header-search form input {
+    margin-bottom: 0 !important;
+}
+
+.wrap-header-search {
+    background-color: #EDEDED;
+    padding: 8px;
+}
+
 .wrap-header-search.active {
     display: flex;
+}
+
+#home-search {
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#home-search .wpsight-listings-search {
+    background-color: rgba(255,255,255,.8);
+}
+
+.home-section {
+    background-size: cover;
+}
+
+.header-bottom {
+    position: relative;
+}
+
+.responsive-menu-icon::before {
+    background-color: #EDEDED;
+}
+
+.header-bottom:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    min-width: 105vw;
+    height: 100%;
+    background-color: #EDEDED;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .site-header-title{
@@ -447,41 +701,6 @@ header .container {
 
 body {
     overflow-x: hidden;
-}
-
-.wrap-header-search {
-    background-color: #EDEDED;
-    padding: 8px;
-}
-
-.wrap-header-search form label,
-.wrap-header-search form input {
-    margin-bottom: 0 !important;
-}
-
-.home-section {
-    background-size: cover;
-}
-
-.header-bottom {
-    position: relative;
-}
-
-.responsive-menu-icon::before {
-    background-color: #EDEDED;
-}
-
-.header-bottom:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    min-width: 105vw;
-    height: 100%;
-    background-color: #EDEDED;
-    pointer-events: none;
-    z-index: -1;
 }
 
 @media (max-width: 980px) {
@@ -554,7 +773,7 @@ body {
 
 .listing-wrap-custom .listing:hover {
     transform: translate(0, -5px);
-    box-shadow: 0px 3px 20px rgba(0, 0, 0, .07);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, .07);
 }
 
 .listing-wrap-custom-medium .listing:hover {
@@ -566,6 +785,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: auto;
 }
 
 .listing-wrap-custom-medium .listing-top {

@@ -35,7 +35,6 @@
 		<div class="container">
 		
 			<div class="row">
-			
 				<?php if( $display_top_info ) : ?>
 				<div class="<?php echo $display_top_info && $display_top_menu ? '4u 12u(medium)' : '12u'; ?>">		
 					<div class="site-header-top-info">
@@ -65,8 +64,16 @@
 			<div class="site-header-title">
 			
 				<?php $animate = is_front_page() ? ' animated fadeIn' : ''; ?>
-			
-				<?php if( get_option( 'wpcasa_logo', get_stylesheet_directory_uri() . '/assets/images/logo.png' ) ) : ?>					
+
+                <div class="site-title site-title-logo<?php echo $animate; ?>" style="width: 190px">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" style="z-index: 1;">
+                        <object data="<?php echo get_stylesheet_directory_uri() . '/assets/images/CCC_Real_Estate_Logo.svg' ; ?>" type="image/svg+xml" style="z-index: -1; pointer-events: none;">
+                            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/CCC_Real_Estate_Logo.png' ; ?>" alt="logo">
+                        </object>
+                    </a>
+                </div>
+<?php /* ?>
+				<?php if( get_option( 'wpcasa_logo', get_stylesheet_directory_uri() . '/assets/images/logo.png' ) ) : ?>
 					<div class="site-title site-title-logo<?php echo $animate; ?>">
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_option( 'wpcasa_logo', get_stylesheet_directory_uri() . '/assets/images/logo.png' ); ?>" alt="logo"></a>
 					</div>
@@ -75,16 +82,16 @@
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 					</h1>
 				<?php endif; ?>
-				
+<?php */ ?>
 				<?php
 					// Check if description should be displayed
 					$display_description = get_option( 'wpcasa_header_description_display' );
 				?>
-				
+
 				<?php if( $display_description ) : ?>
 				<div class="site-description<?php echo $animate; ?>" itemprop="description"><?php bloginfo( 'description' ); ?></div>
 				<?php endif; ?>
-			
+
 			</div><!-- .site-header-title -->
 
             <div class="header-bottom">
@@ -105,8 +112,9 @@
                 </div>
             </div>
 
+		</div>                             
 		</div>
+
 	</header>
 
-	<?php wpsight_sylt_menu( 'secondary', array( 'container' => 'div', 'container_class' => 'container' ) ); ?>
-
+    <?php wpsight_sylt_menu( 'secondary', array( 'container' => 'div', 'container_class' => 'container' ) ); ?>
