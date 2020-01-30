@@ -885,12 +885,83 @@ body {
     justify-content: space-between;
 }
 .wpsight-listings .wpsight-listing-summary .listing-details-detail .listing-details-label {
-    font-size: 0 !important;
     line-height: 1;
 }
 
 .wpsight-listings .wpsight-listing-summary .listing-details-detail .listing-details-label:before {
     font-size: 16px;
+}
+
+.wpsight-listing-gallery .owl-theme {
+    position: relative;
+}
+
+.wpsight-listing-gallery .owl-next, .wpsight-listing-gallery .owl-prev {
+    width: 22px;
+    height: 40px;
+    margin-top: -20px;
+    position: absolute;
+    top: 50%;
+}
+
+#sync1 .item {
+    background: #0c83e7;
+    padding: 80px 0px;
+    margin: 5px;
+    color: #FFF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+#sync2 .item {
+    background: #C9C9C9;
+    padding: 10px 0px;
+    margin: 5px;
+    color: #FFF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#sync2 h1 {
+    font-size: 18px;
+}
+
+#sync2 .current .item {
+    background: #0c83e7;
+}
+
+
+.owl-theme .owl-nav [class*='owl-'] {
+    transition: all .3s ease;
+}
+
+.owl-theme .owl-nav [class*='owl-'].disabled:hover {
+    background-color: #D6D6D6;
+}
+
+#sync1.owl-theme {
+    position: relative;
+}
+
+#sync1 .owl-next, #sync1 .owl-prev {
+    width: 22px;
+    height: 40px;
+    margin-top: -20px;
+    position: absolute;
+    top: 50%;
+}
+
+.owl-prev {
+    left: 10px;
+}
+
+.owl-next {
+    right: 10px;
 }
 
 .wpsight-listing-archive-btn {
