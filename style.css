@@ -518,15 +518,14 @@ p.social-media {
 
 .listing-button {
     width: 100%;
-    min-width: calc(100% + 60px);
-    margin: 20px 0 0 -30px;
+    min-width: 100%;
+    margin: 20px 0 0;
 }
 
 .listing-wrap-custom .listing-wrap-img {
     height: 220px;
-    min-width: calc(100% + 60px);
+    width: 100%;
     overflow: hidden;
-    margin-left: -30px;
     margin-bottom: 10px;
 }
 
@@ -553,6 +552,7 @@ p.social-media {
 
 .listing-wrap-custom .wpsight-listing-description {
     flex: 1 1 auto;
+    padding: 0 16px;
 }
 
 .wpsight-listing-description > p:last-child {
@@ -781,7 +781,12 @@ body {
     flex-direction: column;
 }
 
-.listing-wrap-custom .listing:hover {
+.wpsight-listing-archive {
+    transition: .4s all ease;
+}
+
+.listing-wrap-custom .listing:hover,
+.wpsight-listings .row .wpsight-listing-archive:hover {
     transform: translate(0, -5px);
     box-shadow: 0 3px 20px rgba(0, 0, 0, .07);
 }
@@ -803,8 +808,9 @@ body {
 }
 
 .listing-wrap-custom-small .listing-img {
-    min-width: calc(100% + 60px);
-    margin: 0 0 10px -30px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 10px;
 }
 
 .listing-wrap-custom-small .listing-more {
@@ -1072,6 +1078,43 @@ body {
     height: 100px;
 }
 
+.wpsight-listings .wpsight-listing-summary .listing-details-detail {
+    position: relative;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(1):before,
+.wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(2):before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    background-color: #dfe2e6;
+    width: 95%;
+    height: 1px;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(2):before {
+    left: 0;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(1):before {
+    right: 0;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(odd):after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    background-color: #dfe2e6;
+    width: 1px;
+    height: 110%;
+}
+
+.wpsight-listings.wpsight-listings-custom .listing-top {
+    flex: none;
+    margin-bottom: 0 !important;
+}
 
 @media(max-width: 1200px) {
     .listing-single-row-details {
