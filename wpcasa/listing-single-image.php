@@ -50,7 +50,7 @@ global $listing; ?>
                 </div>
             </li>
         </ul>
-	
+
 	</div><!-- .wpsight-listing-section -->
 
 <?php endif; ?>
