@@ -16,74 +16,124 @@ global $listing; ?>
 <!--			--><?php //wpsight_listing_thumbnail( $listing->ID, 'wpsight-large' ); ?>
 <!--		</div>-->
 
-        <div class="wpsight-listing-gallery">
-            <div class="gallery-main swiper-container">
-                <div class="swiper-wrapper">
-                    <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </a>
 
-                    <a data-width="1200" data-height="1200" href="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" class="swiper-slide">
-                        <img src="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt="">
-                    </a>
-
-                    <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </a>
-
-                    <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </a>
-
-                    <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </a>
-
-                    <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </a>
-
-                    <a data-width="1200" data-height="1200" href="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" class="swiper-slide">
-                        <img src="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="">
-                    </a>
-                </div>
-
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+        <div id="sync1" class="owl-carousel owl-theme">
+            <div class="item">
+                <h1>1</h1>
             </div>
-
-            <div class="gallery-thumbnails swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </div>
-
-                    <div class="swiper-slide">
-                        <img src="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt="">
-                    </div>
-
-                    <div class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </div>
-
-                    <div class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </div>
-
-                    <div class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </div>
-
-                    <div class="swiper-slide">
-                        <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    </div>
-
-                    <div class="swiper-slide">
-                        <img src="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="">
-                    </a>
-                </div>
+            <div class="item">
+                <h1>2</h1>
+            </div>
+            <div class="item">
+                <h1>3</h1>
+            </div>
+            <div class="item">
+                <h1>4</h1>
+            </div>
+            <div class="item">
+                <h1>5</h1>
+            </div>
+            <div class="item">
+                <h1>6</h1>
+            </div>
+            <div class="item">
+                <h1>7</h1>
+            </div>
+            <div class="item">
+                <h1>8</h1>
             </div>
         </div>
+
+        <div id="sync2" class="owl-carousel owl-theme">
+            <div class="item">
+                <h1>1</h1>
+            </div>
+            <div class="item">
+                <h1>2</h1>
+            </div>
+            <div class="item">
+                <h1>3</h1>
+            </div>
+            <div class="item">
+                <h1>4</h1>
+            </div>
+            <div class="item">
+                <h1>5</h1>
+            </div>
+            <div class="item">
+                <h1>6</h1>
+            </div>
+            <div class="item">
+                <h1>7</h1>
+            </div>
+            <div class="item">
+                <h1>8</h1>
+            </div>
+        </div>
+
+
+<!---->
+<!--        <div class="wpsight-listing-gallery">-->
+<!--            <div class="gallery-main owl-carousel owl-theme">-->
+<!--                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </a>-->
+<!---->
+<!--                <a data-width="1200" data-height="1200" href="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" class="owl-slide">-->
+<!--                    <img src="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt="">-->
+<!--                </a>-->
+<!---->
+<!--                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </a>-->
+<!---->
+<!--                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </a>-->
+<!---->
+<!--                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </a>-->
+<!---->
+<!--                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </a>-->
+<!---->
+<!--                <a data-width="1200" data-height="1200" href="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" class="owl-slide">-->
+<!--                    <img src="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="">-->
+<!--                </a>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="gallery-thumbnails owl-carousel owl-theme">-->
+<!--                <div class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </div>-->
+<!---->
+<!--                <div class="owl-slide">-->
+<!--                    <img src="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt="">-->
+<!--                </div>-->
+<!---->
+<!--                <div class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </div>-->
+<!---->
+<!--                <div class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </div>-->
+<!---->
+<!--                <div class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </div>-->
+<!---->
+<!--                <div class="owl-slide">-->
+<!--                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">-->
+<!--                </div>-->
+<!---->
+<!--                <div class="owl-slide">-->
+<!--                    <img src="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
 		<?php do_action( 'wpsight_listing_single_image_after' ); ?>
