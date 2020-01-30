@@ -84,6 +84,14 @@ nav.nav-secondary .wpsight-menu > .first-menu-item > a {
 
 @media screen and (max-width: 980px) {
 
+    .header-bottom {
+        overflow: hidden;
+    }
+
+    .wpsight-listing-section-image {
+        margin-bottom: 0;
+    }
+
     .site-header-top {
         border-color: white ;
     }
@@ -95,6 +103,8 @@ nav.nav-secondary .wpsight-menu > .first-menu-item > a {
         background-color: white;
         border-color: white;
     }
+
+
 
 }
 
@@ -803,4 +813,133 @@ body {
     color: #a4ce59;
     font-weight: bold;
     text-decoration: none;
+}
+
+
+.wpsight-listing-archive {
+    padding: 0;
+}
+
+.wpsight-listings .wpsight-listing-thumbnail, .wpsight-listings-dashboard .wpsight-listing-thumbnail {
+    top: 0;
+}
+
+.wpsight-listings .listing-top {
+    margin: 0 0 20px;
+    padding: 12px 16px;
+}
+
+.wpsight-listings .wpsight-listing-title {
+    display: block;
+}
+
+.wpsight-listings .wpsight-listing-title > * {
+    display: flex !important;
+    align-items: center;
+}
+
+.wpsight-listings .wpsight-listing-title .entry-title > a {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.wpsight-listings .listing-top {
+    background-color: transparent;
+    margin-bottom: 14px;
+}
+
+.wpsight-listing-price .wpsight-listing-section-info .wpsight-listing-info {
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-bottom: 14px;
+}
+
+.wpsight-listing-price .wpsight-listing-section-info .wpsight-listing-info:after,
+.wpsight-listing-price .wpsight-listing-section-info .wpsight-listing-info:before {
+    display: none;
+}
+
+.wpsight-listing-price .wpsight-listing-section-info .wpsight-listing-info > * {
+    float: none;
+}
+
+.wpsight-listings .wpsight-listing-summary {
+    margin: 0;
+    padding: 10px 0 7px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: transparent;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-detail {
+    width: 100%;
+    max-width: 50%;
+    padding: 0 16px;
+    margin: 0 0 3px;
+    border: none;
+}
+
+.wpsight-listing-archive-btn {
+    display: block;
+    line-height: 42px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff !important;
+    background-color: #e14243;
+    text-align: center;
+    font-weight: bold;
+    transition: .3s all ease;
+}
+
+.wpsight-listing-section-summary {
+    margin-bottom: auto;
+}
+
+.wpsight-listing-archive-btn:hover {
+    background-color: #ff3d3f;
+}
+
+.wpsight-listing-image > a {
+    display: block;
+}
+
+.wpsight-listings .wpsight-listing-image,
+.wpsight-listings .wpsight-listing-image > a,
+.wpsight-listings .wpsight-listing-thumbnail {
+    min-height: 200px;
+    height: 200px;
+}
+
+.listing-wrap {
+    margin-bottom: 60px;
+}
+
+.wpsight-listing-archive {
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.wpsight-listing-archive > .clearfix {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wpsight-listings > .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-detail {
+    font-size: 13px;
+}
+
+@media(max-width: 768px) {
+    .listing-wrap {
+        margin-bottom: 30px;
+    }
 }
