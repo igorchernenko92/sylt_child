@@ -225,10 +225,8 @@ jQuery(document).ready(function($) {
             var thumbnailsSwiper = new Swiper($thumbnails, {
                 spaceBetween: 10,
                 slidesPerView: 5,
-                freeMode: true,
-                watchSlidesVisibility: true,
-                watchSlidesProgress: true,
                 allowTouchMove: false,
+                simulateTouch: false,
                 navigation: {
                     nextEl: '.gallery-thumbnails .swiper-button-next',
                     prevEl: '.gallery-thumbnails .swiper-button-prev',
@@ -262,6 +260,11 @@ jQuery(document).ready(function($) {
                         initPhotoswipe()
                     }
                 },
+            });
+
+            $thumbnails.find(".swiper-slide").on("mousedown", function () {
+                mainSwiper.slideTo($(this).index());
+                thumbnailsSwiper.slideTo($(this).index());
             });
         }
 
