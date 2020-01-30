@@ -774,6 +774,10 @@ body {
     }
 }
 
+.owl-item > .wpsight-listings .listing > .clearfix {
+    min-height: 490px;
+}
+
 .listing-wrap-custom .listing {
     transition: .4s all ease;
     height: 100%;
@@ -999,6 +1003,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    min-height: 100%;
 }
 
 .wpsight-listings > .row {
