@@ -193,36 +193,32 @@ jQuery(document).ready(function($) {
         var $thumbnails = $(".wpsight-listing-gallery .gallery-thumbnails");
 
         function initPhotoswipe() {
-            var $pswp = $(".pswp");
-            var items = [];
+            var container = [];
+            var $targetItems = $('.gallery-main').find('.swiper-slide');
 
-            var options = {
-                history: false,
-                focus: false,
-                showAnimationDuration: 0,
-                hideAnimationDuration: 0
-            };
+            $targetItems.each(function() {
+                var item = {
+                    src: $(this).attr('href'),
+                        w: $(this).data("width"),
+                        h: $(this).data("height")
+                    };
+                container.push(item);
+            });
 
-            var getItems = function() {
-                var items = [];
+            $targetItems.click(function(event) {
+                event.preventDefault();
 
-                $main.find('.swiper-slide').each(function() {
-                    var $href   = $(this).attr('href');
-
-                    var item = {
-                        src  : $href
+                var $pswp = $('.pswp')[0],
+                    options = {
+                        index: $(this).index(),
+                        bgOpacity: 0.85,
+                        showHideOpacity: true
                     };
 
-                    items.push(item);
-                });
+                var gallery = new PhotoSwipe($pswp, PhotoSwipeUI_Default, container, options);
 
-                return items;
-            };
-
-            items = getItems();
-
-            var photoswipe = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
-            photoswipe.init();
+                gallery.init();
+            });
         }
 
         function initSwiper() {
@@ -255,7 +251,9 @@ jQuery(document).ready(function($) {
                     swiper: thumbnailsSwiper
                 },
                 on: {
-                    //init: initPhotoswipe(),
+                    init: function () {
+                        initPhotoswipe()
+                    }
                 },
             });
         }

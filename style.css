@@ -909,6 +909,14 @@ body {
     margin-top: 12px;
 }
 
+.pswp__button {
+    background-color: transparent !important;
+}
+
+.pswp__img {
+    object-fit: contain;
+}
+
 .wpsight-listings .listing-top {
     margin-bottom: auto !important;
     flex: 1 1 auto;
@@ -1009,6 +1017,10 @@ body {
     opacity: .7;
 }
 
+.wpsight-listing-gallery {
+    margin-bottom: 40px;
+}
+
 .wpsight-listing-gallery .gallery-main img {
     height: 500px;
 }
@@ -1037,6 +1049,10 @@ body {
 
     .wpsight-listing-gallery .gallery-main img {
         height: 400px;
+    }
+
+    .wpsight-listing-gallery {
+        margin-bottom: 20px;
     }
 }
 
