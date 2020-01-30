@@ -944,6 +944,10 @@ body {
     background-color: #D6D6D6;
 }
 
+.owl-carousel .item {
+    height: 300px;
+}
+
 #sync1.owl-theme {
     position: relative;
 }
