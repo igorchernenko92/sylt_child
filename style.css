@@ -884,13 +884,14 @@ body {
     align-items: center;
     justify-content: space-between;
 }
-.wpsight-listings .wpsight-listing-summary .listing-details-detail .listing-details-label {
-    font-size: 0 !important;
-    line-height: 1;
-}
 
 .wpsight-listings .wpsight-listing-summary .listing-details-detail .listing-details-label:before {
-    font-size: 16px;
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-value {
+    font-size: 12px;
 }
 
 .wpsight-listing-archive-btn {
