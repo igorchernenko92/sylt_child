@@ -188,4 +188,80 @@ jQuery(document).ready(function($) {
     }
     headerSearch();
 
+    var listingGallery = function () {
+        var $main = $(".wpsight-listing-gallery .gallery-main");
+        var $thumbnails = $(".wpsight-listing-gallery .gallery-thumbnails");
+
+        function initPhotoswipe() {
+            var $pswp = $(".pswp");
+            var items = [];
+
+            var options = {
+                history: false,
+                focus: false,
+                showAnimationDuration: 0,
+                hideAnimationDuration: 0
+            };
+
+            var getItems = function() {
+                var items = [];
+
+                $main.find('.swiper-slide').each(function() {
+                    var $href   = $(this).attr('href');
+
+                    var item = {
+                        src  : $href
+                    };
+
+                    items.push(item);
+                });
+
+                return items;
+            };
+
+            items = getItems();
+
+            var photoswipe = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
+            photoswipe.init();
+        }
+
+        function initSwiper() {
+            var thumbnailsSwiper = new Swiper($thumbnails, {
+                spaceBetween: 10,
+                slidesPerView: 5,
+                freeMode: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2
+                    },
+                    480: {
+                        slidesPerView: 3
+                    },
+                    768: {
+                        slidesPerView: 5
+                    }
+                }
+            });
+
+            var mainSwiper = new Swiper($main, {
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.gallery-main .swiper-button-next',
+                    prevEl: '.gallery-main .swiper-button-prev',
+                },
+                thumbs: {
+                    swiper: thumbnailsSwiper
+                },
+                on: {
+                    //init: initPhotoswipe(),
+                },
+            });
+        }
+
+        if ($main.length && $thumbnails.length) initSwiper();
+    };
+    listingGallery();
+
 });

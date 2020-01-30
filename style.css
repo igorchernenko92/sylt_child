@@ -880,6 +880,17 @@ body {
     padding: 0 16px;
     margin: 0 0 3px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.wpsight-listings .wpsight-listing-summary .listing-details-detail .listing-details-label {
+    font-size: 0 !important;
+    line-height: 1;
+}
+
+.wpsight-listings .wpsight-listing-summary .listing-details-detail .listing-details-label:before {
+    font-size: 16px;
 }
 
 .wpsight-listing-archive-btn {
@@ -894,8 +905,13 @@ body {
     transition: .3s all ease;
 }
 
-.wpsight-listing-section-summary {
-    margin-bottom: auto;
+.wpsight-listings .wpsight-listing-info {
+    margin-top: 12px;
+}
+
+.wpsight-listings .listing-top {
+    margin-bottom: auto !important;
+    flex: 1 1 auto;
 }
 
 .wpsight-listing-archive-btn:hover {
@@ -977,6 +993,31 @@ body {
     fill: #fff;
 }
 
+.wpsight-listing-gallery .swiper-slide img {
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    object-position: center;
+}
+
+.gallery-thumbnails .swiper-slide {
+    transition: .3s all ease;
+}
+
+.swiper-slide-thumb-active {
+    opacity: .7;
+}
+
+.wpsight-listing-gallery .gallery-main img {
+    height: 500px;
+}
+
+.wpsight-listing-gallery .gallery-thumbnails img {
+    height: 100px;
+}
+
+
 @media(max-width: 1200px) {
     .listing-single-row-details {
         margin: 20px -10px 0;
@@ -993,6 +1034,10 @@ body {
     .listing-wrap {
         margin-bottom: 30px;
     }
+
+    .wpsight-listing-gallery .gallery-main img {
+        height: 400px;
+    }
 }
 
 @media(max-width: 576px) {
@@ -1000,9 +1045,20 @@ body {
         margin: 20px 0 0;
     }
 
+    .wpsight-listing-gallery .gallery-main img {
+        height: 300px;
+    }
+
     .listing-single-wrap-detail {
         width: 100%;
         margin-bottom: 20px;
         padding: 0;
+    }
+}
+
+
+@media(max-width: 480px) {
+    .wpsight-listing-gallery .gallery-main img {
+        height: 240px;
     }
 }
