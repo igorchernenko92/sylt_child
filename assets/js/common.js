@@ -228,15 +228,22 @@ jQuery(document).ready(function($) {
                 freeMode: true,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
+                allowTouchMove: false,
+                navigation: {
+                    nextEl: '.gallery-thumbnails .swiper-button-next',
+                    prevEl: '.gallery-thumbnails .swiper-button-prev',
+                },
                 breakpoints: {
                     0: {
-                        slidesPerView: 2
+                        slidesPerView: 2,
+                        allowTouchMove: true,
                     },
                     480: {
                         slidesPerView: 3
                     },
                     768: {
-                        slidesPerView: 5
+                        slidesPerView: 5,
+                        allowTouchMove: false,
                     }
                 }
             });
