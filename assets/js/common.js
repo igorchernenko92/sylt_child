@@ -128,7 +128,7 @@ jQuery(document).ready(function($) {
             $pricesSelect.find("option").remove();
 
             var curPricesData = pricesData.find(function (cur) {
-               return cur.offer === curOffer;
+                return cur.offer === curOffer;
             });
 
             if (curPricesData.offer === "default") {
@@ -151,8 +151,8 @@ jQuery(document).ready(function($) {
             setPricesOptions();
 
             $offerSelect.on("change", function () {
-               curOffer = $(this).val() ? $(this).val() : "default";
-               setPricesOptions();
+                curOffer = $(this).val() ? $(this).val() : "default";
+                setPricesOptions();
             });
 
             $pricesSelect.on("change", function () {
@@ -198,10 +198,10 @@ jQuery(document).ready(function($) {
 
             $targetItems.each(function() {
                 var item = {
-                        src: $(this).attr('href'),
-                        w: $(this).data("width"),
-                        h: $(this).data("height")
-                    };
+                    src: $(this).attr('href'),
+                    w: $(this).data("width"),
+                    h: $(this).data("height")
+                };
                 container.push(item);
             });
 
@@ -221,94 +221,45 @@ jQuery(document).ready(function($) {
             });
         }
 
-
-
-        function initOwl() {
-            var sync1 = $("#sync1");
-            var sync2 = $("#sync2");
-            var slidesPerPage = 4; //globaly define number of elements per page
-            var syncedSecondary = true;
-
-            sync1.owlCarousel({
-                items: 1,
-                slideSpeed: 2000,
-                nav: true,
-                autoplay: false,
-                dots: true,
-                loop: true,
-                responsiveRefreshRate: 200,
-                navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
-            }).on('changed.owl.carousel', syncPosition);
-
-            sync2
-                .on('initialized.owl.carousel', function() {
-                    sync2.find(".owl-item").eq(0).addClass("current");
-                })
-                .owlCarousel({
-                    items: slidesPerPage,
-                    dots: true,
-                    nav: true,
-                    smartSpeed: 200,
-                    slideSpeed: 500,
-                    slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
-                    responsiveRefreshRate: 100
-                }).on('changed.owl.carousel', syncPosition2);
-
-            function syncPosition(el) {
-                //if you set loop to false, you have to restore this next line
-                //var current = el.item.index;
-
-                //if you disable loop you have to comment this block
-                var count = el.item.count - 1;
-                var current = Math.round(el.item.index - (el.item.count / 2) - .5);
-
-                if (current < 0) {
-                    current = count;
+        function initSwiper() {
+            var thumbnailsSwiper = new Swiper($thumbnails, {
+                spaceBetween: 10,
+                slidesPerView: 5,
+                freeMode: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2
+                    },
+                    480: {
+                        slidesPerView: 3
+                    },
+                    768: {
+                        slidesPerView: 5
+                    }
                 }
-                if (current > count) {
-                    current = 0;
-                }
+            });
 
-                //end block
-
-                sync2
-                    .find(".owl-item")
-                    .removeClass("current")
-                    .eq(current)
-                    .addClass("current");
-                var onscreen = sync2.find('.owl-item.active').length - 1;
-                var start = sync2.find('.owl-item.active').first().index();
-                var end = sync2.find('.owl-item.active').last().index();
-
-                if (current > end) {
-                    sync2.data('owl.carousel').to(current, 100, true);
-                }
-                if (current < start) {
-                    sync2.data('owl.carousel').to(current - onscreen, 100, true);
-                }
-            }
-
-            function syncPosition2(el) {
-                if (syncedSecondary) {
-                    var number = el.item.index;
-                    sync1.data('owl.carousel').to(number, 100, true);
-                }
-            }
-
-            sync2.on("click", ".owl-item", function(e) {
-                e.preventDefault();
-                var number = $(this).index();
-                sync1.data('owl.carousel').to(number, 300, true);
+            var mainSwiper = new Swiper($main, {
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.gallery-main .swiper-button-next',
+                    prevEl: '.gallery-main .swiper-button-prev',
+                },
+                thumbs: {
+                    swiper: thumbnailsSwiper
+                },
+                on: {
+                    init: function () {
+                        initPhotoswipe()
+                    }
+                },
             });
         }
-        initOwl();
 
-
-
+        if ($main.length && $thumbnails.length) initSwiper();
     };
     listingGallery();
 
-
 });
-
-
