@@ -24,7 +24,7 @@ global $listing; ?>
 
 			<?php wpsight_get_template( 'listing-single-title.php' ); ?>
 			
-			<?php wpsight_get_template( 'listing-single-image.php' ); ?>
+			<?php wpsight_get_template( 'listing-single-carousel.php' ); ?>
 
             <?php wpsight_get_template( 'listing-single-details.php' ); ?>
 			
