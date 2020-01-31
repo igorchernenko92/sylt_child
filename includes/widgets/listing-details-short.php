@@ -45,8 +45,8 @@ class WPSight_CCC_Listing_Details extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 
         // Echo listing details
-        wpsight_listing_summary( get_the_ID(), array( 'details_1', 'details_2', 'details_3', 'details_4' ) );
-		
+        wpsight_get_template( 'listing-single-details.php' );
+
 		// Echo after_widget
 		echo $args['after_widget'];
 
