@@ -31,7 +31,7 @@
 
 			<?php wpsight_get_template( 'listing-archive-summary.php' ); ?>
 
-            <a href="<?php the_permalink() ?>" class="wpsight-listing-archive-btn"><?php __( 'View listing', 'ccc' ) ?></a>
+            <a href="<?php the_permalink() ?>" class="wpsight-listing-archive-btn"><?php echo __( 'View listing', 'ccc' ) ?></a>
 
 			<?php do_action( 'wpsight_listing_archive_after', $post ); ?>
 
