@@ -7,9 +7,14 @@ global $listing; ?>
 <?php if( has_post_thumbnail( $listing->ID ) ) : ?>
 
 <?php
-$images = array_keys(get_post_meta(absint($listing->ID), '_gallery', true));
+$images = get_post_meta(absint($listing->ID), '_gallery', true);
+if ( !$images  ) {
+    return;
+}
+
+$images_id = array_keys($images);
 $image_array = [];
-foreach ($images as $id) :
+foreach ($images_id as $id) :
     $attachment = get_post( absint( $id ) );
     $image_array[] = [
         'mid' => wp_get_attachment_image_src( $attachment->ID, 'medium' ),
