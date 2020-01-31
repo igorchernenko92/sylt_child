@@ -8,17 +8,13 @@ global $listing; ?>
 
 $images = get_post_meta(absint($listing->ID), '_gallery', true);
 
-if ( !$images  ) {
-    return;
-}
+if ( !$images  ) { return; }
 
 $images_id = array_keys($images);
 $image_array = [];
 foreach ($images_id as $id) :
     $attachment = get_post( absint( $id ) );
-    if ( !$attachment ) {
-        return;
-    }
+    if ( !$attachment ) { continue; }
     $image_array[] = [
         'mid' => wp_get_attachment_image_src( $attachment->ID, 'medium' ),
         'full' => wp_get_attachment_image_src( $attachment->ID, 'full' ),
@@ -27,7 +23,7 @@ foreach ($images_id as $id) :
 endforeach;
 ?>
 
-<meta itemprop="image" content="<?php echo esc_attr( wpsight_listing_thumbnail_url( $listing->ID, 'large' ) ); ?>" />
+<!--<meta itemprop="image" content="--><?php //echo esc_attr( wpsight_listing_thumbnail_url( $listing->ID, 'large' ) ); ?><!--" />-->
 
 <div class="wpsight-listing-section wpsight-listing-section-image">
 
@@ -95,33 +91,27 @@ endforeach;
             </li>
         </ul>
 
+        <?php wpsight_listing_summary( $listing->ID, array( 'details_1', 'details_2', 'details_3', 'details_4' ) ) ?>
+
     </div><!-- .wpsight-listing-section -->
 
-    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
-        <!-- Background of PhotoSwipe.
-             It's a separate element as animating opacity is faster than rgba(). -->
         <div class="pswp__bg"></div>
 
-        <!-- Slides wrapper with overflow:hidden. -->
         <div class="pswp__scroll-wrap">
 
-            <!-- Container that holds slides.
-                PhotoSwipe keeps only 3 of them in the DOM to save memory.
-                Don't modify these 3 pswp__item elements, data is added later on. -->
             <div class="pswp__container">
                 <div class="pswp__item"></div>
                 <div class="pswp__item"></div>
                 <div class="pswp__item"></div>
             </div>
 
-            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
             <div class="pswp__ui pswp__ui--hidden">
 
                 <div class="pswp__top-bar">
 
-                    <!--  Controls are self-explanatory. Order can be changed. -->
 
                     <div class="pswp__counter"></div>
 
