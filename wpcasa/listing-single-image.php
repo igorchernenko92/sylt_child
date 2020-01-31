@@ -6,46 +6,35 @@ global $listing; ?>
 
 <?php if( has_post_thumbnail( $listing->ID ) ) : ?>
 
+<?php
+$images = array_keys(get_post_meta(absint($listing->ID), '_gallery', true));
+$image_array = [];
+foreach ($images as $id) :
+    $attachment = get_post( absint( $id ) );
+    $image_array[] = [
+        'mid' => wp_get_attachment_image_src( $attachment->ID, 'medium' ),
+        'full' => wp_get_attachment_image_src( $attachment->ID, 'full' ),
+        'alt' => esc_attr( get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ) )
+    ];
+endforeach;
+?>
+
 <meta itemprop="image" content="<?php echo esc_attr( wpsight_listing_thumbnail_url( $listing->ID, 'large' ) ); ?>" />
 
 <div class="wpsight-listing-section wpsight-listing-section-image">
 
   <?php do_action( 'wpsight_listing_single_image_before' ); ?>
 
-    <!--		<div class="wpsight-listing-image">-->
-    <!--			--><?php //wpsight_listing_thumbnail( $listing->ID, 'wpsight-large' ); ?>
-    <!--		</div>-->
-
     <div class="wpsight-listing-gallery">
         <div class="gallery-main swiper-container">
             <div class="swiper-wrapper">
-                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </a>
-
-                <a data-width="1200" data-height="1200" href="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt="">
-                </a>
-
-                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </a>
-
-                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </a>
-
-                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </a>
-
-                <a data-width="1200" data-height="1200" href="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </a>
-
-                <a data-width="1200" data-height="1200" href="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="">
-                </a>
+                <?php foreach( $image_array as $image ) : ?>
+                    <a data-width="1200" data-height="1200" href="<?php echo $image['full'][0] ?>" class="swiper-slide">
+                        <img src="<?php echo $image['full'][0] ?>" alt="<?php echo $image['alt'] ?>">
+                    </a>
+                <?php
+                    endforeach;
+                ?>
             </div>
 
             <div class="swiper-button-next"></div>
@@ -54,34 +43,13 @@ global $listing; ?>
 
         <div class="gallery-thumbnails swiper-container">
             <div class="swiper-wrapper">
+               <?php foreach( $image_array as $image ) : ?>
                 <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
+                    <img src="<?php echo $image['mid'][0] ?>" alt="<?php echo $image['alt'] ?>">
                 </div>
-
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1580373601876-0d9323fa37fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/3617467/pexels-photo-3617467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1562887245-9d941e87344e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="">
-                    </a>
-                </div>
+            <?php
+            endforeach;
+            ?>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
