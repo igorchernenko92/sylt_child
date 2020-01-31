@@ -16,6 +16,9 @@ $images_id = array_keys($images);
 $image_array = [];
 foreach ($images_id as $id) :
     $attachment = get_post( absint( $id ) );
+    if ( !$attachment ) {
+        return;
+    }
     $image_array[] = [
         'mid' => wp_get_attachment_image_src( $attachment->ID, 'medium' ),
         'full' => wp_get_attachment_image_src( $attachment->ID, 'full' ),
