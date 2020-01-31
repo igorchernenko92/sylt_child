@@ -4,10 +4,10 @@
  */
 global $listing; ?>
 
-<?php if( has_post_thumbnail( $listing->ID ) ) : ?>
-
 <?php
+
 $images = get_post_meta(absint($listing->ID), '_gallery', true);
+
 if ( !$images  ) {
     return;
 }
@@ -37,9 +37,7 @@ endforeach;
                     <a data-width="1200" data-height="1200" href="<?php echo $image['full'][0] ?>" class="swiper-slide">
                         <img src="<?php echo $image['full'][0] ?>" alt="<?php echo $image['alt'] ?>">
                     </a>
-                <?php
-                    endforeach;
-                ?>
+                <?php endforeach; ?>
             </div>
 
             <div class="swiper-button-next"></div>
@@ -52,9 +50,7 @@ endforeach;
                 <div class="swiper-slide">
                     <img src="<?php echo $image['mid'][0] ?>" alt="<?php echo $image['alt'] ?>">
                 </div>
-            <?php
-            endforeach;
-            ?>
+            <?php endforeach; ?>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -97,8 +93,6 @@ endforeach;
         </ul>
 
     </div><!-- .wpsight-listing-section -->
-
-  <?php endif; ?>
 
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
