@@ -784,9 +784,85 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 .wpsight-listing-archive {
     transition: .4s all ease;
+}
+
+.wpsight-listing-section-details .wpsight-listing-summary {
+    display: flex;
+    width: 100%;
+}
+
+.wpsight-listing-section-details .listing-details-detail {
+    background-color: #e14243;
+    color: #fff;
+    padding: 8px 14px !important;
+    margin: 0 16px 0 0;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1200px) {
+    .wpsight-listing-section-details .wpsight-listing-summary {
+        flex-wrap: wrap;
+    }
+
+    .wpsight-listing-section-details .listing-details-detail {
+        width: 100%;
+        max-width: calc(50% - 8px);
+        margin: 0 16px 16px 0;
+    }
+
+    .wpsight-listing-section-details .listing-details-detail:nth-child(even) {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .wpsight-listing-section-details .listing-details-detail {
+        max-width: 100%;
+        margin-right: 0;
+    }
+}
+
+.wpsight-listing-section-details .listing-details-detail .listing-details-label {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+}
+
+.wpsight-listing-section-details .listing-details-detail .listing-details-label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.wpsight-listing-section-details .listing-details-1 .listing-details-label:before {
+    background-image: url("assets/images/furniture.svg");
+}
+
+.wpsight-listing-section-details .listing-details-2 .listing-details-label:before {
+    background-image: url("assets/images/shower.svg");
+}
+
+.wpsight-listing-section-details .listing-details-3 .listing-details-label:before {
+    background-image: url("assets/images/dimension.svg");
+}
+
+.wpsight-listing-section-details .listing-details-4 .listing-details-label:before {
+    background-image: url("assets/images/area.svg");
+}
+
+.wpsight-listing-section-details .listing-details-detail:last-child {
+    margin-right: 0;
+}
+
+.swiper-button-disabled {
+    pointer-events: auto !important;
 }
 
 .listing-wrap-custom .listing:hover,
@@ -878,17 +954,17 @@ body {
 
 .wpsight-listings .wpsight-listing-summary {
     margin: 0;
-    padding: 10px 0 7px;
     display: flex;
     flex-wrap: wrap;
+    padding: 0;
     background-color: transparent;
 }
 
 .wpsight-listings .wpsight-listing-summary .listing-details-detail {
     width: 100%;
     max-width: 50%;
-    padding: 0 16px;
-    margin: 0 0 3px;
+    padding: 4px 16px;
+    margin: 0;
     border: none;
     display: flex;
     align-items: center;
@@ -1093,16 +1169,9 @@ body {
     position: absolute;
     top: 100%;
     background-color: #dfe2e6;
-    width: 95%;
+    width: 100%;
     height: 1px;
-}
-
-.wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(2):before {
     left: 0;
-}
-
-.wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(1):before {
-    right: 0;
 }
 
 .wpsight-listings .wpsight-listing-summary .listing-details-detail:nth-child(odd):after {
@@ -1113,7 +1182,7 @@ body {
     transform: translate(0, -50%);
     background-color: #dfe2e6;
     width: 1px;
-    height: 110%;
+    height: 105%;
 }
 
 .wpsight-listings.wpsight-listings-custom .listing-top {
@@ -1136,6 +1205,10 @@ body {
 @media(max-width: 768px) {
     .listing-wrap {
         margin-bottom: 30px;
+    }
+
+    .wpsight-listings .wpsight-listing-summary .listing-details-detail {
+        padding: 2px 8px;
     }
 
     .wpsight-listing-gallery .gallery-main img {

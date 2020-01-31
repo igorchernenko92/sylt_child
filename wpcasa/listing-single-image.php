@@ -33,7 +33,7 @@ endforeach;
         <div class="gallery-main swiper-container">
             <div class="swiper-wrapper">
                 <?php foreach( $image_array as $image ) : ?>
-                    <a data-width="1200" data-height="1200" href="<?php echo $image['full'][0] ?>" class="swiper-slide">
+                    <a href="<?php echo $image['full'][0] ?>" class="swiper-slide">
                         <img src="<?php echo $image['full'][0] ?>" alt="<?php echo $image['alt'] ?>">
                     </a>
                 <?php endforeach; ?>

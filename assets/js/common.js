@@ -185,7 +185,7 @@ jQuery(document).ready(function($) {
         }
 
         if ($btn.length && $search.length) init();
-    }
+    };
     headerSearch();
 
     var listingGallery = function () {
@@ -199,8 +199,8 @@ jQuery(document).ready(function($) {
             $targetItems.each(function() {
                 var item = {
                     src: $(this).attr('href'),
-                    w: $(this).data("width"),
-                    h: $(this).data("height")
+                    w: 1300,
+                    h: 1300
                 };
                 container.push(item);
             });
