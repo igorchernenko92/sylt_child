@@ -30,7 +30,7 @@ class WPSight_CCC_Listing_Carousel extends WP_Widget {
 			'description' => _x( 'Display listing carousel on single listing pages.', 'listing wigdet', 'ccc' )
 		);
 
-		parent::__construct( 'wpsight_ccc_listing_carousel', '&rsaquo; ' . _x( 'Listing Carousel', 'listing widget', 'ccc' ), $widget_ops );
+		parent::__construct( 'wpsight_ccc_listing_carousel', '&rsaquo; ' . _x( 'WPCasa Sylt Listing Carousel', 'listing widget', 'ccc' ), $widget_ops );
 
 	}
 

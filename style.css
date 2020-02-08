@@ -826,34 +826,44 @@ body {
     }
 }
 
-.wpsight-listing-section-details .listing-details-detail .listing-details-label {
+.wpsight-listing-section-details .listing-details-detail .listing-details-value {
     display: flex;
     align-items: center;
-    margin-right: 4px;
+    /*margin-right: 4px;*/
+    /*margin-left: 20px;*/
 }
 
-.wpsight-listing-section-details .listing-details-detail .listing-details-label:before {
+.wpsight-listing-section-details .listing-details-detail .listing-details-value:before {
     content: '';
     width: 20px;
     height: 20px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    margin-right: 10px;
 }
 
-.wpsight-listing-section-details .listing-details-1 .listing-details-label:before {
+.wpsight-listing-section-details .listing-details-detail .listing-details-label:before {
+    content: '';
+}
+
+.wpsight-listing-section-details .listing-details-detail .listing-details-label {
+    display: none;
+}
+
+.wpsight-listing-section-details .listing-details-1 .listing-details-value:before {
     background-image: url("assets/images/furniture.svg");
 }
 
-.wpsight-listing-section-details .listing-details-2 .listing-details-label:before {
+.wpsight-listing-section-details .listing-details-2 .listing-details-value:before {
     background-image: url("assets/images/shower.svg");
 }
 
-.wpsight-listing-section-details .listing-details-3 .listing-details-label:before {
+.wpsight-listing-section-details .listing-details-3 .listing-details-value:before {
     background-image: url("assets/images/dimension.svg");
 }
 
-.wpsight-listing-section-details .listing-details-4 .listing-details-label:before {
+.wpsight-listing-section-details .listing-details-4 .listing-details-value:before {
     background-image: url("assets/images/area.svg");
 }
 

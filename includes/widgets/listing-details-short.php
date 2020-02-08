@@ -30,7 +30,7 @@ class WPSight_CCC_Listing_Details extends WP_Widget {
 			'description' => _x( 'Display listing details on single listing pages.', 'listing wigdet', 'ccc' )
 		);
 
-		parent::__construct( 'wpsight_ccc_listing_details', '&rsaquo; ' . _x( 'Listing Details Short', 'listing widget', 'ccc' ), $widget_ops );
+		parent::__construct( 'wpsight_ccc_listing_details', '&rsaquo; ' . _x( 'WPCasa Sylt Listing Details Summary', 'listing widget', 'ccc' ), $widget_ops );
 
 	}
 
