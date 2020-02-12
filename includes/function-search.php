@@ -26,9 +26,7 @@ function edit_listing_request($query_args, $args) {
         $id_query = new WP_Query( $id_args );
 
         $post_ids = wp_list_pluck( $id_query->posts, 'ID' );
-        if ( empty( $post_ids ) ) {
-            $query_args['post__in'] = ['issue'];
-        } else {
+        if ( $post_ids ) {
             $query_args['post__in'] = $post_ids;
         }
     }
