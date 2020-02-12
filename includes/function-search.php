@@ -7,8 +7,9 @@
  *
  *	@since 1.0.0
  */
+add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 2 );
 function edit_listing_request($query_args, $args) {
-    if ( isset($_GET['post_in']) ) {
+    if ( isset($_GET['post_in']) && !empty($_GET['post_in']) ) {
 
         $id_args = array(
             'post_type'  => wpsight_post_type(),
@@ -28,6 +29,8 @@ function edit_listing_request($query_args, $args) {
         $post_ids = wp_list_pluck( $id_query->posts, 'ID' );
         if ( $post_ids ) {
             $query_args['post__in'] = $post_ids;
+        } else {
+            $query_args['post__in'] = ['not_found'];
         }
     }
 
@@ -44,7 +47,7 @@ function edit_listing_request($query_args, $args) {
  *	@since 1.0.0
  */
 
-add_filter( 'wpsight_get_listings_query_args', 'edit_listing_request', 10 , 2 );
+
 function edit_default_fields($fields_default) {
     $details = wpsight_details();
 
