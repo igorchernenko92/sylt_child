@@ -110,6 +110,16 @@ jQuery(document).ready(function($) {
             }
         ];
 
+        function changeMinMax(state) {
+            if (state) {
+                $priceMin.attr("name", "min");
+                $priceMax.attr("name", "max");
+            } else {
+                $priceMin.removeAttr("name");
+                $priceMax.removeAttr("name");
+            }
+        }
+        changeMinMax(false);
 
         function setMinMaxPrices (index) {
             var curPricesData = pricesData.find(function (cur) {
@@ -152,6 +162,10 @@ jQuery(document).ready(function($) {
 
             $offerSelect.on("change", function () {
                 curOffer = $(this).val() ? $(this).val() : "default";
+
+                if (curOffer === "default") changeMinMax(false);
+                else changeMinMax(true);
+
                 setPricesOptions();
             });
 
