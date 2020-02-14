@@ -37,9 +37,9 @@ jQuery(document).ready(function($) {
                 offer: 'default',
                 data: [
                     {
-                        min: "0",
-                        del: " - ",
-                        max: "1.600.000+"
+                        min: "Price range",
+                        del: "",
+                        max: ""
                     }
                 ]
             },
