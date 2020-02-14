@@ -1,6 +1,6 @@
 <?php
 /**
- * Listing Details widget
+ * Listing Carousel widget
  *
  * @package CCC Real Estate
  */
@@ -9,10 +9,10 @@
  * Register widget
  */
  
-add_action( 'widgets_init', 'wpsight_ccc_register_widget_listing_details' );
+add_action( 'widgets_init', 'wpsight_ccc_register_widget_listing_carousel' );
  
-function wpsight_ccc_register_widget_listing_details() {
-	register_widget( 'WPSight_CCC_Listing_Details' );
+function wpsight_ccc_register_widget_listing_carousel() {
+	register_widget( 'WPSight_CCC_Listing_Carousel' );
 }
 
 /**
@@ -21,16 +21,16 @@ function wpsight_ccc_register_widget_listing_details() {
  * @since 1.0.0
  */
 
-class WPSight_CCC_Listing_Details extends WP_Widget {
+class WPSight_CCC_Listing_Carousel extends WP_Widget {
 
 	public function __construct() {
 
 		$widget_ops = array(
-			'classname'   => 'widget_listing_details',
-			'description' => _x( 'Display listing details on single listing pages.', 'listing wigdet', 'ccc' )
+			'classname'   => 'widget_listing_carousel',
+			'description' => _x( 'Display listing carousel on single listing pages.', 'listing wigdet', 'ccc' )
 		);
 
-		parent::__construct( 'wpsight_ccc_listing_details', '&rsaquo; ' . _x( 'WPCasa Sylt Listing Details Summary', 'listing widget', 'ccc' ), $widget_ops );
+		parent::__construct( 'wpsight_ccc_listing_carousel', '&rsaquo; ' . _x( 'WPCasa Sylt Listing Carousel', 'listing widget', 'ccc' ), $widget_ops );
 
 	}
 
@@ -44,8 +44,8 @@ class WPSight_CCC_Listing_Details extends WP_Widget {
         if ( $title )
 			echo $args['before_title'] . $title . $args['after_title'];
 
-        // Echo listing details
-        wpsight_get_template( 'listing-single-details.php' );
+        // Echo listing carousel
+        wpsight_get_template( 'listing-single-carousel.php' );
 
 		// Echo after_widget
 		echo $args['after_widget'];
@@ -70,7 +70,7 @@ class WPSight_CCC_Listing_Details extends WP_Widget {
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'ccc' ); ?>: <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" /></label></p>
 
 		<p>
-			<?php _e( 'This widget has no further settings. It automatically displays the listing details of the current single listing.', 'ccc' ); ?>
+			<?php _e( 'This widget has no further settings. It automatically displays the listing carousel of the current single listing.', 'ccc' ); ?>
 		</p><?php
 
 	}

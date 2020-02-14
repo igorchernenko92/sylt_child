@@ -223,3 +223,4 @@ endif;
 include ('includes/function-search.php');
 include ('includes/function-meta-boxes-home.php');
 include ('includes/widgets/listing-details-short.php');
+include ('includes/widgets/listing-carousel.php');

@@ -6,7 +6,7 @@ global $listing; ?>
 
 <?php
 
-$images = get_post_meta(absint($listing->ID), '_gallery', true);
+$images = get_post_meta(absint(get_the_ID()), '_gallery', true);
 
 if ( !$images  ) { return; }
 
