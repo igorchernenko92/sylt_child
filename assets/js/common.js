@@ -31,13 +31,12 @@ jQuery(document).ready(function($) {
 
         var curOffer = $offerSelect.val() ? $offerSelect.val() : "default";
         var curIndex;
-
         var pricesData = [
             {
                 offer: 'default',
                 data: [
                     {
-                        min: "Price range",
+                        min: child_string.price_label,
                         del: "",
                         max: ""
                     }

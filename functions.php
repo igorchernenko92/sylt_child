@@ -77,7 +77,9 @@ if ( ! function_exists('ccc_theme_enqueue') ) :
     wp_enqueue_script( 'chld_thm_photoswipe', trailingslashit( get_template_directory_uri() ) . 'vendor/dimsemenov/PhotoSwipe/photoswipe-ui-default.min.js');
     wp_enqueue_script( 'chld_thm_photoswipe-ui', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/common.js');
     wp_localize_script( 'chld_thm_common_script', 'child_string', array(
-      'select_all' => __( 'Select / Unselect all', 'ccc' )
+      'select_all' => __( 'Select / Unselect all', 'ccc' ),
+      'price_label' => __( 'Please, select offer to see price ranges', 'ccc' ),
+
     ) );
   }
   add_action('wp_enqueue_scripts', 'ccc_theme_enqueue');
