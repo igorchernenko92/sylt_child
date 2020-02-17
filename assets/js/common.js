@@ -128,9 +128,15 @@ jQuery(document).ready(function($) {
             var minPrice = curPricesData.data[index].min.replace(/\./g, "");
             var maxPrice = curPricesData.data[index].max.replace(/\./g, "");
 
+
             $priceMin.attr("value", minPrice);
-            if (maxPrice.length) $priceMax.attr("value", maxPrice);
-            else $priceMax.attr("value", minPrice);
+
+            if (maxPrice.length) {
+                $priceMax.attr("value", maxPrice);
+            }
+            else {
+                $priceMax.removeAttr("name");
+            }
         }
 
         function setPricesOptions () {
@@ -170,6 +176,7 @@ jQuery(document).ready(function($) {
 
             $pricesSelect.on("change", function () {
                 curIndex = $(this).val();
+                changeMinMax(true);
                 setMinMaxPrices(curIndex);
             });
         }
