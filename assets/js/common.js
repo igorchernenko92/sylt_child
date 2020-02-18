@@ -4,7 +4,6 @@ jQuery(document).ready(function($) {
         $selectItems = $(".listings-search-field .multiselect");
         var $listingResetBtn = $(".listings-search-reset");
 
-
         function init () {
              test = $selectItems.multipleSelect();
             $(".ms-select-all").find("span").text(child_string.select_all);
@@ -24,9 +23,33 @@ jQuery(document).ready(function($) {
         }
         if ($selectItems.length) init();
         if ($listingResetBtn.length) setEventListingResetBtn();
+
+        url = new URL(window.location.href);
+        var locationParam = url.searchParams.getAll("location[]");
+        var typeParam = url.searchParams.getAll("listing-type[]");
+        var featureParam = url.searchParams.getAll("feature[]");
+        var items = $.merge(locationParam, typeParam, featureParam);
+
+        if ( locationParam.length !== 0 ) {
+            $('.listings-search-field-location .ms-parent .ms-choice .placeholder').text(getCookie('locationValue'));
+        }
+
+        if ( typeParam.length !== 0 ) {
+            $('.listings-search-field-listing-type .ms-parent .ms-choice .placeholder').text(getCookie('typeValue'));
+            console.log(getCookie('typeValue'));
+        }
+
+        if ( featureParam.length !== 0 ) {
+            $('.listings-search-field-feature .ms-parent .ms-choice .placeholder').text(getCookie('featureValue'));
+
+        }
+
+        if ( items.length !== 0 ) {
+            $selectItems.multipleSelect('setSelects', getCookie('options'));
+        }
+
     };
     initMultiselect();
-
 
     //grap all data after submit and add cookies
     $('form.wpsight-listings-search').submit(function( e ) {
@@ -36,10 +59,10 @@ jQuery(document).ready(function($) {
         var offerValue =  $('.listing-search-offer').val();
         var priceValue =  $('.listing-search-prices').val();
 
-        setCookie('locationValue', locationValue, 1);
-        setCookie('typeValue', typeValue, 1);
-        setCookie('featureValue', featureValue, 1);
-        setCookie('offerValue', offerValue, 1);
+        setCookie('locationValue', locationValue, 10);
+        setCookie('typeValue', typeValue, 10);
+        setCookie('featureValue', featureValue, 10);
+        setCookie('offerValue', offerValue, 10);
         setCookie('priceValue', priceValue, 1);
 
         options = [];
@@ -333,12 +356,10 @@ jQuery(document).ready(function($) {
     };
     listingGallery();
 
-
-
     function setCookie(key, value, expiry) {
         var expires = new Date();
         expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
-        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+        document.cookie = key + '=' + value + ';path=/' + ';expires=' + expires.toUTCString();
     }
 
     function getCookie(key) {
@@ -351,34 +372,9 @@ jQuery(document).ready(function($) {
         setCookie(key, keyValue, '-1');
     }
 
-    function setSearchWhenUrl() {
-        var url = new URL(window.location.href);
-        var locationParam = url.searchParams.getAll("location[]");
-        var typeParam = url.searchParams.getAll("listing-type[]");
-        var featureParam = url.searchParams.getAll("feature[]");
-        var priceParam = url.searchParams.getAll("min");
-        console.log(priceParam);
-
-        if ( locationParam.length !== 0 ) {
-            $('.listings-search-field-location .ms-parent .ms-choice .placeholder').text(getCookie('locationValue'));
-            $selectItems.multipleSelect('setSelects', getCookie('options'));
-        }
-
-        if ( typeParam.length !== 0 ) {
-            $('.listings-search-field-listing-type .ms-parent .ms-choice .placeholder').text(getCookie('typeValue'));
-            $selectItems.multipleSelect('setSelects', getCookie('options'));
-        }
-
-        if ( featureParam.length !== 0 ) {
-            $('.listings-search-field-feature .ms-parent .ms-choice .placeholder').text(getCookie('featureValue'));
-            $selectItems.multipleSelect('setSelects', getCookie('options'));
-        }
-
-        if ( priceParam.length !== 0 ) {
-            $('.listing-search-prices').val(getCookie('priceValue'));
-        }
+    var priceParam = url.searchParams.getAll("min");
+    if ( priceParam.length !== 0 ) {
+        $('.listing-search-prices').val(getCookie('priceValue'));
     }
-
-    setSearchWhenUrl();
 
 });
