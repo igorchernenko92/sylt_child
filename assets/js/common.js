@@ -19,6 +19,7 @@ jQuery(document).ready(function($) {
                 eraseCookie('typeValue');
                 eraseCookie('featureValue');
                 eraseCookie('offerValue');
+                eraseCookie('priceValue');
             });
         }
         if ($selectItems.length) init();
@@ -26,17 +27,20 @@ jQuery(document).ready(function($) {
     };
     initMultiselect();
 
+
     //grap all data after submit and add cookies
     $('form.wpsight-listings-search').submit(function( e ) {
         var locationValue =  $('.listings-search-field-location .multiselect button span').text();
         var typeValue =  $('.listings-search-field-listing-type .multiselect button span').text();
         var featureValue =  $('.listings-search-field-feature .multiselect button span').text();
         var offerValue =  $('.listing-search-offer').val();
+        var priceValue =  $('.listing-search-prices').val();
 
         setCookie('locationValue', locationValue, 1);
         setCookie('typeValue', typeValue, 1);
         setCookie('featureValue', featureValue, 1);
         setCookie('offerValue', offerValue, 1);
+        setCookie('priceValue', priceValue, 1);
 
         options = [];
         options.push($('.listings-search-field-location select').val());
@@ -346,5 +350,35 @@ jQuery(document).ready(function($) {
         var keyValue = getCookie(key);
         setCookie(key, keyValue, '-1');
     }
+
+    function setSearchWhenUrl() {
+        var url = new URL(window.location.href);
+        var locationParam = url.searchParams.getAll("location[]");
+        var typeParam = url.searchParams.getAll("listing-type[]");
+        var featureParam = url.searchParams.getAll("feature[]");
+        var priceParam = url.searchParams.getAll("min");
+        console.log(priceParam);
+
+        if ( locationParam.length !== 0 ) {
+            $('.listings-search-field-location .ms-parent .ms-choice .placeholder').text(getCookie('locationValue'));
+            $selectItems.multipleSelect('setSelects', getCookie('options'));
+        }
+
+        if ( typeParam.length !== 0 ) {
+            $('.listings-search-field-listing-type .ms-parent .ms-choice .placeholder').text(getCookie('typeValue'));
+            $selectItems.multipleSelect('setSelects', getCookie('options'));
+        }
+
+        if ( featureParam.length !== 0 ) {
+            $('.listings-search-field-feature .ms-parent .ms-choice .placeholder').text(getCookie('featureValue'));
+            $selectItems.multipleSelect('setSelects', getCookie('options'));
+        }
+
+        if ( priceParam.length !== 0 ) {
+            $('.listing-search-prices').val(getCookie('priceValue'));
+        }
+    }
+
+    setSearchWhenUrl();
 
 });
