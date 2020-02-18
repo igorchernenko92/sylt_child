@@ -1,26 +1,79 @@
 jQuery(document).ready(function($) {
-    $("form.wpsight-listings-search").attr("autocomplete", "off");
+    // $("form.wpsight-listings-search").attr("autocomplete", "off");
+
+    function setCookie(key, value, expiry) {
+        var expires = new Date();
+        expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+    }
+
+    function getCookie(key) {
+        var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+        return keyValue ? keyValue[2] : null;
+    }
+
+    function eraseCookie(key) {
+        var keyValue = getCookie(key);
+        setCookie(key, keyValue, '-1');
+    }
 
     var initMultiselect = function () {
-        var $selectItems = $(".listings-search-field .multiselect");
+        $selectItems = $(".listings-search-field .multiselect");
         var $listingResetBtn = $(".listings-search-reset");
-        var options = {};
+
 
         function init () {
-            $selectItems.multipleSelect(options);
+             test = $selectItems.multipleSelect();
             $(".ms-select-all").find("span").text(child_string.select_all);
         }
 
         function setEventListingResetBtn () {
             $listingResetBtn.on("click", function () {
                 $selectItems.multipleSelect('uncheckAll');
+
+                eraseCookie('options');
+                eraseCookie('locationValue');
+                eraseCookie('typeValue');
+                eraseCookie('featureValue');
             });
         }
-
         if ($selectItems.length) init();
         if ($listingResetBtn.length) setEventListingResetBtn();
     };
     initMultiselect();
+
+    $('.listings-search-field-submi')
+
+    if (window.performance && window.performance.navigation.type == window.performance.navigation.TYPE_BACK_FORWARD) {
+        $('.listings-search-field-location .ms-parent .ms-choice .placeholder').text(getCookie('locationValue'));
+        // $('.listings-search-field-listing-type .ms-parent .ms-choice .placeholder').text(getCookie('typeValue'));
+        $('.listings-search-field-feature .ms-parent .ms-choice .placeholder').text(getCookie('featureValue'));
+        $selectItems.multipleSelect('setSelects', getCookie('options'));
+    }
+
+
+
+    $('form.wpsight-listings-search').submit(function( e ) {
+        $locationValue =  $('.listings-search-field-location .multiselect button span').text();
+        $typeValue =  $('.listings-search-field-listing-type .multiselect button span').text();
+        $featureValue =  $('.listings-search-field-feature .multiselect button span').text();
+
+        setCookie('locationValue', $locationValue, 1);
+        setCookie('typeValue', $typeValue, 1);
+        setCookie('featureValue', $featureValue, 1);
+
+        options = [];
+        options.push($('.listings-search-field-location select').val());
+        options.push($('.listings-search-field-listing-type select').val());
+        options.push($('.listings-search-field-feature select').val());
+
+        setCookie('options', options);
+
+    });
+
+
+
+
 
     var initChangePricesLogic = function () {
         var $offerSelect = $(".listing-search-offer");
