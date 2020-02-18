@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
         var $listingResetBtn = $(".listings-search-reset");
 
         function init () {
-             test = $selectItems.multipleSelect();
+             $selectItems.multipleSelect();
             $(".ms-select-all").find("span").text(child_string.select_all);
         }
 
@@ -23,30 +23,6 @@ jQuery(document).ready(function($) {
         }
         if ($selectItems.length) init();
         if ($listingResetBtn.length) setEventListingResetBtn();
-
-        url = new URL(window.location.href);
-        var locationParam = url.searchParams.getAll("location[]");
-        var typeParam = url.searchParams.getAll("listing-type[]");
-        var featureParam = url.searchParams.getAll("feature[]");
-        var items = $.merge(locationParam, typeParam, featureParam);
-
-        if ( locationParam.length !== 0 ) {
-            $('.listings-search-field-location .ms-parent .ms-choice .placeholder').text(getCookie('locationValue'));
-        }
-
-        if ( typeParam.length !== 0 ) {
-            $('.listings-search-field-listing-type .ms-parent .ms-choice .placeholder').text(getCookie('typeValue'));
-            console.log(getCookie('typeValue'));
-        }
-
-        if ( featureParam.length !== 0 ) {
-            $('.listings-search-field-feature .ms-parent .ms-choice .placeholder').text(getCookie('featureValue'));
-
-        }
-
-        if ( items.length !== 0 ) {
-            $selectItems.multipleSelect('setSelects', getCookie('options'));
-        }
 
     };
     initMultiselect();
@@ -372,9 +348,36 @@ jQuery(document).ready(function($) {
         setCookie(key, keyValue, '-1');
     }
 
-    var priceParam = url.searchParams.getAll("min");
-    if ( priceParam.length !== 0 ) {
-        $('.listing-search-prices').val(getCookie('priceValue'));
+    function setSearchWhenUrl() {
+        var url = new URL(window.location.href);
+        var locationParam = url.searchParams.getAll("location[]");
+        var typeParam = url.searchParams.getAll("listing-type[]");
+        var featureParam = url.searchParams.getAll("feature[]");
+        var items = $.merge(locationParam, typeParam, featureParam);
+        var priceParam = url.searchParams.getAll("min");
+
+        if ( locationParam.length !== 0 ) {
+            $('.listings-search-field-location .ms-parent .ms-choice .placeholder').text(getCookie('locationValue'));
+        }
+
+        if ( typeParam.length !== 0 ) {
+            $('.listings-search-field-listing-type .ms-parent .ms-choice .placeholder').text(getCookie('typeValue'));
+            console.log(getCookie('typeValue'));
+        }
+
+        if ( featureParam.length !== 0 ) {
+            $('.listings-search-field-feature .ms-parent .ms-choice .placeholder').text(getCookie('featureValue'));
+        }
+
+        if ( items.length !== 0 ) {
+            $selectItems.multipleSelect('setSelects', getCookie('options'));
+        }
+
+        if ( priceParam.length !== 0 ) {
+            $('.listing-search-prices').val(getCookie('priceValue'));
+        }
     }
+
+    setSearchWhenUrl();
 
 });
