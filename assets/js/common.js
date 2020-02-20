@@ -374,7 +374,7 @@ jQuery(document).ready(function($) {
         }
 
         if ( priceParam.length !== 0 ) {
-            $('.listing-search-prices').val(getCookie('priceValue'));
+            $('.listing-search-prices').val(getCookie('priceValue')).trigger('change');
         }
     }
 
