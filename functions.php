@@ -69,9 +69,9 @@ if ( ! function_exists('ccc_theme_enqueue') ) :
     // enqueue JS for front page
     wp_enqueue_script( 'chld_thm_multiselect_js', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/multiple-select/multiple-select.min.js' );
     wp_enqueue_script( 'chld_thm_swiper', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/swiper/swiper.min.js' );
-    wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_template_directory_uri() ) . 'vendor/dimsemenov/PhotoSwipe/photoswipe.min.js');
+    wp_enqueue_script( 'chld_thm_photoswipe-ui', trailingslashit( get_template_directory_uri() ) . 'vendor/dimsemenov/PhotoSwipe/photoswipe.min.js');
     wp_enqueue_script( 'chld_thm_photoswipe', trailingslashit( get_template_directory_uri() ) . 'vendor/dimsemenov/PhotoSwipe/photoswipe-ui-default.min.js');
-    wp_enqueue_script( 'chld_thm_photoswipe-ui', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/common.js');
+    wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/common.js');
     wp_localize_script( 'chld_thm_common_script', 'child_string', array(
       'select_all' => __( 'Select / Unselect all', 'ccc' ),
       'price_label' => __( 'Please, select offer to see price ranges', 'ccc' ),
@@ -222,3 +222,28 @@ include ('includes/function-search.php');
 include ('includes/function-meta-boxes-home.php');
 include ('includes/widgets/listing-details-short.php');
 include ('includes/widgets/listing-carousel.php');
+include ('includes/widgets/listings-related.php');
+
+
+
+// function recommends($recommends) {
+//
+//    $recommendss = [
+//        'dashboard1' => [
+//            'title' =>  __( "WPCasa Dashboard1111", "wpcasa" ),
+//            'description' => __( "Let listing agents submit and manage property listings from the front end.", "wpcasa" ),
+//            'image_url' => 'https://images.unsplash.com/photo-1575961895658-53c39b1d3307?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+//            'button_text' => __( "Button text", "wpcasa" ),
+//            'button_link' => 'button link',
+//        ],
+//    ];
+//
+//     $recommends =  array_merge($recommends, $recommendss);
+//
+//
+//    return $recommends;
+//
+//}
+//add_filter('wpsight_recommendations', '__return_fale');
+//
+
