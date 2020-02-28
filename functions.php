@@ -67,11 +67,11 @@ if ( ! function_exists('ccc_theme_enqueue') ) :
     wp_enqueue_style( 'chld_thm_cfg_parent', trailingslashit( get_template_directory_uri() ) . 'style.css', array( 'skel-main','skel-grid' ) );
 
     // enqueue JS for front page
-    wp_enqueue_script( 'chld_thm_multiselect_js', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/multiple-select/multiple-select.min.js' );
+    wp_enqueue_script( 'chld_thm_multiselect_js', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/multiple-select/multiple-select.min.js', '', '12323455', true );
     wp_enqueue_script( 'chld_thm_swiper', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/swiper/swiper.min.js' );
     wp_enqueue_script( 'chld_thm_photoswipe-ui', trailingslashit( get_template_directory_uri() ) . 'vendor/dimsemenov/PhotoSwipe/photoswipe.min.js');
     wp_enqueue_script( 'chld_thm_photoswipe', trailingslashit( get_template_directory_uri() ) . 'vendor/dimsemenov/PhotoSwipe/photoswipe-ui-default.min.js');
-    wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/common.js');
+    wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/common.js', array('chld_thm_multiselect_js'), '123455', true);
     wp_localize_script( 'chld_thm_common_script', 'child_string', array(
       'select_all' => __( 'Select / Unselect all', 'ccc' ),
       'price_label' => __( 'Please, select offer to see price ranges', 'ccc' ),

@@ -154,7 +154,6 @@ class WPSight_Listing_Related extends WP_Widget {
 		?>
 
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'wpcasa-london' ); ?>: <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" /></label></p>
-<!--		<p><label for="--><?php //echo $this->get_field_id( 'title' ); ?><!--"> --><?php //var_dump($taxonomy_filters); ?><!--</label></p>-->
 
 		<p><label for="<?php echo $this->get_field_id( 'nr' ); ?>"><?php _e( 'Listings', 'wpcasa-london' ); ?>: <input class="widefat" id="<?php echo $this->get_field_id( 'nr' ); ?>" name="<?php echo $this->get_field_name( 'nr' ); ?>" type="text" value="<?php echo esc_attr( $nr ); ?>" /></label><br />
 			<span class="description"><?php _e( 'Please enter the number of listings', 'wpcasa-london' ); ?></span></p>
@@ -164,7 +163,7 @@ class WPSight_Listing_Related extends WP_Widget {
 		<?php foreach( get_object_taxonomies( wpsight_post_type(), 'objects' ) as $key => $taxonomy ) : ?>
         <?php if ( $key == 'listing-category' ) continue; ?>
 
-			<p><select multiple="multiple" class="widefat multiselect" id="<?php echo $this->get_field_id( 'taxonomy_filter_' . $key ); ?>" name="<?php echo $this->get_field_name( 'taxonomy_filter_' . $key ); ?>[]">
+			<p><select multiple="multiple" class="widefat wpsight_related_multiselect" id="<?php echo $this->get_field_id( 'taxonomy_filter_' . $key ); ?>" name="<?php echo $this->get_field_name( 'taxonomy_filter_' . $key ); ?>[]">
 				<?php
 			    	// Add taxonomy term options
 			    	$terms = get_terms( array( $key ), array( 'hide_empty' => 0 ) );
@@ -181,18 +180,35 @@ class WPSight_Listing_Related extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'teasers' ); ?>"><?php _e( 'Display smaller listing teasers', 'wpcasa-london' ); ?></label></p>
         <script>
             jQuery(document).ready(function($) {
+                $('#widgets-right select.wpsight_related_multiselect').each(function( index ) {
+                    if ( !$(this).hasClass( "ms-offscreen" ) ) {
+                        $(this).multipleSelect();
+                    }
+                });
 
-                $('.multiselect').multipleSelect();
-
-                setCookie('testt', 'test', 10);
-
+                $(document).on('widget-added widget-updated widget-synced', function(event, widget) {
+                    $(widget).find('select.wpsight_related_multiselect').each(function( index ) {
+                        if ( !$(this).hasClass( "ms-offscreen" ) ) {
+                            $(this).multipleSelect();
+                        }
+                    });
+                });
             });
         </script>
 		<?php
         wp_enqueue_script( 'chld_thm_multiselect_js', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/multiple-select/multiple-select.min.js' );
         wp_enqueue_style( 'chld_thm_multiselect_css', trailingslashit( get_stylesheet_directory_uri() ) . 'vendor/multiple-select/multiple-select.min.css');
 
+//        wp_enqueue_script( 'chld_thm_common_script', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/common.js', array(''), '123455', true);
+//        wp_localize_script( 'chld_thm_common_script', 'child_string', array(
+//            'select_all' => __( 'Select / Unselect all', 'ccc' ),
+//            'price_label' => __( 'Please, select offer to see price ranges', 'ccc' ),
+//
+//        ) );
 	}
 }
 
 add_action( 'init', 'check_widget' );
+
+
+//$new_instance = array_map('strip_tags', $new_instance);
